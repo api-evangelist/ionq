@@ -1,0 +1,58 @@
+extends:
+  - spectral:oas
+rules:
+  ionq-api-version-in-server:
+    description: IonQ servers must include the API version segment (v0.x) in the URL.
+    message: "Server URL must include /v0.x version segment (e.g. https://api.ionq.co/v0.4)."
+    severity: error
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: ".*/v0\\.[0-9]+$"
+
+  ionq-operation-summary-title-case:
+    description: Operation summaries must use Title Case.
+    message: "Operation summary should be Title Case."
+    severity: warn
+    given: $.paths[*][*].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z0-9]"
+
+  ionq-operation-tags-required:
+    description: Every operation must be tagged so it groups under a resource (Jobs, Sessions, Backends, etc).
+    message: "Operation must include at least one tag."
+    severity: error
+    given: $.paths[*][get,post,put,delete,patch]
+    then:
+      field: tags
+      function: truthy
+
+  ionq-uuid-path-parameter:
+    description: Path parameters named UUID must be declared as string format uuid.
+    severity: warn
+    given: $.paths[*][*].parameters[?(@.name=='UUID')]
+    then:
+      field: schema.format
+      function: pattern
+      functionOptions:
+        match: "uuid"
+
+  ionq-security-apikey-required:
+    description: All non-public operations must declare the apiKey security scheme.
+    severity: warn
+    given: $.paths[*][post,put,delete]
+    then:
+      field: security
+      function: truthy
+
+  ionq-jobs-tag-name:
+    description: Use 'Jobs' (plural, Title Case) as the canonical tag for job operations.
+    severity: warn
+    given: $.paths[?(@property.match(/jobs/))][*].tags
+    then:
+      function: pattern
+      functionOptions:
+        match: "Jobs"

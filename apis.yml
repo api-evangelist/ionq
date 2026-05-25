@@ -1,0 +1,321 @@
+aid: ionq
+url: https://raw.githubusercontent.com/api-evangelist/ionq/refs/heads/main/apis.yml
+apis:
+- aid: ionq:ionq-quantum-cloud-api
+  name: IonQ Quantum Cloud API
+  tags:
+  - Quantum Computing
+  - Trapped Ion
+  - QPU
+  - Jobs
+  - Sessions
+  - Backends
+  - Cloud
+  humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
+  baseURL: https://api.ionq.co/v0.4
+  properties:
+  - url: https://docs.ionq.com/api-reference/v0.4/introduction
+    type: Documentation
+  - url: https://docs.ionq.com/guides/direct-api-submission
+    name: Direct API Submission
+    type: Documentation
+  - url: openapi/ionq-quantum-cloud-openapi.yml
+    type: OpenAPI
+  - url: json-schema/ionq-job-schema.json
+    type: JSONSchema
+  - url: json-schema/ionq-backend-schema.json
+    type: JSONSchema
+  - url: json-schema/ionq-session-schema.json
+    type: JSONSchema
+  - url: json-ld/ionq-context.jsonld
+    type: JSONLD
+  - type: NaftikoCapability
+    url: capabilities/quantum-cloud-jobs.yaml
+  - type: NaftikoCapability
+    url: capabilities/quantum-cloud-backends.yaml
+  - type: NaftikoCapability
+    url: capabilities/quantum-cloud-sessions.yaml
+  - type: NaftikoCapability
+    url: capabilities/quantum-cloud-usage.yaml
+  description: REST API for submitting quantum circuits, managing jobs and sessions, inspecting backends and
+    characterizations, and tracking cost and usage on the IonQ Quantum Cloud. Backends include the qpu.aria-1,
+    qpu.aria-2, qpu.forte-1, qpu.forte-enterprise-1 trapped-ion QPUs and the IonQ noisy/ideal simulator
+    (up to 29 qubits). Supports single-circuit, multi-circuit, native-gate, QAOA, and Quantum Function jobs.
+    Authentication via Authorization header `apiKey $IONQ_API_KEY`.
+- aid: ionq:ionq-quantum-cloud-api-v0-3
+  name: IonQ Quantum Cloud API (v0.3 Legacy)
+  tags:
+  - Quantum Computing
+  - Trapped Ion
+  - QPU
+  - Legacy
+  humanURL: https://docs.ionq.com/api-reference/v0.3/introduction
+  baseURL: https://api.ionq.co/v0.3
+  properties:
+  - url: https://docs.ionq.com/api-reference/v0.3/introduction
+    type: Documentation
+  - url: https://docs.ionq.com/api-reference/v0.3/migrating-from-old-versions
+    name: Migrating from v0.2
+    type: Documentation
+  - url: https://docs.ionq.com/api-reference/v0.4/migration-from-v0.3
+    name: Migration from v0.3 to v0.4
+    type: Documentation
+  description: The previous-generation IonQ Quantum Cloud REST API (v0.3) for submitting and managing jobs,
+    characterizations, backends, and reports. Superseded by v0.4 which adds Sessions, separated cost/results
+    endpoints, and restructured characterizations. v0.3 remains supported for existing integrations.
+name: IonQ
+tags:
+- Quantum Computing
+- Trapped Ion
+- QPU
+- Aria
+- Forte
+- Tempo
+- Quantum Cloud
+- Cloud
+- Hardware
+- Public Company
+kind: contract
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+common:
+- type: Portal
+  url: https://ionq.com
+- type: Documentation
+  url: https://docs.ionq.com
+- url: https://docs.ionq.com/api-reference/v0.4/introduction
+  name: Quantum Cloud API v0.4
+  type: Documentation
+- url: https://docs.ionq.com/api-reference/v0.3/introduction
+  name: Quantum Cloud API v0.3
+  type: Documentation
+- url: https://cloud.ionq.com
+  name: IonQ Quantum Cloud Console
+  type: Portal
+- url: https://cloud.ionq.com
+  type: SignUp
+- url: https://docs.ionq.com/user-manual/introduction
+  name: User Manual
+  type: Documentation
+- url: https://docs.ionq.com/user-manual/glossary
+  name: Glossary
+  type: Glossary
+- url: https://docs.ionq.com/guides/managing-api-keys
+  name: Managing API Keys
+  type: Authentication
+- url: https://docs.ionq.com/guides/connecting-saml-identity-providers
+  name: SAML SSO Configuration
+  type: Authentication
+- url: https://docs.ionq.com/guides/dotenv-project-api-keys
+  name: Project API Keys (.env)
+  type: Authentication
+- url: https://docs.ionq.com/guides/direct-api-submission
+  name: Direct API Submission Guide
+  type: GettingStarted
+- url: https://docs.ionq.com/guides/getting-started-with-native-gates
+  name: Getting Started with Native Gates
+  type: GettingStarted
+- url: https://docs.ionq.com/guides/cloud-usage
+  name: Cloud Usage
+  type: Documentation
+- url: https://docs.ionq.com/guides/error-mitigation-debiasing
+  name: Error Mitigation and Debiasing
+  type: Documentation
+- url: https://docs.ionq.com/guides/qpu-submission-checklist
+  name: QPU Submission Checklist
+  type: Documentation
+- url: https://docs.ionq.com/guides/hosted-hybrid-service
+  name: Hosted Hybrid Service
+  type: Documentation
+- url: https://docs.ionq.com/guides/simulation-with-noise-models
+  name: Simulation with Noise Models
+  type: Documentation
+- url: https://docs.ionq.com/guides/qaoa-solve-with-fire-opal
+  name: QAOA with Fire Opal
+  type: Documentation
+- url: https://docs.ionq.com/user-manual/platform-systems
+  name: Platform Systems (Aria, Forte, Tempo, Harmony)
+  type: Documentation
+- url: https://docs.ionq.com/user-manual/backends
+  name: Backends
+  type: Documentation
+- url: https://docs.ionq.com/user-manual/jobs
+  name: Jobs
+  type: Documentation
+- url: https://docs.ionq.com/user-manual/projects
+  name: Projects
+  type: Documentation
+- url: https://docs.ionq.com/user-manual/organizations
+  name: Organizations
+  type: Documentation
+- url: https://docs.ionq.com/user-manual/accounts
+  name: Accounts
+  type: Documentation
+- url: https://docs.ionq.com/partners/amazon-braket
+  name: Amazon Braket Partner Access
+  type: Documentation
+- url: https://docs.ionq.com/api-reference/v0.4/migration-from-v0.3
+  type: Versioning
+- url: https://docs.ionq.com/api-reference/v0.3/error-codes
+  name: API Error Codes
+  type: Errors
+- url: https://status.ionq.co
+  name: IonQ Quantum Cloud Status
+  type: StatusPage
+- url: https://support.ionq.com
+  name: IonQ Support Center
+  type: Support
+- url: mailto:support@ionq.com
+  name: Support Email
+  type: Support
+- url: https://ionq.com/contact
+  name: Contact
+  type: Contact
+- url: https://ionq.com/news
+  name: IonQ Newsroom
+  type: Blog
+- url: https://ionq.com/posts
+  name: IonQ Blog & Research Posts
+  type: Blog
+- url: https://ionq.com/resources
+  name: IonQ Resources
+  type: Documentation
+- url: https://ionq.com/quantum-cloud
+  name: IonQ Quantum Cloud
+  type: Portal
+- url: https://ionq.com/products
+  name: IonQ Products
+  type: Documentation
+- url: https://ionq.com/company
+  name: About IonQ
+  type: Documentation
+- url: https://ionq.com/careers
+  name: Careers
+  type: Documentation
+- url: https://investors.ionq.com
+  name: Investor Relations (NYSE IONQ)
+  type: Documentation
+- url: https://ionq.com/legal/terms-of-service
+  name: Terms of Service
+  type: TermsOfService
+- url: https://ionq.com/legal/privacy-policy
+  name: Privacy Policy
+  type: PrivacyPolicy
+- url: https://ionq.com/legal
+  name: Legal
+  type: Documentation
+- url: https://github.com/ionq
+  name: IonQ on GitHub
+  type: GitHubOrganization
+- url: https://github.com/ionq/ionq-core-python
+  name: ionq-core (Python client)
+  type: SDK
+- url: https://pypi.org/project/ionq-core/
+  name: ionq-core on PyPI
+  type: SDK
+- url: https://github.com/ionq/blqs
+  name: blqs (quantum building blocks DSL)
+  type: SDK
+- url: https://github.com/ionq/pyGSTi
+  name: pyGSTi (Gate Set Tomography, IonQ fork)
+  type: Tool
+- url: https://github.com/ionq/qrmi
+  name: qrmi (vendor-agnostic quantum resource layer, Rust)
+  type: Tool
+- url: https://github.com/ionq/torchquantum-dist
+  name: torchquantum-dist (multi-GPU QML simulation)
+  type: Tool
+- url: https://github.com/ionq/QC-App-Oriented-Benchmarks
+  name: QED-C Application-Oriented Benchmarks
+  type: Tool
+- url: https://github.com/ionq/forte_benchmarking
+  name: Forte Benchmarking
+  type: CodeExamples
+- url: https://github.com/ionq/forte_aq29_data
+  name: Forte AQ29 Benchmark Data
+  type: CodeExamples
+- url: https://docs.ionq.com/sdks/qiskit/index
+  name: Qiskit Integration
+  type: SDK
+- url: https://docs.ionq.com/sdks/cirq/index
+  name: Cirq Integration
+  type: SDK
+- url: https://docs.ionq.com/sdks/pennylane/index
+  name: PennyLane Integration
+  type: SDK
+- url: https://docs.ionq.com/sdks/qbraid/index
+  name: qBraid Integration
+  type: SDK
+- url: https://docs.ionq.com/sdks/cuda-q
+  name: NVIDIA CUDA-Q Integration
+  type: SDK
+- url: https://docs.ionq.com/sdks/tensorflow
+  name: TensorFlow Quantum Integration
+  type: SDK
+- url: https://aws.amazon.com/braket/quantum-computers/ionq/
+  name: IonQ on AWS Braket
+  type: Integration
+- url: https://azure.microsoft.com/products/quantum/
+  name: IonQ on Microsoft Azure Quantum
+  type: Integration
+- url: https://cloud.google.com/blog/products/compute/ionq-quantum-computing-now-available-on-google-cloud
+  name: IonQ on Google Cloud Marketplace
+  type: Integration
+- url: https://www.linkedin.com/company/ionq
+  type: LinkedIn
+- url: https://x.com/ionq_inc
+  type: Twitter
+- url: https://www.youtube.com/@ionq_inc
+  type: YouTube
+- url: plans/ionq-plans-pricing.yml
+  type: Plans
+- url: rate-limits/ionq-rate-limits.yml
+  type: RateLimits
+- url: finops/ionq-finops.yml
+  type: FinOps
+- type: Features
+  data:
+  - Trapped-ion QPUs with 99.99% world-record two-qubit gate fidelity
+  - Cloud access to qpu.aria-1, qpu.aria-2, qpu.forte-1, qpu.forte-enterprise-1, and Tempo systems
+  - On-premises Forte Enterprise rack-mounted quantum system
+  - Ideal and noisy IonQ simulator (up to 29 qubits) with Aria and Forte noise models
+  - REST API v0.4 with Jobs, Sessions, Backends, Characterizations, Cost, and Usage endpoints
+  - Sessions API (beta) for reserved-block QPU execution with cost, duration, and job-count limits
+  - Per-job cost endpoint plus organization-level usage aggregation in USD
+  - Per-job estimate endpoint for cost projection before submission
+  - Multi-circuit job submissions and Quantum Function jobs (QAOA, Hamiltonian energy)
+  - QIS gateset and native-gate (GPI, GPI2, MS, ZZ) circuit inputs
+  - Error mitigation via symmetric debiasing
+  - Project-scoped API keys with .env workflow and SAML SSO for identity federation
+  - Native integrations with Qiskit, Cirq, PennyLane, qBraid, CUDA-Q, TensorFlow Quantum
+  - Partner cloud access via AWS Braket, Microsoft Azure Quantum, and Google Cloud Marketplace
+  - ionq-core Python client generated from the OpenAPI spec under Apache 2.0
+  - Hosted hybrid service for classical/quantum loop execution
+  - Q-CTRL Fire Opal integration for QAOA performance enhancement
+  - Forte Enterprise on-premises deployment option
+  - Quantum networking, QKD, sensing, and space-based earth-observation product lines (Florida LambdaRail
+    statewide quantum-safe network)
+  sources:
+  - https://docs.ionq.com/
+  - https://docs.ionq.com/api-reference/v0.4/introduction
+  - https://docs.ionq.com/llms.txt
+  - https://github.com/ionq
+  - https://ionq.com/quantum-cloud
+  - https://ionq.com/news
+  updated: '2026-05-24'
+created: '2026-05-24T00:00:00.000Z'
+modified: '2026-05-24'
+position: Provider
+description: IonQ (NYSE IONQ) is a College Park, Maryland-based public trapped-ion quantum computing company.
+  IonQ designs, manufactures, and operates trapped-ion quantum computers (Aria, Forte, Forte Enterprise, Tempo,
+  Harmony) and delivers them through the IonQ Quantum Cloud REST API, on-premises Forte Enterprise systems, and
+  partner clouds (AWS Braket, Microsoft Azure Quantum, Google Cloud). The platform supports submission of QIS
+  and native-gate circuits, multi-circuit and Quantum Function jobs, reserved Sessions, error mitigation, and
+  organization-level usage and cost reporting. IonQ's quantum networking, security (QKD), sensing, and
+  space-infrastructure businesses extend the trapped-ion core into a broader quantum systems portfolio.
+maintainers:
+- FN: Kin Lane
+  email: info@apievangelist.com
+  X: apievangelist
+  url: https://apievangelist.com
+specificationVersion: '0.16'

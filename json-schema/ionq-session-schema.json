@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ionq/refs/heads/main/json-schema/ionq-session-schema.json",
+  "title": "IonQ Session",
+  "description": "A Session reserves a block of QPU time on an IonQ backend with cost, duration, and job-count limits.",
+  "type": "object",
+  "required": ["id", "backend", "status"],
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "started_at": { "type": "string", "format": "date-time" },
+    "ended_at": { "type": "string", "format": "date-time" },
+    "organization_id": { "type": "string", "format": "uuid" },
+    "project_id": { "type": "string", "format": "uuid" },
+    "creator_id": { "type": "string", "format": "uuid" },
+    "ender_id": { "type": "string", "format": "uuid" },
+    "backend": {
+      "type": "string",
+      "description": "Backend identifier the session is bound to."
+    },
+    "active": { "type": "boolean" },
+    "status": {
+      "type": "string",
+      "enum": ["created", "started", "ended"]
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "job_count_limit": { "type": "integer", "minimum": 1 },
+        "duration_limit_min": { "type": "integer", "minimum": 1 },
+        "expires_at": { "type": "string", "format": "date-time" },
+        "cost_limit": {
+          "type": "object",
+          "required": ["unit", "value"],
+          "properties": {
+            "unit": { "type": "string", "examples": ["usd"] },
+            "value": { "type": "number", "minimum": 0 }
+          }
+        }
+      }
+    }
+  }
+}

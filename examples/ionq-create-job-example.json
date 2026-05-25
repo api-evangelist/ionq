@@ -1,0 +1,23 @@
+{
+  "type": "ionq.circuit.v1",
+  "name": "Bell state on Forte",
+  "metadata": {
+    "experiment": "bell-state",
+    "owner": "kinlane"
+  },
+  "shots": 1024,
+  "backend": "qpu.forte-1",
+  "settings": {
+    "error_mitigation": {
+      "debiasing": true
+    }
+  },
+  "input": {
+    "qubits": 2,
+    "gateset": "qis",
+    "circuit": [
+      { "gate": "h", "target": 0 },
+      { "gate": "cnot", "control": 0, "target": 1 }
+    ]
+  }
+}

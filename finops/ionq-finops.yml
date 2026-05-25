@@ -1,0 +1,95 @@
+aid: ionq
+name: IonQ Quantum Cloud FinOps Surface
+description: |
+  Billing and cost-management surface for the IonQ Quantum Cloud, expressed against the FinOps
+  Framework / FOCUS data spec. IonQ exposes per-job and per-organization cost data through dedicated
+  endpoints, with USD as the canonical currency and the QPU shot as the primary unit of consumption.
+version: '0.1'
+specificationVersion: '0.1'
+source:
+  - https://docs.ionq.com/api-reference/v0.4/jobs/get-job-cost
+  - https://docs.ionq.com/api-reference/v0.4/util/usages
+  - https://docs.ionq.com/api-reference/v0.4/jobs/get-job-estimate
+
+provider:
+  name: IonQ
+  service: IonQ Quantum Cloud
+  currency: USD
+
+charge_categories:
+  - id: usage
+    description: Pay-per-use QPU execution charged per shot (with circuit-depth-dependent multipliers).
+  - id: reservation
+    description: Reserved QPU time blocks for enterprise customers.
+  - id: subscription
+    description: Custom enterprise contracts.
+  - id: credit
+    description: Research credit allocations (up to $10,000 for eligible academics).
+
+units:
+  primary:
+    - shot
+    - QPU microsecond
+  secondary:
+    - circuit
+    - job
+    - session
+
+surfaces:
+  pre_purchase_estimate:
+    endpoint: GET /v0.4/jobs/estimate
+    description: Returns an estimated cost in USD for a hypothetical job before submission.
+  per_job_cost:
+    endpoint: GET /v0.4/jobs/{UUID}/cost
+    fields:
+      - dry_run
+      - estimated_cost.value
+      - estimated_cost.unit
+      - cost.value
+      - cost.unit
+    description: Returns estimated and actual cost for a single job after execution.
+  organization_usage:
+    endpoint: GET /v0.4/organizations/{organization_id}/usage
+    fields:
+      - amount_total
+      - job_count
+      - time_us_total
+      - usage_from
+      - usage_to
+      - usage_unit
+      - usage_data[].group_usage[]
+    description: Aggregated cost, job count, and QPU time over a window with per-group breakdowns
+      (e.g., by backend, project).
+
+focus_alignment:
+  BilledCost: cost.value (from /jobs/{id}/cost) and amount_total (from /organizations/{id}/usage)
+  BillingCurrency: cost.unit, usage_unit (always USD)
+  ChargeCategory: usage | reservation | subscription
+  ChargePeriodStart: usage_from
+  ChargePeriodEnd: usage_to
+  ConsumedQuantity: time_us_total (microseconds), job_count, shots
+  ConsumedUnit: microsecond | job | shot
+  ServiceName: IonQ Quantum Cloud
+  ServiceCategory: Quantum Compute
+  ProviderName: IonQ
+  ResourceId: job UUID, session UUID, organization UUID
+  ResourceType: Job | Session | Organization
+  RegionId: backend.location (e.g., College Park, MD)
+
+cost_controls:
+  - id: session-cost-limit
+    description: Sessions accept a cost_limit (unit + value). When reached, the session ends.
+  - id: session-duration-limit
+    description: Sessions accept duration_limit_min to cap wall time.
+  - id: session-job-count-limit
+    description: Sessions accept job_count_limit to cap total job submissions.
+  - id: pre-flight-estimate
+    description: GET /jobs/estimate lets clients reject expensive jobs before submission.
+
+partner_billing:
+  - id: aws-braket
+    description: IonQ jobs submitted through AWS Braket are billed by AWS, not IonQ.
+  - id: azure-quantum
+    description: IonQ jobs submitted through Microsoft Azure Quantum are billed by Microsoft.
+  - id: google-cloud
+    description: IonQ Marketplace listings on Google Cloud are billed through Google Cloud.

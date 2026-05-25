@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-structure.org/draft/2025-04/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ionq/refs/heads/main/json-structure/ionq-job-structure.json",
+  "title": "IonQ Job Structure",
+  "description": "Resource structure for an IonQ Quantum Cloud Job, including its lifecycle states and result variants.",
+  "resource": "Job",
+  "identifier": {
+    "field": "id",
+    "type": "uuid",
+    "scope": "global"
+  },
+  "lifecycle": {
+    "states": ["ready", "submitted", "running", "completed", "canceled", "failed"],
+    "transitions": [
+      { "from": "ready", "to": "submitted" },
+      { "from": "submitted", "to": "running" },
+      { "from": "running", "to": "completed" },
+      { "from": "running", "to": "failed" },
+      { "from": "ready", "to": "canceled" },
+      { "from": "submitted", "to": "canceled" },
+      { "from": "running", "to": "canceled" }
+    ]
+  },
+  "relationships": {
+    "session": {
+      "type": "belongsTo",
+      "resource": "Session",
+      "field": "session_id"
+    },
+    "project": {
+      "type": "belongsTo",
+      "resource": "Project",
+      "field": "project_id"
+    },
+    "backend": {
+      "type": "references",
+      "resource": "Backend",
+      "field": "backend"
+    },
+    "characterization": {
+      "type": "references",
+      "resource": "Characterization",
+      "field": "characterization_id"
+    },
+    "variants": {
+      "type": "hasMany",
+      "resource": "JobVariant",
+      "description": "Multi-circuit jobs produce one variant per circuit."
+    }
+  },
+  "endpoints": {
+    "create": "POST /v0.4/jobs",
+    "read": "GET /v0.4/jobs/{UUID}",
+    "list": "GET /v0.4/jobs",
+    "delete": "DELETE /v0.4/jobs/{UUID}",
+    "cancel": "PUT /v0.4/jobs/{UUID}/status/cancel",
+    "cost": "GET /v0.4/jobs/{UUID}/cost",
+    "results": "GET /v0.4/jobs/{UUID}/results/probabilities"
+  }
+}

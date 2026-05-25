@@ -1,0 +1,11 @@
+{
+  "backend": "qpu.forte-1",
+  "settings": {
+    "job_count_limit": 50,
+    "duration_limit_min": 60,
+    "cost_limit": {
+      "unit": "usd",
+      "value": 500.0
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "ionq": "https://docs.ionq.com/schemas/v0.4/",
+    "Backend": "ionq:Backend",
+    "Characterization": "ionq:Characterization",
+    "Job": "ionq:Job",
+    "Session": "ionq:Session",
+    "Usage": "ionq:Usage",
+    "qubits": "ionq:qubits",
+    "backend": "ionq:backend",
+    "shots": "ionq:shots",
+    "gateset": "ionq:gateset",
+    "circuit": "ionq:circuit",
+    "error_mitigation": "ionq:errorMitigation",
+    "debiasing": "ionq:debiasing",
+    "average_queue_time": "ionq:averageQueueTime",
+    "characterization_id": "ionq:characterizationId",
+    "degraded": "ionq:degraded",
+    "session_id": "ionq:sessionId",
+    "project_id": "ionq:projectId",
+    "organization_id": "ionq:organizationId",
+    "cost_limit": "ionq:costLimit",
+    "job_count_limit": "ionq:jobCountLimit",
+    "duration_limit_min": "ionq:durationLimitMinutes",
+    "kw": "ionq:powerKilowatts",
+    "amount_total": "ionq:amountTotal",
+    "time_us_total": "ionq:timeMicrosecondsTotal",
+    "usage_unit": "ionq:usageUnit",
+    "name": "name",
+    "description": "description",
+    "id": "@id",
+    "url": "url",
+    "provider": {
+      "@id": "provider",
+      "@type": "@id"
+    },
+    "IonQ": {
+      "@id": "ionq:IonQ",
+      "@type": "@id"
+    }
+  }
+}

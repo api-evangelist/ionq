@@ -1,0 +1,86 @@
+aid: ionq
+name: IonQ Quantum Cloud Plans and Pricing
+description: |
+  Commercial offerings for the IonQ Quantum Cloud. Public IonQ pricing is offered in three
+  high-level tiers and an academic research credit program. QPU pricing is volume-based and quoted
+  per-shot / per-task; precise USD figures are negotiated and not published on the marketing site.
+  Partner clouds (AWS Braket, Azure Quantum, Google Cloud) list their own task and shot pricing.
+version: '0.1'
+specificationVersion: '0.1'
+source:
+  - https://ionq.com/quantum-cloud
+  - https://docs.ionq.com/user-manual/accounts
+plans:
+  - id: free
+    name: Free
+    description: Sign-up tier for early exploration. Includes IonQ simulator access (up to 29 qubits) and
+      onboarding documentation. No QPU access.
+    audience: developer
+    pricing:
+      type: free
+      currency: USD
+    entitlements:
+      - IonQ Simulator (ideal and noisy, up to 29 qubits)
+      - Quantum Cloud Console access
+      - Project API keys
+      - Qiskit, Cirq, PennyLane, qBraid, CUDA-Q integrations
+      - Community Slack
+      - Email support
+    limits:
+      - QPU access disabled
+  - id: volume-based
+    name: Volume-Based (QPU Access)
+    description: Pay-per-use QPU access for advanced workflows. Volume-based pricing quoted to the customer;
+      cost reporting available via /jobs/{id}/cost and /organizations/{id}/usage.
+    audience: business
+    pricing:
+      type: usage
+      metric: shots
+      currency: USD
+      contact: sales
+    entitlements:
+      - On-demand access to qpu.aria-1, qpu.aria-2, qpu.forte-1
+      - Per-job /cost and /estimate endpoints
+      - Sessions API (beta) with per-session cost/duration/job-count limits
+      - Error mitigation via symmetric debiasing
+      - Hosted hybrid service
+      - Q-CTRL Fire Opal QAOA integration
+  - id: custom
+    name: Enterprise / Custom
+    description: Negotiated reserved-time and on-premises offerings. Reserved blocks of QPU time, Forte
+      Enterprise on-prem rack-mounted system, and dedicated applications team support.
+    audience: enterprise
+    pricing:
+      type: custom
+      contact: sales
+    entitlements:
+      - Reserved QPU time blocks
+      - Forte Enterprise on-premises system
+      - Dedicated applications team
+      - SAML SSO and organization-level role management
+      - Volume discounts
+      - Premium support SLAs
+  - id: research-credits
+    name: IonQ Research Credits
+    description: Up to $10,000 in QPU access credits for eligible academic researchers and universities.
+    audience: academic
+    pricing:
+      type: credit
+      currency: USD
+      maximum: 10000
+    entitlements:
+      - Application-based access to Aria and Forte
+      - Same Quantum Cloud and SDK tooling as commercial tiers
+partner_marketplaces:
+  - id: aws-braket
+    name: AWS Braket
+    url: https://aws.amazon.com/braket/pricing/
+    description: IonQ Aria and Forte available via Amazon Braket task and shot pricing.
+  - id: azure-quantum
+    name: Microsoft Azure Quantum
+    url: https://azure.microsoft.com/products/quantum/
+    description: IonQ available through Azure Quantum providers with Azure-billed usage.
+  - id: google-cloud
+    name: Google Cloud
+    url: https://console.cloud.google.com/marketplace
+    description: IonQ available through Google Cloud Marketplace listings.

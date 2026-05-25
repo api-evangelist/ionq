@@ -1,0 +1,54 @@
+aid: ionq
+name: IonQ Quantum Cloud Rate Limits
+description: |
+  IonQ does not publish a single fixed requests-per-second number for the Quantum Cloud REST API.
+  Rate limiting is enforced at three layers: HTTP rate limits on the control-plane API, QPU queue
+  capacity per backend (visible via /backends average_queue_time), and per-Session limits set by
+  the caller (job_count_limit, duration_limit_min, cost_limit).
+version: '0.1'
+specificationVersion: '0.1'
+source:
+  - https://docs.ionq.com/api-reference/v0.4/introduction
+  - https://docs.ionq.com/api-reference/v0.3/error-codes
+  - https://docs.ionq.com/user-manual/jobs
+policies:
+  - id: http-rate-limit
+    scope: api-key
+    type: requests-per-window
+    description: Standard HTTP-level rate limit on /v0.4 control-plane requests. Specific values are not
+      publicly documented; clients receive HTTP 429 when limits are exceeded and should back off and retry.
+    surface: HTTP 429
+    headers:
+      - Retry-After
+  - id: qpu-queue-capacity
+    scope: backend
+    type: queue
+    description: Each QPU backend has a job queue. The /backends endpoint reports
+      `average_queue_time` so clients can choose lower-queue backends. There is no fixed
+      jobs-per-minute number; throughput depends on circuit depth, shot count, and reserved Sessions.
+    surface: /backends.average_queue_time
+  - id: session-limits
+    scope: session
+    type: caller-defined
+    description: Sessions support caller-set limits on total job count (job_count_limit), duration in
+      minutes (duration_limit_min), and total cost (cost_limit). When any limit is reached, the session
+      ends automatically.
+    fields:
+      - job_count_limit
+      - duration_limit_min
+      - cost_limit
+  - id: shots-per-job
+    scope: job
+    type: per-job
+    description: Maximum shots per job vary by backend (simulator vs Aria vs Forte). Submit via the
+      `shots` field on the job creation payload.
+errors:
+  - status: 429
+    code: too_many_requests
+    description: HTTP rate limit exceeded. Back off and retry per Retry-After if provided.
+  - status: 400
+    code: validation_failed
+    description: Returned when shots, qubits, or circuit input exceed backend limits.
+  - status: 402
+    code: payment_required
+    description: Returned when an organization has insufficient credits or a Session has hit cost_limit.

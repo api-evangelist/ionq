@@ -1,0 +1,44 @@
+apiVersion: naftiko.dev/v1
+kind: Capability
+metadata:
+  name: ionq-quantum-cloud-sessions
+  provider: ionq
+  api: ionq-quantum-cloud-api
+  tags:
+    - Quantum Computing
+    - Sessions
+    - Reserved Capacity
+spec:
+  summary: Create and manage reserved Sessions on IonQ QPUs.
+  description: |
+    Sessions reserve a block of QPU time and let you submit a batch of jobs against a single
+    backend with per-session cost, duration, and job-count limits. List active sessions, end a
+    session, and enumerate jobs that ran inside a session. Sessions are in beta and available to
+    select customers.
+  baseUrl: https://api.ionq.co/v0.4
+  authentication:
+    type: apiKey
+    in: header
+    name: Authorization
+    valuePrefix: apiKey
+  operations:
+    - id: createSession
+      method: POST
+      path: /sessions
+      summary: Create a Session
+    - id: listSessions
+      method: GET
+      path: /sessions
+      summary: List Sessions
+    - id: getSession
+      method: GET
+      path: /sessions/{session_id}
+      summary: Get a Session
+    - id: endSession
+      method: POST
+      path: /sessions/{session_id}/end
+      summary: End a Session
+    - id: listSessionJobs
+      method: GET
+      path: /sessions/{session_id}/jobs
+      summary: List Jobs in a Session

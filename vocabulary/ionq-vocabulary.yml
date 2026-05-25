@@ -1,0 +1,84 @@
+aid: ionq
+name: IonQ Vocabulary
+description: Operational and capability vocabulary for the IonQ Quantum Cloud platform.
+version: '0.1'
+
+operational:
+  resources:
+    - id: backend
+      name: Backend
+      description: A simulator or trapped-ion QPU exposed by the Quantum Cloud (e.g., qpu.aria-1, qpu.forte-1).
+    - id: characterization
+      name: Characterization
+      description: A calibration snapshot of a backend, including gate fidelities and connectivity.
+    - id: job
+      name: Job
+      description: A quantum circuit submission with shots, backend, settings, and input.
+    - id: session
+      name: Session
+      description: A reserved block of QPU time bound to a single backend with cost/duration/job-count limits.
+    - id: usage
+      name: Usage
+      description: Aggregated organization-level QPU time, job count, and cost.
+    - id: project
+      name: Project
+      description: A logical grouping of API keys, jobs, and members within an organization.
+    - id: organization
+      name: Organization
+      description: The billing and access-control unit on the IonQ Quantum Cloud.
+
+  job_lifecycle:
+    - ready
+    - submitted
+    - running
+    - completed
+    - canceled
+    - failed
+
+  job_types:
+    - ionq.circuit.v1
+    - ionq.multi-circuit.v1
+    - quantum-function.v1
+    - qctrl.qaoa.v1
+
+  gatesets:
+    - qis
+    - native
+
+  native_gates:
+    - GPI
+    - GPI2
+    - MS
+    - ZZ
+
+capability:
+  domains:
+    - Quantum Computing
+    - Trapped Ion
+    - Quantum Cloud
+    - Hybrid Compute
+    - Quantum Networking
+    - Quantum Sensing
+    - Quantum Security (QKD)
+  systems:
+    - Aria (qpu.aria-1, qpu.aria-2)
+    - Forte (qpu.forte-1)
+    - Forte Enterprise (qpu.forte-enterprise-1)
+    - Tempo
+    - Harmony
+    - IonQ Simulator (up to 29 qubits)
+  integrations:
+    - Qiskit
+    - Cirq
+    - PennyLane
+    - qBraid
+    - NVIDIA CUDA-Q
+    - TensorFlow Quantum
+    - AWS Braket
+    - Microsoft Azure Quantum
+    - Google Cloud
+    - Q-CTRL Fire Opal
+  identity:
+    - Project API keys
+    - SAML SSO
+    - Organization-scoped membership

@@ -1,0 +1,33 @@
+[
+  {
+    "backend": "qpu.aria-1",
+    "status": "available",
+    "qubits": 25,
+    "average_queue_time": 1834,
+    "last_updated": "2026-05-24T18:12:03Z",
+    "degraded": false,
+    "characterization_id": "5b4a1f33-09b3-4b1e-a3a8-92ddfb1d40a1",
+    "location": "College Park, MD",
+    "kw": 4.2
+  },
+  {
+    "backend": "qpu.forte-1",
+    "status": "available",
+    "qubits": 36,
+    "average_queue_time": 612,
+    "last_updated": "2026-05-24T18:12:03Z",
+    "degraded": false,
+    "characterization_id": "0c8d6b14-2c6f-4d4c-bf0f-7c2c3b1d6f1b",
+    "location": "College Park, MD",
+    "kw": 6.1
+  },
+  {
+    "backend": "simulator",
+    "status": "available",
+    "qubits": 29,
+    "average_queue_time": 0,
+    "last_updated": "2026-05-24T18:12:03Z",
+    "degraded": false,
+    "location": "cloud"
+  }
+]

@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ionq/refs/heads/main/json-schema/ionq-job-schema.json",
+  "title": "IonQ Job",
+  "description": "A quantum circuit job submitted to the IonQ Quantum Cloud API v0.4.",
+  "type": "object",
+  "required": ["type", "shots", "backend", "input"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Server-assigned unique identifier of the job."
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "ionq.circuit.v1",
+        "ionq.multi-circuit.v1",
+        "qctrl.qaoa.v1",
+        "quantum-function.v1"
+      ],
+      "description": "Discriminates the job-creation payload shape."
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable label for the job."
+    },
+    "backend": {
+      "type": "string",
+      "enum": [
+        "simulator",
+        "qpu.aria-1",
+        "qpu.aria-2",
+        "qpu.forte-1",
+        "qpu.forte-enterprise-1"
+      ],
+      "description": "Target IonQ backend identifier."
+    },
+    "shots": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of shots to execute."
+    },
+    "settings": {
+      "type": "object",
+      "description": "Compilation and execution settings, including error_mitigation.",
+      "properties": {
+        "error_mitigation": {
+          "type": "object",
+          "properties": {
+            "debiasing": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "input": {
+      "type": "object",
+      "description": "QIS circuit, native-gate circuit, or quantum-function input body.",
+      "properties": {
+        "qubits": { "type": "integer", "minimum": 1 },
+        "gateset": { "type": "string", "enum": ["qis", "native"] },
+        "circuit": { "type": "array", "items": { "type": "object" } }
+      },
+      "required": ["qubits", "gateset"]
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "description": "Free-form user metadata associated with the job."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ready",
+        "submitted",
+        "running",
+        "completed",
+        "canceled",
+        "failed"
+      ]
+    },
+    "session_id": { "type": "string", "format": "uuid" },
+    "project_id": { "type": "string", "format": "uuid" },
+    "request": { "type": "integer", "description": "Unix timestamp when the job was created." },
+    "start": { "type": "integer", "description": "Unix timestamp when execution started." },
+    "response": { "type": "integer", "description": "Unix timestamp when results were returned." }
+  }
+}
