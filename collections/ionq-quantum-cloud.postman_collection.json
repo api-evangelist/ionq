@@ -1,0 +1,5566 @@
+{
+  "item": [
+    {
+      "id": "dee3190c-6664-4d2b-8957-59a65c7622e0",
+      "name": "whoami",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "07e51ba6-137e-4448-86be-eacea58d96b8",
+          "name": "Get current key",
+          "request": {
+            "name": "Get current key",
+            "description": {
+              "content": "Retrieves current key associated with this session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "whoami"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c67c20ed-6b2f-4295-8479-e8aec95f067c",
+              "name": "Successfully retrieved a current of key from this session.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "whoami"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_id\": \"e060759f-4348-4767-a645-8c0301265791\",\n  \"key_name\": \"My First Key\",\n  \"project_id\": \"944904d6-2e30-4cfb-8bc4-04afaabcdd42\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "079cd7ed-81d0-47a5-843a-109fde93f47b",
+      "name": "backends",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c9be0f8b-28c4-4a66-8db4-8b6b25cc49d0",
+          "name": "Get Backends",
+          "request": {
+            "name": "Get Backends",
+            "description": {
+              "content": "This endpoint retrieves all backends.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "backends"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "88c10eec-02a1-41b8-b62d-9e210d87d3bf",
+              "name": "Successfully retrieved backend.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backends"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"backend\": \"qpu.aria-1\",\n    \"status\": \"string\",\n    \"qubits\": 25,\n    \"average_queue_time\": 1181215,\n    \"last_updated\": \"2025-06-16T00:00:00Z\",\n    \"characterization_id\": \"617a1f8b-59d4-435d-aa33-695433d7155e\",\n    \"degraded\": true,\n    \"kw\": 4902.81,\n    \"location\": \"College Park, MD, USA\"\n  },\n  {\n    \"backend\": \"qpu.aria-1\",\n    \"status\": \"string\",\n    \"qubits\": 25,\n    \"average_queue_time\": 1181215,\n    \"last_updated\": \"2025-06-16T00:00:00Z\",\n    \"characterization_id\": \"617a1f8b-59d4-435d-aa33-695433d7155e\",\n    \"degraded\": true,\n    \"kw\": 4902.81,\n    \"location\": \"College Park, MD, USA\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63ed47c8-1cc7-41ff-948f-80df7f130671",
+          "name": "Get a Backend",
+          "request": {
+            "name": "Get a Backend",
+            "description": {
+              "content": "This endpoint retrieves a backend.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "backends",
+                ":backend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "backend",
+                  "description": "(Required) A backend where jobs can run on."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "918e0e1c-cac5-471e-acd3-73ab56cca9d4",
+              "name": "Successfully retrieved backend.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backends",
+                    ":backend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "backend",
+                      "description": "(Required) A backend where jobs can run on."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"backend\": \"qpu.aria-1\",\n  \"status\": \"string\",\n  \"qubits\": 25,\n  \"average_queue_time\": 1181215,\n  \"last_updated\": \"2025-06-16T00:00:00Z\",\n  \"characterization_id\": \"617a1f8b-59d4-435d-aa33-695433d7155e\",\n  \"degraded\": true,\n  \"kw\": 4902.81,\n  \"location\": \"College Park, MD, USA\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f79ec572-4b9f-4274-9ad1-c3f90a2742a5",
+      "name": "characterizations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "56726085-dd56-49f4-a0b5-98001c8c9718",
+          "name": "Get All Backend Characterizations",
+          "request": {
+            "name": "Get All Backend Characterizations",
+            "description": {
+              "content": "This endpoint retrieves an array of all available backend characterizations, with pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "backends",
+                ":backend",
+                "characterizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "Characterizations starting at this time (e.g., `start=2025-12-31`)"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "Characterizations before this time (e.g., `end=2025-12-31`)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "How many objects to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "backend",
+                  "description": "(Required) A backend where jobs can run on."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a45166e0-e63b-4867-8993-b1ff245e9ba9",
+              "name": "Successfully retrieved characterizations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backends",
+                    ":backend",
+                    "characterizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "backend",
+                      "description": "(Required) A backend where jobs can run on."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"characterizations\": [\n    {\n      \"backend\": \"string\",\n      \"connectivity\": [\n        [\n          0,\n          1\n        ],\n        [\n          0,\n          2\n        ],\n        [\n          10,\n          9\n        ]\n      ],\n      \"date\": \"2025-06-16T00:00:00Z\",\n      \"fidelity\": {\n        \"spam\": {\n          \"median\": 0.9962,\n          \"stderr\": 5663\n        }\n      },\n      \"id\": \"a4284db1-840d-5dcc-50d0-aa120b611b5f\",\n      \"qubits\": 25,\n      \"timing\": {\n        \"readout\": 9387,\n        \"reset\": 139,\n        \"1q\": 1812,\n        \"2q\": 8755,\n        \"t1\": 10,\n        \"t2\": 1\n      }\n    },\n    {\n      \"backend\": \"string\",\n      \"connectivity\": [\n        [\n          0,\n          1\n        ],\n        [\n          0,\n          2\n        ],\n        [\n          10,\n          9\n        ]\n      ],\n      \"date\": \"2025-06-16T00:00:00Z\",\n      \"fidelity\": {\n        \"spam\": {\n          \"median\": 0.9962,\n          \"stderr\": 2438\n        }\n      },\n      \"id\": \"210bc9e2-68ae-3b71-7d3d-6cc11675c1f1\",\n      \"qubits\": 25,\n      \"timing\": {\n        \"readout\": 1714,\n        \"reset\": 9220,\n        \"1q\": 2075,\n        \"2q\": 90,\n        \"t1\": 10,\n        \"t2\": 1\n      }\n    }\n  ],\n  \"pages\": 9142\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47d1345e-839e-4111-9a59-970b4d4f1087",
+          "name": "Get a Characterization",
+          "request": {
+            "name": "Get a Characterization",
+            "description": {
+              "content": "This endpoint retrieves a characterization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "backends",
+                ":backend",
+                "characterizations",
+                ":UUID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "backend",
+                  "description": "(Required) A backend where jobs can run on."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "UUID",
+                  "description": "(Required) A UUID identifying a specific resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd1686af-1a12-451d-9d88-b0d2126af358",
+              "name": "Successfully retrieved current characterization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backends",
+                    ":backend",
+                    "characterizations",
+                    ":UUID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "backend",
+                      "description": "(Required) A backend where jobs can run on."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "UUID",
+                      "description": "(Required) A UUID identifying a specific resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"backend\": \"string\",\n  \"connectivity\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      10,\n      9\n    ]\n  ],\n  \"date\": \"2025-06-16T00:00:00Z\",\n  \"fidelity\": {\n    \"spam\": {\n      \"median\": 0.9962,\n      \"stderr\": 4103\n    }\n  },\n  \"id\": \"682f6094-ccbe-f690-80cb-52667800d036\",\n  \"qubits\": 25,\n  \"timing\": {\n    \"readout\": 7053,\n    \"reset\": 2923,\n    \"1q\": 1561,\n    \"2q\": 1747,\n    \"t1\": 10,\n    \"t2\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "89447e90-c7aa-4fe3-94c6-d21c5e4f93c2",
+      "name": "usage",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "49196328-fcd3-48dd-8681-dd0757699599",
+          "name": "Get usage costs",
+          "request": {
+            "name": "Get usage costs",
+            "description": {
+              "content": "Retrieves the costs of a given group type, broken down by the given date modality.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id",
+                "usage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>",
+                  "description": "(Required) Start date, inclusive"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<date>",
+                  "description": "(Required) End date, exclusive"
+                },
+                {
+                  "disabled": false,
+                  "key": "group_by",
+                  "value": "<string>",
+                  "description": "(Required) QPU Usage grouping"
+                },
+                {
+                  "disabled": false,
+                  "key": "modality",
+                  "value": "<string>",
+                  "description": "(Required) Report modality"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "organization_id",
+                  "description": "(Required) The UUID of the organization — this UUID is provided in the response on organization creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "08c62e72-5719-4462-9760-fa22418d1e0b",
+              "name": "Successfully retrieved a list of projects.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "2023-07-01"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2023-08-01"
+                    },
+                    {
+                      "key": "group_by",
+                      "value": "project"
+                    },
+                    {
+                      "key": "modality",
+                      "value": "daily"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "organization_id",
+                      "description": "(Required) The UUID of the organization — this UUID is provided in the response on organization creation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"group_type\": \"project\",\n  \"modality\": \"daily\",\n  \"amount_total\": 151.31,\n  \"job_count\": 514,\n  \"organization\": \"df7dffb5-cfef-7f96-d65c-e641ce51a809\",\n  \"time_us_total\": 1566154.312523,\n  \"usage_data\": [\n    {\n      \"from\": \"2023-07-01\",\n      \"job_count\": 10,\n      \"amount\": 1614.23,\n      \"time_us\": 5143166.13413,\n      \"group_usages\": [\n        {\n          \"amount\": 144.39,\n          \"group_id\": \"2bfd0fd5-5854-4916-917f-a907af586755\",\n          \"group_name\": \"Project Jumping Lemming\",\n          \"job_count\": 9,\n          \"time_us\": 1566154.312523\n        },\n        {\n          \"amount\": 144.39,\n          \"group_id\": \"2bfd0fd5-5854-4916-917f-a907af586755\",\n          \"group_name\": \"Project Jumping Lemming\",\n          \"job_count\": 9,\n          \"time_us\": 1566154.312523\n        }\n      ]\n    },\n    {\n      \"from\": \"2023-07-01\",\n      \"job_count\": 10,\n      \"amount\": 1614.23,\n      \"time_us\": 5143166.13413,\n      \"group_usages\": [\n        {\n          \"amount\": 144.39,\n          \"group_id\": \"2bfd0fd5-5854-4916-917f-a907af586755\",\n          \"group_name\": \"Project Jumping Lemming\",\n          \"job_count\": 9,\n          \"time_us\": 1566154.312523\n        },\n        {\n          \"amount\": 144.39,\n          \"group_id\": \"2bfd0fd5-5854-4916-917f-a907af586755\",\n          \"group_name\": \"Project Jumping Lemming\",\n          \"job_count\": 9,\n          \"time_us\": 1566154.312523\n        }\n      ]\n    }\n  ],\n  \"usage_from\": \"2025-10-01T00:00:00Z\",\n  \"usage_to\": \"2025-11-01T00:00:00Z\",\n  \"usage_unit\": \"USD\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3abbb9b8-3075-46cd-8081-41635c826044",
+      "name": "Create Job",
+      "request": {
+        "name": "Create Job",
+        "description": {
+          "content": "Submit a single-circuit or multi-circuit job for simulation or execution. In `ionq.multi-circuit.v1` payloads, each entry in `input.circuits` inherits the parent `input.gateset` unless the circuit sets its own `gateset`.\n",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "jobs"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"backend\": \"<string>\",\n  \"type\": \"<string>\",\n  \"input\": {\n    \"circuit\": [\n      {\n        \"gate\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"targets\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"controls\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"control\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"rotation\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"gate\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"targets\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"controls\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"control\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"rotation\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"gateset\": \"<string>\",\n    \"qubits\": \"<integer>\"\n  },\n  \"name\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"shots\": 100,\n  \"session_id\": \"<string>\",\n  \"settings\": {\n    \"error_mitigation\": {\n      \"debiasing\": \"<boolean>\"\n    },\n    \"compilation\": {\n      \"opt\": \"<double>\",\n      \"precision\": \"<string>\"\n    }\n  },\n  \"dry_run\": \"<boolean>\",\n  \"noise\": {\n    \"model\": \"<string>\",\n    \"seed\": \"<integer>\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "5b99165a-bb14-4824-b0a2-b6113bc92414",
+          "name": "Created",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"backend\": \"<string>\",\n  \"type\": \"<string>\",\n  \"input\": {\n    \"circuit\": [\n      {\n        \"gate\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"targets\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"controls\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"control\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"rotation\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"gate\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"targets\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"controls\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"control\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"rotation\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"gateset\": \"<string>\",\n    \"qubits\": \"<integer>\"\n  },\n  \"name\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"shots\": 100,\n  \"session_id\": \"<string>\",\n  \"settings\": {\n    \"error_mitigation\": {\n      \"debiasing\": \"<boolean>\"\n    },\n    \"compilation\": {\n      \"opt\": \"<double>\",\n      \"precision\": \"<string>\"\n    }\n  },\n  \"dry_run\": \"<boolean>\",\n  \"noise\": {\n    \"model\": \"<string>\",\n    \"seed\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"617a1f8b-59d4-435d-aa33-695433d7155e\",\n  \"status\": \"submitted\",\n  \"session_id\": null\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "25b5cc2f-2bfe-43d4-b4bb-a0ad89b52c54",
+          "name": "Too Many Requests. To get a higher rate limit, please reach out to support@ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"backend\": \"<string>\",\n  \"type\": \"<string>\",\n  \"input\": {\n    \"circuit\": [\n      {\n        \"gate\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"targets\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"controls\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"control\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"rotation\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"gate\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"targets\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"controls\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"control\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"rotation\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"gateset\": \"<string>\",\n    \"qubits\": \"<integer>\"\n  },\n  \"name\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"shots\": 100,\n  \"session_id\": \"<string>\",\n  \"settings\": {\n    \"error_mitigation\": {\n      \"debiasing\": \"<boolean>\"\n    },\n    \"compilation\": {\n      \"opt\": \"<double>\",\n      \"precision\": \"<string>\"\n    }\n  },\n  \"dry_run\": \"<boolean>\",\n  \"noise\": {\n    \"model\": \"<string>\",\n    \"seed\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "aef28506-032d-4e80-83bc-79f2bd916124",
+          "name": "A generic server failure, please reach out to support@ionq.co for help with this error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"backend\": \"<string>\",\n  \"type\": \"<string>\",\n  \"input\": {\n    \"circuit\": [\n      {\n        \"gate\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"targets\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"controls\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"control\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"rotation\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"gate\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"targets\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"controls\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"control\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"rotation\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"gateset\": \"<string>\",\n    \"qubits\": \"<integer>\"\n  },\n  \"name\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"shots\": 100,\n  \"session_id\": \"<string>\",\n  \"settings\": {\n    \"error_mitigation\": {\n      \"debiasing\": \"<boolean>\"\n    },\n    \"compilation\": {\n      \"opt\": \"<double>\",\n      \"precision\": \"<string>\"\n    }\n  },\n  \"dry_run\": \"<boolean>\",\n  \"noise\": {\n    \"model\": \"<string>\",\n    \"seed\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "d6350095-6a76-4855-af19-9d842fc23d12",
+          "name": "Bad Gateway, this can be caused by misbehaving proxies, or by service issues. These can be retried, and downtime can be found on status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"backend\": \"<string>\",\n  \"type\": \"<string>\",\n  \"input\": {\n    \"circuit\": [\n      {\n        \"gate\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"targets\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"controls\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"control\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"rotation\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"gate\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"targets\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"controls\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"control\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"rotation\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"gateset\": \"<string>\",\n    \"qubits\": \"<integer>\"\n  },\n  \"name\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"shots\": 100,\n  \"session_id\": \"<string>\",\n  \"settings\": {\n    \"error_mitigation\": {\n      \"debiasing\": \"<boolean>\"\n    },\n    \"compilation\": {\n      \"opt\": \"<double>\",\n      \"precision\": \"<string>\"\n    }\n  },\n  \"dry_run\": \"<boolean>\",\n  \"noise\": {\n    \"model\": \"<string>\",\n    \"seed\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Gateway",
+          "code": 502,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "e4deb1b7-5ea6-4098-a415-dd24622b4ea6",
+          "name": "Service Unavailable, this is indicative of service outage, please check status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"backend\": \"<string>\",\n  \"type\": \"<string>\",\n  \"input\": {\n    \"circuit\": [\n      {\n        \"gate\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"targets\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"controls\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"control\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"rotation\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"gate\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"targets\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"controls\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"control\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"rotation\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"gateset\": \"<string>\",\n    \"qubits\": \"<integer>\"\n  },\n  \"name\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\",\n    \"key_3\": \"<string>\"\n  },\n  \"shots\": 100,\n  \"session_id\": \"<string>\",\n  \"settings\": {\n    \"error_mitigation\": {\n      \"debiasing\": \"<boolean>\"\n    },\n    \"compilation\": {\n      \"opt\": \"<double>\",\n      \"precision\": \"<string>\"\n    }\n  },\n  \"dry_run\": \"<boolean>\",\n  \"noise\": {\n    \"model\": \"<string>\",\n    \"seed\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4bfc738c-bfa4-46b1-871e-ae7ff2ed2910",
+      "name": "Get Jobs",
+      "request": {
+        "name": "Get Jobs",
+        "description": {},
+        "url": {
+          "path": [
+            "jobs"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "ids",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "ids",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "parent_job_id",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "status",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "target",
+              "value": "<string>",
+              "description": "Filter jobs by backend target. Supports single target or comma-separated list of targets."
+            },
+            {
+              "disabled": false,
+              "key": "session_id",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "submitter_id",
+              "value": "<string>",
+              "description": "The id of another user within a shared project to view their submitted jobs. Ignored if not a project member."
+            },
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "<integer>"
+            },
+            {
+              "disabled": false,
+              "key": "next",
+              "value": "<string>"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "8f19e9a1-1ee0-429a-92ac-55c028616a09",
+          "name": "Successfully retrieved a list of jobs.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "ids",
+                  "value": "<string>"
+                },
+                {
+                  "key": "ids",
+                  "value": "<string>"
+                },
+                {
+                  "key": "parent_job_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "key": "target",
+                  "value": "simulator"
+                },
+                {
+                  "key": "session_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "submitter_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "next",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"jobs\": [\n    {\n      \"id\": \"e1a09d90-b2ba-4ea5-9fd7-4bfc14eac524\",\n      \"status\": \"completed\",\n      \"type\": \"ionq.circuit.v1\",\n      \"backend\": \"simulator\",\n      \"dry_run\": false,\n      \"cost_model\": \"quantum_compute_time\",\n      \"submitter_id\": \"64b03577072d45001c85e9c4\",\n      \"project_id\": \"1333d459-cf47-4a5e-acc1-8d4eb4f7b025\",\n      \"parent_job_id\": null,\n      \"session_id\": null,\n      \"metadata\": null,\n      \"name\": null,\n      \"submitted_at\": \"2025-05-28T20:47:05.440Z\",\n      \"started_at\": null,\n      \"completed_at\": null,\n      \"predicted_execution_duration_ms\": null,\n      \"predicted_wait_time_ms\": null,\n      \"execution_duration_ms\": null,\n      \"shots\": 1000,\n      \"noise\": {\n        \"model\": \"ideal\"\n      },\n      \"failure\": null,\n      \"settings\": {\n        \"compilation\": {}\n      },\n      \"stats\": {\n        \"qubits\": 20,\n        \"circuits\": 1,\n        \"gate_counts\": {\n          \"1q\": 1028,\n          \"2q\": 110\n        },\n        \"predicted_quantum_compute_time_us\": 5000,\n        \"billed_quantum_compute_time_us\": 5200\n      },\n      \"results\": {\n        \"probabilities\": {\n          \"url\": \"/v0.4/jobs/e1a09d90-b2ba-4ea5-9fd7-4bfc14eac524/results/probabilities\"\n        }\n      },\n      \"output\": {}\n    }\n  ],\n  \"next\": null\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ac788d04-7ddd-4268-82a3-3f66fcf1d926",
+          "name": "Too Many Requests. To get a higher rate limit, please reach out to support@ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "ids",
+                  "value": "<string>"
+                },
+                {
+                  "key": "ids",
+                  "value": "<string>"
+                },
+                {
+                  "key": "parent_job_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "key": "target",
+                  "value": "simulator"
+                },
+                {
+                  "key": "session_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "submitter_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "next",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "5a5eb87b-3bc7-49e7-89e0-2a1c53c46680",
+          "name": "A generic server failure, please reach out to support@ionq.co for help with this error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "ids",
+                  "value": "<string>"
+                },
+                {
+                  "key": "ids",
+                  "value": "<string>"
+                },
+                {
+                  "key": "parent_job_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "key": "target",
+                  "value": "simulator"
+                },
+                {
+                  "key": "session_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "submitter_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "next",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "fb833739-4085-4dfe-b1ae-dd59d95106bb",
+          "name": "Bad Gateway, this can be caused by misbehaving proxies, or by service issues. These can be retried, and downtime can be found on status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "ids",
+                  "value": "<string>"
+                },
+                {
+                  "key": "ids",
+                  "value": "<string>"
+                },
+                {
+                  "key": "parent_job_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "key": "target",
+                  "value": "simulator"
+                },
+                {
+                  "key": "session_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "submitter_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "next",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Gateway",
+          "code": 502,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "4f017e94-8513-4925-90d8-3fb46fa738fa",
+          "name": "Service Unavailable, this is indicative of service outage, please check status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "ids",
+                  "value": "<string>"
+                },
+                {
+                  "key": "ids",
+                  "value": "<string>"
+                },
+                {
+                  "key": "parent_job_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "key": "target",
+                  "value": "simulator"
+                },
+                {
+                  "key": "session_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "submitter_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "next",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6c2d3869-fcaf-441e-944c-1e1bbd27ba28",
+      "name": "Delete Jobs",
+      "request": {
+        "name": "Delete Jobs",
+        "description": {},
+        "url": {
+          "path": [
+            "jobs"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "DELETE",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "e8937681-961a-4a74-a53b-d1738628e3a9",
+          "name": "Successfully deleted a list of jobs.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"deleted\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "c64af4b0-ca63-4999-aa45-45d14d41df82",
+          "name": "Too Many Requests. To get a higher rate limit, please reach out to support@ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "d5949729-dd18-4e90-a0f2-bd781e3b00ed",
+          "name": "A generic server failure, please reach out to support@ionq.co for help with this error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "7466f25a-698c-4cb0-965b-96dfcf6d1061",
+          "name": "Bad Gateway, this can be caused by misbehaving proxies, or by service issues. These can be retried, and downtime can be found on status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Gateway",
+          "code": 502,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "d93cbc82-17e0-40c5-b30d-82beef7eaf71",
+          "name": "Service Unavailable, this is indicative of service outage, please check status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "6fd4ac24-0906-4e12-941a-60fe4511f702",
+      "name": "Get Job",
+      "request": {
+        "name": "Get Job",
+        "description": {},
+        "url": {
+          "path": [
+            "jobs",
+            ":UUID"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "UUID",
+              "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "75f29725-3a18-4155-add2-e32c40ff6f22",
+          "name": "Successfully retrieved a job.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"e1a09d90-b2ba-4ea5-9fd7-4bfc14eac524\",\n  \"status\": \"completed\",\n  \"type\": \"ionq.circuit.v1\",\n  \"backend\": \"simulator\",\n  \"dry_run\": false,\n  \"cost_model\": \"quantum_compute_time\",\n  \"submitter_id\": \"64b03577072d45001c85e9c4\",\n  \"project_id\": \"1333d459-cf47-4a5e-acc1-8d4eb4f7b025\",\n  \"parent_job_id\": null,\n  \"child_job_ids\": null,\n  \"session_id\": null,\n  \"metadata\": null,\n  \"name\": null,\n  \"submitted_at\": \"2025-05-28T20:47:05.440Z\",\n  \"started_at\": null,\n  \"completed_at\": null,\n  \"predicted_execution_duration_ms\": null,\n  \"predicted_wait_time_ms\": null,\n  \"execution_duration_ms\": null,\n  \"shots\": 1000,\n  \"noise\": {\n    \"model\": \"ideal\"\n  },\n  \"failure\": null,\n  \"settings\": {\n    \"compilation\": {}\n  },\n  \"stats\": {\n    \"qubits\": 20,\n    \"circuits\": 1,\n    \"gate_counts\": {\n      \"1q\": 1028,\n      \"2q\": 110\n    },\n    \"predicted_quantum_compute_time_us\": 5000,\n    \"billed_quantum_compute_time_us\": 5200\n  },\n  \"results\": {\n    \"probabilities\": {\n      \"url\": \"/v0.4/jobs/e1a09d90-b2ba-4ea5-9fd7-4bfc14eac524/results/probabilities\"\n    }\n  },\n  \"output\": {\n    \"compilation\": {},\n    \"error_mitigation\": {\n      \"debiasing\": {\n        \"variants\": [\n          {\n            \"variant_id\": \"069ce8f8-f437-7d75-8000-9f5f8c3d7897\",\n            \"qubit_map\": [\n              4,\n              12,\n              7\n            ],\n            \"shots\": 120,\n            \"results\": {\n              \"probabilities\": {\n                \"url\": \"/v0.4/jobs/e1a09d90-b2ba-4ea5-9fd7-4bfc14eac524/variants/069ce8f8-f437-7d75-8000-9f5f8c3d7897/results/probabilities\"\n              },\n              \"histogram\": {\n                \"url\": \"/v0.4/jobs/e1a09d90-b2ba-4ea5-9fd7-4bfc14eac524/variants/069ce8f8-f437-7d75-8000-9f5f8c3d7897/results/histogram\"\n              },\n              \"shots\": {\n                \"url\": \"/v0.4/jobs/e1a09d90-b2ba-4ea5-9fd7-4bfc14eac524/variants/069ce8f8-f437-7d75-8000-9f5f8c3d7897/results/shots\"\n              }\n            }\n          }\n        ]\n      }\n    }\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "44abaa3f-6819-4b75-a469-dffd66fc4640",
+          "name": "Too Many Requests. To get a higher rate limit, please reach out to support@ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "8b8de45c-0585-4132-8e1e-22035b01d8d2",
+          "name": "A generic server failure, please reach out to support@ionq.co for help with this error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "cb162f5b-73aa-48df-b583-0bacf58e5e87",
+          "name": "Bad Gateway, this can be caused by misbehaving proxies, or by service issues. These can be retried, and downtime can be found on status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Gateway",
+          "code": 502,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "93018b7b-a19b-4695-abb9-eb17fa8280ab",
+          "name": "Service Unavailable, this is indicative of service outage, please check status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "fef7bdd0-963e-4676-870c-2807f2d9b3a9",
+      "name": "Delete Job",
+      "request": {
+        "name": "Delete Job",
+        "description": {},
+        "url": {
+          "path": [
+            "jobs",
+            ":UUID"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "UUID",
+              "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "DELETE",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "5b60cc13-5772-4160-8363-76f967ce6cba",
+          "name": "Successfully deleted a job.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"617a1f8b-59d4-435d-aa33-695433d7155e\",\n  \"status\": \"deleted\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "add6659a-1d02-42ce-b453-e6a5e584c2f3",
+          "name": "Too Many Requests. To get a higher rate limit, please reach out to support@ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "de2c01f3-3e35-484a-9038-da9fb0387173",
+          "name": "A generic server failure, please reach out to support@ionq.co for help with this error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "e51b7a7f-556f-4618-85e3-00981bd1b59d",
+          "name": "Bad Gateway, this can be caused by misbehaving proxies, or by service issues. These can be retried, and downtime can be found on status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Bad Gateway",
+          "code": 502,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "96751d93-3f30-4092-b575-ef2edea5fc67",
+          "name": "Service Unavailable, this is indicative of service outage, please check status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "DELETE",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "22202bef-c5e5-4a76-a776-6f713acb821c",
+      "name": "Get Job Cost",
+      "request": {
+        "name": "Get Job Cost",
+        "description": {},
+        "url": {
+          "path": [
+            "jobs",
+            ":UUID",
+            "cost"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "UUID",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "de879359-e6ad-43cc-92a3-fb568ed7440c",
+          "name": "Successfully retrieved the cost of a job.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "cost"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"dry_run\": false,\n  \"estimated_cost\": {\n    \"value\": 24.83,\n    \"unit\": \"usd\"\n  },\n  \"cost\": {\n    \"value\": 24.83,\n    \"unit\": \"usd\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "b082d7c3-dbe9-464f-adb8-0be5cca794ce",
+          "name": "Too Many Requests. To get a higher rate limit, please reach out to support@ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "cost"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "820aa319-69a0-4afe-9546-fb14f4d26333",
+          "name": "A generic server failure, please reach out to support@ionq.co for help with this error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "cost"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "c79cbe53-9068-4715-a939-5cf0746803a4",
+          "name": "Bad Gateway, this can be caused by misbehaving proxies, or by service issues. These can be retried, and downtime can be found on status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "cost"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Gateway",
+          "code": 502,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "c1436cc2-f1da-49a8-8b22-16dff97b27e4",
+          "name": "Service Unavailable, this is indicative of service outage, please check status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "cost"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "cf302e6d-a467-4b1c-ae68-c0f3baad903c",
+      "name": "Get Compiled File",
+      "request": {
+        "name": "Get Compiled File",
+        "description": {},
+        "url": {
+          "path": [
+            "jobs",
+            ":UUID",
+            "circuits",
+            ":lang"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "UUID",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "lang",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "37a10ade-bcbf-4ae8-9740-7eb718c563c4",
+          "name": "Successfully downloaded a compiled file.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "circuits",
+                ":lang"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lang",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "\"string\"",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "ffe81363-31fa-4aec-bffe-63635c2771e8",
+          "name": "Forbidden",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "circuits",
+                ":lang"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lang",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "6d4cc42e-cca9-4113-b5be-2c1a1c4bb73e",
+          "name": "Not Found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "circuits",
+                ":lang"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lang",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "e540f684-5e6a-4de5-bcbe-c255db3ead89",
+          "name": "Too Many Requests. To get a higher rate limit, please reach out to support@ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "circuits",
+                ":lang"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lang",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "97407c97-715f-4614-b48f-9cd321b96eeb",
+          "name": "A generic server failure, please reach out to support@ionq.co for help with this error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "circuits",
+                ":lang"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lang",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "dde5b695-6da6-40a9-8d5b-adb6f24e8f63",
+          "name": "Bad Gateway, this can be caused by misbehaving proxies, or by service issues. These can be retried, and downtime can be found on status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "circuits",
+                ":lang"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lang",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Gateway",
+          "code": 502,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "660ebc03-a777-4c14-acdd-77b355162ac7",
+          "name": "Service Unavailable, this is indicative of service outage, please check status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "circuits",
+                ":lang"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "lang",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e8837f5b-9207-41a2-bf39-e904bd808ad4",
+      "name": "Cancel a job",
+      "request": {
+        "name": "Cancel a job",
+        "description": {
+          "content": "Cancel the execution of many jobs at once by passing a list of jobs.",
+          "type": "text/plain"
+        },
+        "url": {
+          "path": [
+            "jobs",
+            ":UUID",
+            "status",
+            "cancel"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "UUID",
+              "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "226e60bd-86da-4c68-8df9-30ceed9d5b2f",
+          "name": "Successfully canceled a job.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "status",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"617a1f8b-59d4-435d-aa33-695433d7155e\",\n  \"status\": \"canceled\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "58955011-c3fe-4742-9e44-a43f2a32d32d",
+          "name": "Too Many Requests. To get a higher rate limit, please reach out to support@ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "status",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "PUT",
+            "body": {}
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "e728dc6b-b784-47b8-adc1-3d133b706d68",
+          "name": "A generic server failure, please reach out to support@ionq.co for help with this error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "status",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "PUT",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "dadc6297-08fa-4847-b05e-fb05755b2b30",
+          "name": "Bad Gateway, this can be caused by misbehaving proxies, or by service issues. These can be retried, and downtime can be found on status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "status",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "PUT",
+            "body": {}
+          },
+          "status": "Bad Gateway",
+          "code": 502,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "34913a9d-a58f-4603-a297-343a4d67367b",
+          "name": "Service Unavailable, this is indicative of service outage, please check status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "status",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) The UUID of the job — this UUID is provided in the response on job creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "PUT",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "cf0d5bd0-92a6-4ff6-8951-d8c2f3ac426e",
+      "name": "Cancel Jobs",
+      "request": {
+        "name": "Cancel Jobs",
+        "description": {},
+        "url": {
+          "path": [
+            "jobs",
+            "status",
+            "cancel"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "PUT",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "371d72be-4242-430a-ba78-56b7155d8b8e",
+          "name": "Successfully canceled a list of jobs.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "status",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"ids\": [\n    \"617a1f8b-59d4-435d-aa33-695433d7155e\",\n    \"617a1f8b-59d4-435d-aa33-695433d7155f\"\n  ],\n  \"status\": \"canceled\"\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "c8ec5aa3-ecdc-4f68-b6a1-ae9d6768554a",
+          "name": "Too Many Requests. To get a higher rate limit, please reach out to support@ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "status",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "bf22bd8b-3f83-4933-80f4-7fee7ce41bab",
+          "name": "A generic server failure, please reach out to support@ionq.co for help with this error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "status",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "612e3371-8f88-4e7e-83e9-0dc9f77c4e6c",
+          "name": "Bad Gateway, this can be caused by misbehaving proxies, or by service issues. These can be retried, and downtime can be found on status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "status",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Bad Gateway",
+          "code": 502,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "647a8761-0c03-4e56-966b-db289896c728",
+          "name": "Service Unavailable, this is indicative of service outage, please check status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "status",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "2da07c80-0851-469e-9809-5cad3e2ca713",
+      "name": "Estimate Job Cost",
+      "request": {
+        "name": "Estimate Job Cost",
+        "description": {},
+        "url": {
+          "path": [
+            "jobs",
+            "estimate"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "backend",
+              "value": "<string>",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "key": "type",
+              "value": "ionq.circuit.v1"
+            },
+            {
+              "disabled": false,
+              "key": "qubits",
+              "value": "25"
+            },
+            {
+              "disabled": false,
+              "key": "shots",
+              "value": "1000"
+            },
+            {
+              "disabled": false,
+              "key": "1q_gates",
+              "value": "0"
+            },
+            {
+              "disabled": false,
+              "key": "2q_gates",
+              "value": "0"
+            },
+            {
+              "disabled": false,
+              "key": "error_mitigation",
+              "value": "false"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "886d4ba1-f67d-406f-8ab3-c284345a78f7",
+          "name": "Successfully retrieved the cost estimate of a job.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "estimate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "backend",
+                  "value": "<string>"
+                },
+                {
+                  "key": "type",
+                  "value": "ionq.circuit.v1"
+                },
+                {
+                  "key": "qubits",
+                  "value": "25"
+                },
+                {
+                  "key": "shots",
+                  "value": "1000"
+                },
+                {
+                  "key": "1q_gates",
+                  "value": "0"
+                },
+                {
+                  "key": "2q_gates",
+                  "value": "0"
+                },
+                {
+                  "key": "error_mitigation",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"input_values\": {\n    \"backend\": \"<string>\",\n    \"type\": \"ionq.circuit.v1\",\n    \"qubits\": 25,\n    \"shots\": 1000,\n    \"1q_gates\": 0,\n    \"2q_gates\": 0,\n    \"error_mitigation\": false\n  },\n  \"estimated_at\": \"string\",\n  \"cost_unit\": \"string\",\n  \"rate_information\": {\n    \"job_cost_minimum\": 4698.498485662654,\n    \"cost_2q_gate\": 4918.480814979719,\n    \"cost_1q_gate\": 8514.757282961582,\n    \"organization\": \"string\"\n  },\n  \"estimated_cost\": 5898.886013465234,\n  \"estimated_execution_time\": 9353.89633727119,\n  \"current_predicted_queue_time\": 4155.526863716438\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "bba7160f-0489-4d93-a19d-032da8b2c2e4",
+          "name": "Too Many Requests. To get a higher rate limit, please reach out to support@ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "estimate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "backend",
+                  "value": "<string>"
+                },
+                {
+                  "key": "type",
+                  "value": "ionq.circuit.v1"
+                },
+                {
+                  "key": "qubits",
+                  "value": "25"
+                },
+                {
+                  "key": "shots",
+                  "value": "1000"
+                },
+                {
+                  "key": "1q_gates",
+                  "value": "0"
+                },
+                {
+                  "key": "2q_gates",
+                  "value": "0"
+                },
+                {
+                  "key": "error_mitigation",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Too Many Requests",
+          "code": 429,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "abf189d6-2e4c-4ba3-8b00-7b87957ec351",
+          "name": "A generic server failure, please reach out to support@ionq.co for help with this error",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "estimate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "backend",
+                  "value": "<string>"
+                },
+                {
+                  "key": "type",
+                  "value": "ionq.circuit.v1"
+                },
+                {
+                  "key": "qubits",
+                  "value": "25"
+                },
+                {
+                  "key": "shots",
+                  "value": "1000"
+                },
+                {
+                  "key": "1q_gates",
+                  "value": "0"
+                },
+                {
+                  "key": "2q_gates",
+                  "value": "0"
+                },
+                {
+                  "key": "error_mitigation",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Internal Server Error",
+          "code": 500,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "c137b229-9c6e-4e8e-a49f-e25234abcada",
+          "name": "Bad Gateway, this can be caused by misbehaving proxies, or by service issues. These can be retried, and downtime can be found on status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "estimate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "backend",
+                  "value": "<string>"
+                },
+                {
+                  "key": "type",
+                  "value": "ionq.circuit.v1"
+                },
+                {
+                  "key": "qubits",
+                  "value": "25"
+                },
+                {
+                  "key": "shots",
+                  "value": "1000"
+                },
+                {
+                  "key": "1q_gates",
+                  "value": "0"
+                },
+                {
+                  "key": "2q_gates",
+                  "value": "0"
+                },
+                {
+                  "key": "error_mitigation",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Bad Gateway",
+          "code": 502,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        },
+        {
+          "id": "0663fbbf-04b4-4014-8d6f-b95916987ec4",
+          "name": "Service Unavailable, this is indicative of service outage, please check status.ionq.co",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                "estimate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "backend",
+                  "value": "<string>"
+                },
+                {
+                  "key": "type",
+                  "value": "ionq.circuit.v1"
+                },
+                {
+                  "key": "qubits",
+                  "value": "25"
+                },
+                {
+                  "key": "shots",
+                  "value": "1000"
+                },
+                {
+                  "key": "1q_gates",
+                  "value": "0"
+                },
+                {
+                  "key": "2q_gates",
+                  "value": "0"
+                },
+                {
+                  "key": "error_mitigation",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Service Unavailable",
+          "code": 503,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "918db364-df09-4a72-8cbe-80aa68a0064b",
+      "name": "Fetch the probability distribution for a completed job.",
+      "request": {
+        "name": "Fetch the probability distribution for a completed job.",
+        "description": {},
+        "url": {
+          "path": [
+            "jobs",
+            ":UUID",
+            "results",
+            "probabilities"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "sharpen",
+              "value": "<boolean>",
+              "description": "Whether to apply sharpening to the probability distribution."
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "UUID",
+              "description": "(Required) The UUID of the job."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "449dfb32-c5ff-4061-82ef-ced3f7060446",
+          "name": "Probability distribution keyed by decimal qubit state.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "results",
+                "probabilities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "sharpen",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) The UUID of the job."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"key_0\": 9592.998552520829\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "2320af58-4c7a-4ec0-bbc6-ed7b39fbca06",
+          "name": "Job not found or not yet completed.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "results",
+                "probabilities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "sharpen",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) The UUID of the job."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "e5d46b13-c382-4f8c-bb46-1d0e8b09192f",
+      "name": "Get Variant Probabilities",
+      "request": {
+        "name": "Get Variant Probabilities",
+        "description": {},
+        "url": {
+          "path": [
+            "jobs",
+            ":UUID",
+            "variants",
+            ":variantId",
+            "results",
+            "probabilities"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "UUID",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "variantId",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "db384825-8aea-4a63-a3e5-f15774fcdcb6",
+          "name": "Per-variant probabilities histogram",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "variants",
+                ":variantId",
+                "results",
+                "probabilities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "variantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"key_0\": 9592.998552520829\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "61c180e1-4eb2-4729-8d8d-dee187c9e99e",
+          "name": "Not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "variants",
+                ":variantId",
+                "results",
+                "probabilities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "variantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "4c030720-8b45-41c1-b4f2-f0a64c74a54b",
+      "name": "Get Variant Histogram",
+      "request": {
+        "name": "Get Variant Histogram",
+        "description": {},
+        "url": {
+          "path": [
+            "jobs",
+            ":UUID",
+            "variants",
+            ":variantId",
+            "results",
+            "histogram"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "UUID",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "variantId",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "c0977daa-ee13-46c0-8758-a334c06ce9cc",
+          "name": "Per-variant raw histogram (counts)",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "variants",
+                ":variantId",
+                "results",
+                "histogram"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "variantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"key_0\": 9592.998552520829\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "1837924b-57b9-48fa-925e-f6c03a592f84",
+          "name": "Not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "variants",
+                ":variantId",
+                "results",
+                "histogram"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "variantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "cf28b3ed-0e7a-4725-a11b-7ea4b34235d3",
+      "name": "Get Variant Shots",
+      "request": {
+        "name": "Get Variant Shots",
+        "description": {},
+        "url": {
+          "path": [
+            "jobs",
+            ":UUID",
+            "variants",
+            ":variantId",
+            "results",
+            "shots"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "UUID",
+              "description": "(Required) "
+            },
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "variantId",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "f3efb419-d58b-4989-975e-ff41098208a5",
+          "name": "Per-variant shot-wise results",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "variants",
+                ":variantId",
+                "results",
+                "shots"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "variantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"key_0\": 9592.998552520829\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        },
+        {
+          "id": "01f47e50-8621-43f8-ab32-7f87a05acf44",
+          "name": "Not found",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "jobs",
+                ":UUID",
+                "variants",
+                ":variantId",
+                "results",
+                "shots"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "UUID",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "variantId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "Not Found",
+          "code": 404,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "text/plain"
+            }
+          ],
+          "body": "",
+          "cookie": [],
+          "_postman_previewlanguage": "text"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "7aca8699-39e2-4ee4-9aaf-73aed77951a6",
+      "name": "Create Session",
+      "request": {
+        "name": "Create Session",
+        "description": {},
+        "url": {
+          "path": [
+            "sessions"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"backend\": \"<string>\",\n  \"settings\": {\n    \"job_count_limit\": \"<integer>\",\n    \"duration_limit_min\": \"<integer>\",\n    \"cost_limit\": {\n      \"unit\": \"<string>\",\n      \"value\": \"<double>\"\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "id": "ac3bd345-2fc0-488f-b1ec-8ba1fa1c03e6",
+          "name": "Created",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"backend\": \"<string>\",\n  \"settings\": {\n    \"job_count_limit\": \"<integer>\",\n    \"duration_limit_min\": \"<integer>\",\n    \"cost_limit\": {\n      \"unit\": \"<string>\",\n      \"value\": \"<double>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Created",
+          "code": 201,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"created_at\": \"2021-05-11T06:12:47.352Z\",\n  \"organization_id\": \"string\",\n  \"backend\": \"string\",\n  \"project_id\": \"string\",\n  \"creator_id\": \"string\",\n  \"ended_at\": \"1960-11-11T01:06:09.876Z\",\n  \"ender_id\": \"string\",\n  \"active\": false,\n  \"status\": \"created\",\n  \"started_at\": \"1981-02-22T16:28:50.087Z\",\n  \"settings\": {\n    \"job_count_limit\": 1844,\n    \"duration_limit_min\": 9528,\n    \"cost_limit\": {\n      \"unit\": \"<string>\",\n      \"value\": \"<double>\"\n    },\n    \"expires_at\": \"2017-08-04T16:44:42.920Z\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "b60d50bd-5a37-43ff-9580-6a2dc879a429",
+      "name": "Get Sessions",
+      "request": {
+        "name": "Get Sessions",
+        "description": {},
+        "url": {
+          "path": [
+            "sessions"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "active",
+              "value": "<boolean>"
+            }
+          ],
+          "variable": []
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "43a456f3-4b21-4fcf-902e-f3e4a022da8b",
+          "name": "Successfully retrieved a list of sessions.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "active",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"organization_id\": \"string\",\n  \"sessions\": [\n    {\n      \"id\": \"string\",\n      \"created_at\": \"1975-02-20T06:16:29.720Z\",\n      \"organization_id\": \"string\",\n      \"backend\": \"string\",\n      \"project_id\": \"string\",\n      \"creator_id\": \"string\",\n      \"ended_at\": \"1995-12-31T18:56:17.126Z\",\n      \"ender_id\": \"string\",\n      \"active\": false,\n      \"status\": \"ended\",\n      \"started_at\": \"2023-03-30T10:43:16.660Z\",\n      \"settings\": {\n        \"job_count_limit\": 2154,\n        \"duration_limit_min\": 8767,\n        \"cost_limit\": {\n          \"unit\": \"<string>\",\n          \"value\": \"<double>\"\n        },\n        \"expires_at\": \"2016-02-14T11:18:57.966Z\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"created_at\": \"1969-08-19T15:33:59.084Z\",\n      \"organization_id\": \"string\",\n      \"backend\": \"string\",\n      \"project_id\": \"string\",\n      \"creator_id\": \"string\",\n      \"ended_at\": \"1989-05-03T19:26:33.868Z\",\n      \"ender_id\": \"string\",\n      \"active\": true,\n      \"status\": \"created\",\n      \"started_at\": \"2006-03-18T17:10:15.816Z\",\n      \"settings\": {\n        \"job_count_limit\": 3859,\n        \"duration_limit_min\": 478,\n        \"cost_limit\": {\n          \"unit\": \"<string>\",\n          \"value\": \"<double>\"\n        },\n        \"expires_at\": \"2002-03-08T13:15:37.512Z\"\n      }\n    }\n  ]\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "f102e7fc-5bc2-49d2-afe7-26627cca5ead",
+      "name": "End Session",
+      "request": {
+        "name": "End Session",
+        "description": {},
+        "url": {
+          "path": [
+            "sessions",
+            ":session_id",
+            "end"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "session_id",
+              "description": "(Required) The id of the session — this id is provided in the response on session creation."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "POST",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "f6fedf13-e0a1-4ea8-aad0-0b151da51d6a",
+          "name": "Successfully end a session.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "end"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) The id of the session — this id is provided in the response on session creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"created_at\": \"2021-05-11T06:12:47.352Z\",\n  \"organization_id\": \"string\",\n  \"backend\": \"string\",\n  \"project_id\": \"string\",\n  \"creator_id\": \"string\",\n  \"ended_at\": \"1960-11-11T01:06:09.876Z\",\n  \"ender_id\": \"string\",\n  \"active\": false,\n  \"status\": \"created\",\n  \"started_at\": \"1981-02-22T16:28:50.087Z\",\n  \"settings\": {\n    \"job_count_limit\": 1844,\n    \"duration_limit_min\": 9528,\n    \"cost_limit\": {\n      \"unit\": \"<string>\",\n      \"value\": \"<double>\"\n    },\n    \"expires_at\": \"2017-08-04T16:44:42.920Z\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "39764e32-e483-4397-9df0-497e0b77b736",
+      "name": "Get Session",
+      "request": {
+        "name": "Get Session",
+        "description": {},
+        "url": {
+          "path": [
+            "sessions",
+            ":session_id"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "session_id",
+              "description": "(Required) The id of the session — this id is provided in the response on session creation."
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "f122e4ea-6b8e-43c4-9d41-3189fb8c0c15",
+          "name": "Successfully retrieved a session.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) The id of the session — this id is provided in the response on session creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"id\": \"string\",\n  \"created_at\": \"2021-05-11T06:12:47.352Z\",\n  \"organization_id\": \"string\",\n  \"backend\": \"string\",\n  \"project_id\": \"string\",\n  \"creator_id\": \"string\",\n  \"ended_at\": \"1960-11-11T01:06:09.876Z\",\n  \"ender_id\": \"string\",\n  \"active\": false,\n  \"status\": \"created\",\n  \"started_at\": \"1981-02-22T16:28:50.087Z\",\n  \"settings\": {\n    \"job_count_limit\": 1844,\n    \"duration_limit_min\": 9528,\n    \"cost_limit\": {\n      \"unit\": \"<string>\",\n      \"value\": \"<double>\"\n    },\n    \"expires_at\": \"2017-08-04T16:44:42.920Z\"\n  }\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    },
+    {
+      "id": "d288e577-f59c-48f2-96a2-da7accc34ae5",
+      "name": "Get Session Jobs",
+      "request": {
+        "name": "Get Session Jobs",
+        "description": {},
+        "url": {
+          "path": [
+            "sessions",
+            ":session_id",
+            "jobs"
+          ],
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "disabled": false,
+              "key": "ids",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "ids",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "parent_job_id",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "status",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "target",
+              "value": "<string>",
+              "description": "Filter jobs by backend target. Supports single target or comma-separated list of targets."
+            },
+            {
+              "disabled": false,
+              "key": "session_id",
+              "value": "<string>"
+            },
+            {
+              "disabled": false,
+              "key": "submitter_id",
+              "value": "<string>",
+              "description": "The id of another user within a shared project to view their submitted jobs. Ignored if not a project member."
+            },
+            {
+              "disabled": false,
+              "key": "limit",
+              "value": "<integer>"
+            },
+            {
+              "disabled": false,
+              "key": "next",
+              "value": "<string>"
+            }
+          ],
+          "variable": [
+            {
+              "disabled": false,
+              "type": "any",
+              "value": "<string>",
+              "key": "session_id",
+              "description": "(Required) "
+            }
+          ]
+        },
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "method": "GET",
+        "auth": {
+          "type": "apikey",
+          "apikey": [
+            {
+              "key": "key",
+              "value": "Authorization"
+            },
+            {
+              "key": "value",
+              "value": "{{apiKey}}"
+            },
+            {
+              "key": "in",
+              "value": "header"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "id": "80fe13db-0760-4f20-87e8-b15cee9e4b0e",
+          "name": "Successfully retrieved a list of jobs from a session.",
+          "originalRequest": {
+            "url": {
+              "path": [
+                "sessions",
+                ":session_id",
+                "jobs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "ids",
+                  "value": "<string>"
+                },
+                {
+                  "key": "ids",
+                  "value": "<string>"
+                },
+                {
+                  "key": "parent_job_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "key": "target",
+                  "value": "simulator"
+                },
+                {
+                  "key": "session_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "submitter_id",
+                  "value": "<string>"
+                },
+                {
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "next",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "session_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "description": {
+                  "content": "Added as a part of security scheme: apikey",
+                  "type": "text/plain"
+                },
+                "key": "Authorization",
+                "value": "<API Key>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "body": {}
+          },
+          "status": "OK",
+          "code": 200,
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": "{\n  \"jobs\": [\n    {\n      \"id\": \"e1a09d90-b2ba-4ea5-9fd7-4bfc14eac524\",\n      \"status\": \"completed\",\n      \"type\": \"ionq.circuit.v1\",\n      \"backend\": \"simulator\",\n      \"dry_run\": false,\n      \"cost_model\": \"quantum_compute_time\",\n      \"submitter_id\": \"64b03577072d45001c85e9c4\",\n      \"project_id\": \"1333d459-cf47-4a5e-acc1-8d4eb4f7b025\",\n      \"parent_job_id\": null,\n      \"session_id\": null,\n      \"metadata\": null,\n      \"name\": null,\n      \"submitted_at\": \"2025-05-28T20:47:05.440Z\",\n      \"started_at\": null,\n      \"completed_at\": null,\n      \"predicted_execution_duration_ms\": null,\n      \"predicted_wait_time_ms\": null,\n      \"execution_duration_ms\": null,\n      \"shots\": 1000,\n      \"noise\": {\n        \"model\": \"ideal\"\n      },\n      \"failure\": null,\n      \"settings\": {\n        \"compilation\": {}\n      },\n      \"stats\": {\n        \"qubits\": 20,\n        \"circuits\": 1,\n        \"gate_counts\": {\n          \"1q\": 1028,\n          \"2q\": 110\n        },\n        \"predicted_quantum_compute_time_us\": 5000,\n        \"billed_quantum_compute_time_us\": 5200\n      },\n      \"results\": {\n        \"probabilities\": {\n          \"url\": \"/v0.4/jobs/e1a09d90-b2ba-4ea5-9fd7-4bfc14eac524/results/probabilities\"\n        }\n      },\n      \"output\": {}\n    }\n  ],\n  \"next\": null\n}",
+          "cookie": [],
+          "_postman_previewlanguage": "json"
+        }
+      ],
+      "event": [],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ionq.co/v0.4",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d6e38a50-a00d-447f-b7e7-1164788594c4",
+    "name": "IonQ Cloud Platform API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "*Last updated: May 15, 2026*\nIonQ's API for accessing the IonQ Quantum Cloud platform\n\nPlease subscribe for automated updates when we perform maintenance or\nexperience an outage.\n\nIn addition, you may use the [status endpoint](#tag/status) to check the\ncurrent status of our API.\n\n## Authentication\n\n<SecurityDefinitions />\n\n\nContact Support:\n Name: IonQ\n Email: support@ionq.co",
+      "type": "text/plain"
+    }
+  }
+}

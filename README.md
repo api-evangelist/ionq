@@ -2,108 +2,158 @@
 
 IonQ (NYSE IONQ) is a College Park, Maryland-based public trapped-ion quantum computing company. IonQ designs, manufactures, and operates trapped-ion quantum computers (Aria, Forte, Forte Enterprise, Tempo, Harmony) and delivers them through the IonQ Quantum Cloud REST API, on-premises Forte Enterprise systems, and partner clouds (AWS Braket, Microsoft Azure Quantum, Google Cloud). The platform supports submission of QIS and native-gate circuits, multi-circuit and Quantum Function jobs, reserved Sessions, error mitigation, and organization-level usage and cost reporting. IonQ's quantum networking, security (QKD), sensing, and space-infrastructure businesses extend the trapped-ion core into a broader quantum systems portfolio.
 
-**URL:** [Visit APIs.json](https://raw.githubusercontent.com/api-evangelist/ionq/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/ionq/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/ionq/refs/heads/main/apis.yml)
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Scope
+
+- **Position:** Provider
+- **Access:** 3rd-Party
 
 ## Tags
 
-- Quantum Computing, Trapped Ion, QPU, Aria, Forte, Tempo, Quantum Cloud, Cloud, Hardware, Public Company
+- Quantum Computing
+- Trapped Ion
+- QPU
+- Aria
+- Forte
+- Tempo
+- Quantum Cloud
+- Cloud
+- Hardware
+- Public Company
 
 ## Timestamps
 
-- **Created:** 2026-05-25
-- **Modified:** 2026-05-25
-
-## Systems
-
-| System | Backend ID | Technology | Notes |
-|---|---|---|---|
-| IonQ Aria | `qpu.aria-1`, `qpu.aria-2` | Trapped ion | Commercially available QPU |
-| IonQ Forte | `qpu.forte-1` | Trapped ion, software-configurable | Limited beta |
-| IonQ Forte Enterprise | `qpu.forte-enterprise-1` | Trapped ion | Rack-mounted on-prem |
-| IonQ Tempo | n/a (announced) | Trapped ion | Next-generation system |
-| IonQ Harmony | (cloud) | Trapped ion | Earlier-generation system |
-| IonQ Simulator | `simulator` | Classical | Ideal + noisy, up to 29 qubits |
+- **Created:** 2026-05-24T00:00:00.000Z
+- **Modified:** 2026-05-24
 
 ## APIs
 
 ### IonQ Quantum Cloud API
-REST API for submitting quantum circuits, managing jobs and sessions, inspecting backends and characterizations, and tracking cost and usage on the IonQ Quantum Cloud.
 
-**Human URL:** [https://docs.ionq.com/api-reference/v0.4/introduction](https://docs.ionq.com/api-reference/v0.4/introduction)
-**Base URL:** `https://api.ionq.co/v0.4`
-**Authentication:** `Authorization: apiKey $IONQ_API_KEY`
+REST API for submitting quantum circuits, managing jobs and sessions, inspecting backends and characterizations, and tracking cost and usage on the IonQ Quantum Cloud. Backends include the qpu.aria-1, qpu.aria-2, qpu.forte-1, qpu.forte-enterprise-1 trapped-ion QPUs and the IonQ noisy/ideal simulator (up to 29 qubits). Supports single-circuit, multi-circuit, native-gate, QAOA, and Quantum Function jobs. Authentication via Authorization header `apiKey $IONQ_API_KEY`.
+
+- **Human URL:** [https://docs.ionq.com/api-reference/v0.4/introduction](https://docs.ionq.com/api-reference/v0.4/introduction)
+- **Base URL:** `https://api.ionq.co/v0.4`
+
+#### Tags
+
+- Quantum Computing
+- Trapped Ion
+- QPU
+- Jobs
+- Sessions
+- Backends
+- Cloud
+
+#### Properties
 
 - [Documentation](https://docs.ionq.com/api-reference/v0.4/introduction)
-- [Direct API Submission Guide](https://docs.ionq.com/guides/direct-api-submission)
-- [OpenAPI](openapi/ionq-quantum-cloud-openapi.yml)
-- [JSON Schema — Job](json-schema/ionq-job-schema.json)
-- [JSON Schema — Backend](json-schema/ionq-backend-schema.json)
-- [JSON Schema — Session](json-schema/ionq-session-schema.json)
-- [JSON-LD Context](json-ld/ionq-context.jsonld)
-- [JSON Structure — Job](json-structure/ionq-job-structure.json)
-- [Naftiko Capability — Jobs](capabilities/quantum-cloud-jobs.yaml)
-- [Naftiko Capability — Backends](capabilities/quantum-cloud-backends.yaml)
-- [Naftiko Capability — Sessions](capabilities/quantum-cloud-sessions.yaml)
-- [Naftiko Capability — Usage](capabilities/quantum-cloud-usage.yaml)
-- [Example — Create Job](examples/ionq-create-job-example.json)
-- [Example — Get Backends](examples/ionq-get-backends-example.json)
-- [Example — Create Session](examples/ionq-create-session-example.json)
+- [Documentation](https://docs.ionq.com/guides/direct-api-submission)
+- [OpenAPI](openapi/ionq-quantum-cloud-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/ionq-quantum-cloud.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/ionq-quantum-cloud.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/ionq-job-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/ionq-backend-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/ionq-session-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON-LD](json-ld/ionq-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
 
 ### IonQ Quantum Cloud API (v0.3 Legacy)
-Previous-generation REST API for jobs, characterizations, backends, and reports. Superseded by v0.4 but still supported.
 
-**Human URL:** [https://docs.ionq.com/api-reference/v0.3/introduction](https://docs.ionq.com/api-reference/v0.3/introduction)
-**Base URL:** `https://api.ionq.co/v0.3`
+The previous-generation IonQ Quantum Cloud REST API (v0.3) for submitting and managing jobs, characterizations, backends, and reports. Superseded by v0.4 which adds Sessions, separated cost/results endpoints, and restructured characterizations. v0.3 remains supported for existing integrations.
+
+- **Human URL:** [https://docs.ionq.com/api-reference/v0.3/introduction](https://docs.ionq.com/api-reference/v0.3/introduction)
+- **Base URL:** `https://api.ionq.co/v0.3`
+
+#### Tags
+
+- Quantum Computing
+- Trapped Ion
+- QPU
+- Legacy
+
+#### Properties
 
 - [Documentation](https://docs.ionq.com/api-reference/v0.3/introduction)
-- [Migration v0.3 to v0.4](https://docs.ionq.com/api-reference/v0.4/migration-from-v0.3)
+- [Documentation](https://docs.ionq.com/api-reference/v0.3/migrating-from-old-versions)
+- [Documentation](https://docs.ionq.com/api-reference/v0.4/migration-from-v0.3)
+- [Postman Collection](collections/ionq-quantum-cloud.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/ionq-quantum-cloud.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-## Resource Coverage (v0.4)
+## Common Properties
 
-| Resource | Endpoints |
-|---|---|
-| Jobs | `POST /jobs`, `GET /jobs`, `DELETE /jobs`, `GET /jobs/{id}`, `DELETE /jobs/{id}`, `PUT /jobs/{id}/status/cancel`, `PUT /jobs/status/cancel`, `GET /jobs/{id}/cost`, `GET /jobs/estimate`, `GET /jobs/{id}/circuits/{lang}`, `GET /jobs/{id}/results/probabilities`, `GET /jobs/{id}/variants/{vid}/results/probabilities`, `GET /jobs/{id}/variants/{vid}/results/histogram`, `GET /jobs/{id}/variants/{vid}/results/shots` |
-| Backends | `GET /backends`, `GET /backends/{name}`, `GET /backends/{name}/characterizations`, `GET /backends/{name}/characterizations/{id}` |
-| Sessions | `POST /sessions`, `GET /sessions`, `GET /sessions/{id}`, `POST /sessions/{id}/end`, `GET /sessions/{id}/jobs` |
-| Utility | `GET /whoami`, `GET /organizations/{id}/usage` |
-
-## SDKs and Tools
-
-- [ionq-core](https://github.com/ionq/ionq-core-python) — Apache 2.0 Python client generated from OpenAPI; published to PyPI as `ionq-core`.
-- [blqs](https://github.com/ionq/blqs) — Python building blocks for quantum DSLs.
-- [pyGSTi](https://github.com/ionq/pyGSTi) — IonQ fork of Gate Set Tomography.
-- [qrmi](https://github.com/ionq/qrmi) — Vendor-agnostic Rust layer for quantum resources.
-- [torchquantum-dist](https://github.com/ionq/torchquantum-dist) — Multi-GPU statevector QML simulation.
-- [QC-App-Oriented-Benchmarks](https://github.com/ionq/QC-App-Oriented-Benchmarks) — QED-C benchmarks.
-- [Qiskit](https://docs.ionq.com/sdks/qiskit/index), [Cirq](https://docs.ionq.com/sdks/cirq/index), [PennyLane](https://docs.ionq.com/sdks/pennylane/index), [qBraid](https://docs.ionq.com/sdks/qbraid/index), [CUDA-Q](https://docs.ionq.com/sdks/cuda-q), [TensorFlow Quantum](https://docs.ionq.com/sdks/tensorflow) integrations.
-
-## Partner Clouds
-
-- [AWS Braket](https://aws.amazon.com/braket/quantum-computers/ionq/)
-- [Microsoft Azure Quantum](https://azure.microsoft.com/products/quantum/)
-- [Google Cloud Marketplace](https://cloud.google.com/blog/products/compute/ionq-quantum-computing-now-available-on-google-cloud)
-
-## Plans, Rate Limits, FinOps
-
-- [Plans and Pricing](plans/ionq-plans-pricing.yml)
-- [Rate Limits](rate-limits/ionq-rate-limits.yml)
-- [FinOps Surface](finops/ionq-finops.yml)
-
-## Operational Surfaces
-
-- [Quantum Cloud Console](https://cloud.ionq.com)
-- [Status](https://status.ionq.co)
-- [Support Center](https://support.ionq.com)
-- [Newsroom](https://ionq.com/news)
-- [Investor Relations (NYSE IONQ)](https://investors.ionq.com)
+- [Portal](https://ionq.com)
+- [Documentation](https://docs.ionq.com)
+- [Documentation](https://docs.ionq.com/api-reference/v0.4/introduction)
+- [Documentation](https://docs.ionq.com/api-reference/v0.3/introduction)
+- [Portal](https://cloud.ionq.com)
+- [Sign Up](https://cloud.ionq.com)
+- [Documentation](https://docs.ionq.com/user-manual/introduction)
+- [Glossary](https://docs.ionq.com/user-manual/glossary)
+- [Authentication](https://docs.ionq.com/guides/managing-api-keys)
+- [Authentication](https://docs.ionq.com/guides/connecting-saml-identity-providers)
+- [Authentication](https://docs.ionq.com/guides/dotenv-project-api-keys)
+- [Getting Started](https://docs.ionq.com/guides/direct-api-submission)
+- [Getting Started](https://docs.ionq.com/guides/getting-started-with-native-gates)
+- [Documentation](https://docs.ionq.com/guides/cloud-usage)
+- [Documentation](https://docs.ionq.com/guides/error-mitigation-debiasing)
+- [Documentation](https://docs.ionq.com/guides/qpu-submission-checklist)
+- [Documentation](https://docs.ionq.com/guides/hosted-hybrid-service)
+- [Documentation](https://docs.ionq.com/guides/simulation-with-noise-models)
+- [Documentation](https://docs.ionq.com/guides/qaoa-solve-with-fire-opal)
+- [Documentation](https://docs.ionq.com/user-manual/platform-systems)
+- [Documentation](https://docs.ionq.com/user-manual/backends)
+- [Documentation](https://docs.ionq.com/user-manual/jobs)
+- [Documentation](https://docs.ionq.com/user-manual/projects)
+- [Documentation](https://docs.ionq.com/user-manual/organizations)
+- [Documentation](https://docs.ionq.com/user-manual/accounts)
+- [Documentation](https://docs.ionq.com/partners/amazon-braket)
+- [Versioning](https://docs.ionq.com/api-reference/v0.4/migration-from-v0.3)
+- [Errors](https://docs.ionq.com/api-reference/v0.3/error-codes)
+- [Status Page](https://status.ionq.co)
+- [Support](https://support.ionq.com)
+- [Support](mailto:support@ionq.com)
+- [Contact](https://ionq.com/contact)
+- [Blog](https://ionq.com/news)
+- [Blog](https://ionq.com/posts)
+- [Documentation](https://ionq.com/resources)
+- [Portal](https://ionq.com/quantum-cloud)
+- [Documentation](https://ionq.com/products)
+- [Documentation](https://ionq.com/company)
+- [Documentation](https://ionq.com/careers)
+- [Documentation](https://investors.ionq.com)
 - [Terms of Service](https://ionq.com/legal/terms-of-service)
 - [Privacy Policy](https://ionq.com/legal/privacy-policy)
-- [GitHub](https://github.com/ionq)
+- [Documentation](https://ionq.com/legal)
+- [GitHub Organization](https://github.com/ionq)
+- [SDK](https://github.com/ionq/ionq-core-python)
+- [SDK](https://pypi.org/project/ionq-core/)
+- [SDK](https://github.com/ionq/blqs)
+- [Tool](https://github.com/ionq/pyGSTi)
+- [Tool](https://github.com/ionq/qrmi)
+- [Tool](https://github.com/ionq/torchquantum-dist)
+- [Tool](https://github.com/ionq/QC-App-Oriented-Benchmarks)
+- [Code Examples](https://github.com/ionq/forte_benchmarking)
+- [Code Examples](https://github.com/ionq/forte_aq29_data)
+- [SDK](https://docs.ionq.com/sdks/qiskit/index)
+- [SDK](https://docs.ionq.com/sdks/cirq/index)
+- [SDK](https://docs.ionq.com/sdks/pennylane/index)
+- [SDK](https://docs.ionq.com/sdks/qbraid/index)
+- [SDK](https://docs.ionq.com/sdks/cuda-q)
+- [SDK](https://docs.ionq.com/sdks/tensorflow)
+- [Integration](https://aws.amazon.com/braket/quantum-computers/ionq/)
+- [Integration](https://azure.microsoft.com/products/quantum/)
+- [Integration](https://cloud.google.com/blog/products/compute/ionq-quantum-computing-now-available-on-google-cloud)
+- [LinkedIn](https://www.linkedin.com/company/ionq)
+- [Twitter](https://x.com/ionq_inc)
+- [YouTube](https://www.youtube.com/@ionq_inc)
+- [Plans](plans/ionq-plans-pricing.yml)
+- [Rate Limits](rate-limits/ionq-rate-limits.yml)
+- [Fin Ops](finops/ionq-finops.yml)
+- [Features](undefined)
 
-## Governance Artifacts
+## Maintainers
 
-- [Spectral Ruleset](rules/ionq-rules.yml)
-- [Vocabulary](vocabulary/ionq-vocabulary.yml)
-- [Review](review.yml)
+**FN:** Kin Lane
+**Email:** info@apievangelist.com
+**URL:** https://apievangelist.com

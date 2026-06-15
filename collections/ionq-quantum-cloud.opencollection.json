@@ -1,0 +1,770 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IonQ Cloud Platform API",
+    "version": "v0.4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "whoami",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/whoami"
+          },
+          "docs": "Retrieves current key associated with this session."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "backends",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Backends",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/backends"
+          },
+          "docs": "This endpoint retrieves all backends."
+        },
+        {
+          "info": {
+            "name": "Get a Backend",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/backends/:backend",
+            "params": [
+              {
+                "name": "backend",
+                "value": "",
+                "type": "path",
+                "description": "A backend where jobs can run on."
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a backend."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "characterizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Backend Characterizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/backends/:backend/characterizations",
+            "params": [
+              {
+                "name": "backend",
+                "value": "",
+                "type": "path",
+                "description": "A backend where jobs can run on."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Characterizations starting at this time (e.g., `start=2025-12-31`)"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "Characterizations before this time (e.g., `end=2025-12-31`)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many objects to return."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves an array of all available backend characterizations, with pagination."
+        },
+        {
+          "info": {
+            "name": "Get a Characterization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/backends/:backend/characterizations/:UUID",
+            "params": [
+              {
+                "name": "backend",
+                "value": "",
+                "type": "path",
+                "description": "A backend where jobs can run on."
+              },
+              {
+                "name": "UUID",
+                "value": "617a1f8b-59d4-435d-aa33-695433d7155e",
+                "type": "path",
+                "description": "A UUID identifying a specific resource"
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a characterization."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Default",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetJobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/jobs",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "parent_job_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "target",
+                "value": "simulator",
+                "type": "query",
+                "description": "Filter jobs by backend target. Supports single target or comma-separated list of targets."
+              },
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "submitter_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of another user within a shared project to view their submitted jobs. Ignored if not a project member."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CreateJob",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ionq.co/v0.4/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Submit a single-circuit or multi-circuit job for simulation or execution. In `ionq.multi-circuit.v1` payloads, each entry in `input.circuits` inherits the parent `input.gateset` unless the circuit sets its own `gateset`.\n"
+        },
+        {
+          "info": {
+            "name": "DeleteJobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ionq.co/v0.4/jobs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetJob",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/jobs/:UUID",
+            "params": [
+              {
+                "name": "UUID",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the job — this UUID is provided in the response on job creation."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "DeleteJob",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.ionq.co/v0.4/jobs/:UUID",
+            "params": [
+              {
+                "name": "UUID",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the job — this UUID is provided in the response on job creation."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetJobCost",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/jobs/:UUID/cost",
+            "params": [
+              {
+                "name": "UUID",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetCompiledFile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/jobs/:UUID/circuits/:lang",
+            "params": [
+              {
+                "name": "UUID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lang",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Cancel a job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ionq.co/v0.4/jobs/:UUID/status/cancel",
+            "params": [
+              {
+                "name": "UUID",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the job — this UUID is provided in the response on job creation."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancel the execution of many jobs at once by passing a list of jobs."
+        },
+        {
+          "info": {
+            "name": "CancelJobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.ionq.co/v0.4/jobs/status/cancel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "EstimateJobCost",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/jobs/estimate",
+            "params": [
+              {
+                "name": "backend",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "qubits",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "shots",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "1q_gates",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "2q_gates",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "error_mitigation",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Fetch the probability distribution for a completed job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/jobs/:UUID/results/probabilities",
+            "params": [
+              {
+                "name": "UUID",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the job."
+              },
+              {
+                "name": "sharpen",
+                "value": "",
+                "type": "query",
+                "description": "Whether to apply sharpening to the probability distribution."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Fetch the probability distribution for a completed job."
+        },
+        {
+          "info": {
+            "name": "GetVariantProbabilities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/jobs/:UUID/variants/:variantId/results/probabilities",
+            "params": [
+              {
+                "name": "UUID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "variantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetVariantHistogram",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/jobs/:UUID/variants/:variantId/results/histogram",
+            "params": [
+              {
+                "name": "UUID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "variantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetVariantShots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/jobs/:UUID/variants/:variantId/results/shots",
+            "params": [
+              {
+                "name": "UUID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "variantId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetSessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/sessions",
+            "params": [
+              {
+                "name": "active",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CreateSession",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ionq.co/v0.4/sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "EndSession",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ionq.co/v0.4/sessions/:session_id/end",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the session — this id is provided in the response on session creation."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetSession",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/sessions/:session_id",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the session — this id is provided in the response on session creation."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetSessionJobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/sessions/:session_id/jobs",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "parent_job_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "target",
+                "value": "simulator",
+                "type": "query",
+                "description": "Filter jobs by backend target. Supports single target or comma-separated list of targets."
+              },
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "submitter_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of another user within a shared project to view their submitted jobs. Ignored if not a project member."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "usage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get usage costs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/organizations/:organization_id/usage",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "71d164e-6ebe-4126-8839-f1529bb01a00",
+                "type": "path",
+                "description": "The UUID of the organization — this UUID is provided in the response on organization creation."
+              },
+              {
+                "name": "start_date",
+                "value": "2023-07-01",
+                "type": "query",
+                "description": "Start date, inclusive"
+              },
+              {
+                "name": "end_date",
+                "value": "2023-08-01",
+                "type": "query",
+                "description": "End date, exclusive"
+              },
+              {
+                "name": "group_by",
+                "value": "",
+                "type": "query",
+                "description": "QPU Usage grouping"
+              },
+              {
+                "name": "modality",
+                "value": "",
+                "type": "query",
+                "description": "Report modality"
+              }
+            ]
+          },
+          "docs": "Retrieves the costs of a given group type, broken down by the given date modality."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
