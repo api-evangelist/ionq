@@ -87,7 +87,7 @@ common:
     name: IonQ Quantum Cloud Console
     type: Portal
   - url: https://cloud.ionq.com
-    type: SignUp
+    type: Signup
   - url: https://docs.ionq.com/user-manual/introduction
     name: User Manual
     type: Documentation
@@ -152,7 +152,7 @@ common:
     type: Versioning
   - url: https://docs.ionq.com/api-reference/v0.3/error-codes
     name: API Error Codes
-    type: Errors
+    type: ErrorCodes
   - url: https://status.ionq.co
     name: IonQ Quantum Cloud Status
     type: StatusPage
@@ -203,25 +203,25 @@ common:
     type: GitHubOrganization
   - url: https://github.com/ionq/ionq-core-python
     name: ionq-core (Python client)
-    type: SDK
+    type: SDKs
   - url: https://pypi.org/project/ionq-core/
     name: ionq-core on PyPI
-    type: SDK
+    type: SDKs
   - url: https://github.com/ionq/blqs
     name: blqs (quantum building blocks DSL)
-    type: SDK
+    type: SDKs
   - url: https://github.com/ionq/pyGSTi
     name: pyGSTi (Gate Set Tomography, IonQ fork)
-    type: Tool
+    type: Tools
   - url: https://github.com/ionq/qrmi
     name: qrmi (vendor-agnostic quantum resource layer, Rust)
-    type: Tool
+    type: Tools
   - url: https://github.com/ionq/torchquantum-dist
     name: torchquantum-dist (multi-GPU QML simulation)
-    type: Tool
+    type: Tools
   - url: https://github.com/ionq/QC-App-Oriented-Benchmarks
     name: QED-C Application-Oriented Benchmarks
-    type: Tool
+    type: Tools
   - url: https://github.com/ionq/forte_benchmarking
     name: Forte Benchmarking
     type: CodeExamples
@@ -230,31 +230,31 @@ common:
     type: CodeExamples
   - url: https://docs.ionq.com/sdks/qiskit/index
     name: Qiskit Integration
-    type: SDK
+    type: SDKs
   - url: https://docs.ionq.com/sdks/cirq/index
     name: Cirq Integration
-    type: SDK
+    type: SDKs
   - url: https://docs.ionq.com/sdks/pennylane/index
     name: PennyLane Integration
-    type: SDK
+    type: SDKs
   - url: https://docs.ionq.com/sdks/qbraid/index
     name: qBraid Integration
-    type: SDK
+    type: SDKs
   - url: https://docs.ionq.com/sdks/cuda-q
     name: NVIDIA CUDA-Q Integration
-    type: SDK
+    type: SDKs
   - url: https://docs.ionq.com/sdks/tensorflow
     name: TensorFlow Quantum Integration
-    type: SDK
+    type: SDKs
   - url: https://aws.amazon.com/braket/quantum-computers/ionq/
     name: IonQ on AWS Braket
-    type: Integration
+    type: Integrations
   - url: https://azure.microsoft.com/products/quantum/
     name: IonQ on Microsoft Azure Quantum
-    type: Integration
+    type: Integrations
   - url: https://cloud.google.com/blog/products/compute/ionq-quantum-computing-now-available-on-google-cloud
     name: IonQ on Google Cloud Marketplace
-    type: Integration
+    type: Integrations
   - url: https://www.linkedin.com/company/ionq
     type: LinkedIn
   - url: https://x.com/ionq_inc
