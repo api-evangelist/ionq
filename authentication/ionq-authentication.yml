@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/ionq-quantum-cloud-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: 'API keys are associated with a user and can be created on the [IonQ Quantum
+    Cloud](https://cloud.ionq.com) application. To authenticate, prefix your API Key with `apiKey
+    ` and place it in the `Authorization` request header. Ex: `Authorization: apiKey your-api-key`'
+  sources:
+  - openapi/ionq-quantum-cloud-openapi.yml

@@ -73,6 +73,10 @@ kind: contract
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+  - type: DomainSecurity
+    url: security/ionq-domain-security.yml
+  - type: Authentication
+    url: authentication/ionq-authentication.yml
   - type: Portal
     url: https://ionq.com
   - type: Documentation
