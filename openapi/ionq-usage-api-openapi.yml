@@ -1,0 +1,225 @@
+openapi: 3.0.3
+info:
+  contact:
+    email: support@ionq.co
+    name: IonQ
+    url: https://ionq.com/
+  description: '*Last updated: May 15, 2026*
+
+    IonQ''s API for accessing the IonQ Quantum Cloud platform
+
+
+    Please subscribe for automated updates when we perform maintenance or
+
+    experience an outage.
+
+
+    In addition, you may use the [status endpoint](#tag/status) to check the
+
+    current status of our API.
+
+
+    ## Authentication
+
+
+    <SecurityDefinitions />
+
+    '
+  title: IonQ Cloud Platform backends usage API
+  version: v0.4
+servers:
+- url: https://api.ionq.co/v0.4
+tags:
+- name: usage
+paths:
+  /organizations/{organization_id}/usage:
+    get:
+      description: Retrieves the costs of a given group type, broken down by the given date modality.
+      operationId: get-usages
+      parameters:
+      - $ref: '#/components/parameters/organization_id'
+      - description: Start date, inclusive
+        example: '2023-07-01'
+        in: query
+        name: start_date
+        required: true
+        schema:
+          format: date
+          type: string
+      - description: End date, exclusive
+        example: '2023-08-01'
+        in: query
+        name: end_date
+        required: true
+        schema:
+          format: date
+          type: string
+      - description: QPU Usage grouping
+        in: query
+        name: group_by
+        required: true
+        schema:
+          $ref: '#/components/schemas/group_by'
+      - description: Report modality
+        in: query
+        name: modality
+        required: true
+        schema:
+          $ref: '#/components/schemas/modality'
+      responses:
+        '200':
+          $ref: '#/components/responses/UsagesResponse'
+      summary: Get usage costs
+      tags:
+      - usage
+      x-codeSamples:
+      - lang: curl
+        source: "curl \"https://api.ionq.co/v0.4/organizations/com.my.org/usage?group_by=project&start_date=2025-01-01&end_date=2025-03-02&modality=weekly\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
+components:
+  schemas:
+    organization_id:
+      description: UUID of an organization.
+      example: 71d164e-6ebe-4126-8839-f1529bb01a00
+      format: uuid
+      type: string
+    Usages:
+      description: QPU usage details for a given modality and date range.
+      properties:
+        amount_total:
+          description: The total cost amount for the given timeframe, in units given by usage_unit
+          example: 151.31
+          type: number
+        group_type:
+          $ref: '#/components/schemas/group_by'
+        job_count:
+          description: The total number of jobs run in the timeframe
+          example: 514
+          type: integer
+        modality:
+          $ref: '#/components/schemas/modality'
+        organization:
+          $ref: '#/components/schemas/organization_id'
+        time_us_total:
+          description: The total QPU time usage for the given timeframe, in microseconds
+          example: 1566154.312523
+          type: number
+        usage_data:
+          description: The breakdown of usage by group type in date order most to least recent
+          items:
+            $ref: '#/components/schemas/Usage'
+          type: array
+        usage_from:
+          description: Usage beginning RFC 3339 timestamp
+          example: '2025-10-01T00:00:00Z'
+          format: date-time
+          type: string
+        usage_to:
+          description: Usage end RFC 3339 timestamp
+          example: '2025-11-01T00:00:00Z'
+          format: date-time
+          type: string
+        usage_unit:
+          description: The currency of the total and job cost amounts
+          example: USD
+          type: string
+      required:
+      - start_date
+      - end_date
+      - group_type
+      - modality
+      type: object
+    GroupUsage:
+      description: A group's single date usage
+      properties:
+        amount:
+          description: The cost amount for the group of the given date
+          example: 144.39
+          type: number
+        group_id:
+          description: The unique ID from the group
+          example: 2bfd0fd5-5854-4916-917f-a907af586755
+          type: string
+        group_name:
+          description: The group's descriptive name
+          example: Project Jumping Lemming
+          type: string
+        job_count:
+          description: The number of jobs run for the group on the given date
+          example: 9
+          type: integer
+        time_us:
+          description: The QPU time in microseconds
+          example: 1566154.312523
+          type: number
+      type: object
+    modality:
+      description: Report modality
+      enum:
+      - daily
+      - weekly
+      - monthly
+      example: daily
+      type: string
+    Usage:
+      description: Single date of QPU usage
+      properties:
+        amount:
+          description: The amount as a cost in USD
+          example: 1614.23
+          type: number
+        from:
+          description: Date for this group's usage
+          example: '2023-07-01'
+          format: date
+          type: string
+        group_usages:
+          description: The top 5 usage groups in order of cost amount descending
+          items:
+            $ref: '#/components/schemas/GroupUsage'
+          type: array
+        job_count:
+          description: The count of jobs for this group on the given from date
+          example: 10
+          type: integer
+        time_us:
+          description: The QPU time in microseconds
+          example: 5143166.13413
+          type: number
+      required:
+      - from
+      - job_count
+      - amount
+      - time_us
+      - group_usages
+      type: object
+    group_by:
+      description: QPU Usage grouping
+      enum:
+      - job
+      - project
+      - user
+      example: project
+      type: string
+  parameters:
+    organization_id:
+      description: The UUID of the organization — this UUID is provided in the response on organization creation.
+      example: 71d164e-6ebe-4126-8839-f1529bb01a00
+      in: path
+      name: organization_id
+      required: true
+      schema:
+        format: uuid
+        type: string
+  responses:
+    UsagesResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Usages'
+      description: Successfully retrieved a list of projects.
+  securitySchemes:
+    apiKeyAuth:
+      description: 'API keys are associated with a user and can be created on the [IonQ Quantum Cloud](https://cloud.ionq.com) application. To authenticate, prefix your API Key with `apiKey ` and place it in the `Authorization` request header. Ex: `Authorization: apiKey your-api-key`'
+      in: header
+      name: Authorization
+      type: apiKey

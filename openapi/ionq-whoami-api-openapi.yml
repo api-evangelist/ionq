@@ -1,0 +1,89 @@
+openapi: 3.0.3
+info:
+  contact:
+    email: support@ionq.co
+    name: IonQ
+    url: https://ionq.com/
+  description: '*Last updated: May 15, 2026*
+
+    IonQ''s API for accessing the IonQ Quantum Cloud platform
+
+
+    Please subscribe for automated updates when we perform maintenance or
+
+    experience an outage.
+
+
+    In addition, you may use the [status endpoint](#tag/status) to check the
+
+    current status of our API.
+
+
+    ## Authentication
+
+
+    <SecurityDefinitions />
+
+    '
+  title: IonQ Cloud Platform backends whoami API
+  version: v0.4
+servers:
+- url: https://api.ionq.co/v0.4
+tags:
+- name: whoami
+paths:
+  /whoami:
+    get:
+      description: Retrieves current key associated with this session.
+      operationId: getWhoami
+      responses:
+        '200':
+          $ref: '#/components/responses/Whoami'
+      summary: Get current key
+      tags:
+      - whoami
+      x-codeSamples:
+      - lang: curl
+        source: "curl \"https://api.ionq.co/v0.4/whoami\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
+components:
+  schemas:
+    key-id:
+      description: UUID of a API key.
+      example: e060759f-4348-4767-a645-8c0301265791
+      format: uuid
+      type: string
+    project-id:
+      description: UUID of a project.
+      example: 944904d6-2e30-4cfb-8bc4-04afaabcdd42
+      format: uuid
+      type: string
+    Whoami:
+      description: Details of current API Key session.
+      properties:
+        key_id:
+          $ref: '#/components/schemas/key-id'
+        key_name:
+          $ref: '#/components/schemas/key-name'
+        project_id:
+          $ref: '#/components/schemas/project-id'
+      required:
+      - key_id
+      - key_name
+      type: object
+    key-name:
+      description: key name.
+      example: My First Key
+      type: string
+  responses:
+    Whoami:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Whoami'
+      description: Successfully retrieved a current of key from this session.
+  securitySchemes:
+    apiKeyAuth:
+      description: 'API keys are associated with a user and can be created on the [IonQ Quantum Cloud](https://cloud.ionq.com) application. To authenticate, prefix your API Key with `apiKey ` and place it in the `Authorization` request header. Ex: `Authorization: apiKey your-api-key`'
+      in: header
+      name: Authorization
+      type: apiKey

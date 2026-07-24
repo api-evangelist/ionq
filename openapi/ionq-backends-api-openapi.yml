@@ -1,0 +1,154 @@
+openapi: 3.0.3
+info:
+  contact:
+    email: support@ionq.co
+    name: IonQ
+    url: https://ionq.com/
+  description: '*Last updated: May 15, 2026*
+
+    IonQ''s API for accessing the IonQ Quantum Cloud platform
+
+
+    Please subscribe for automated updates when we perform maintenance or
+
+    experience an outage.
+
+
+    In addition, you may use the [status endpoint](#tag/status) to check the
+
+    current status of our API.
+
+
+    ## Authentication
+
+
+    <SecurityDefinitions />
+
+    '
+  title: IonQ Cloud Platform backends API
+  version: v0.4
+servers:
+- url: https://api.ionq.co/v0.4
+tags:
+- name: backends
+paths:
+  /backends:
+    get:
+      description: This endpoint retrieves all backends.
+      operationId: getBackends
+      responses:
+        '200':
+          $ref: '#/components/responses/ListBackends'
+      security: []
+      summary: Get Backends
+      tags:
+      - backends
+      x-codeSamples:
+      - lang: curl
+        source: 'curl "https://api.ionq.co/v0.4/backends"
+
+          '
+  /backends/{backend}:
+    get:
+      description: This endpoint retrieves a backend.
+      operationId: getBackend
+      parameters:
+      - $ref: '#/components/parameters/backend'
+      responses:
+        '200':
+          $ref: '#/components/responses/GetBackend'
+      security: []
+      summary: Get a Backend
+      tags:
+      - backends
+      x-codeSamples:
+      - lang: curl
+        source: 'curl "https://api.ionq.co/v0.4/backends/qpu.aria-1"
+
+          '
+components:
+  parameters:
+    backend:
+      description: A backend where jobs can run on.
+      in: path
+      name: backend
+      required: true
+      schema:
+        enum:
+        - qpu.aria-1
+        - qpu.aria-2
+        - qpu.forte-1
+        - qpu.forte-enterprise-1
+        - qpu.forte-enterprise-2
+        - qpu.forte-enterprise-3
+        type: string
+  responses:
+    ListBackends:
+      content:
+        application/json:
+          schema:
+            description: The list of backends.
+            items:
+              $ref: '#/components/schemas/Backend'
+            type: array
+      description: Successfully retrieved backend.
+    GetBackend:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Backend'
+      description: Successfully retrieved backend.
+  schemas:
+    Backend:
+      description: A backend that you can target your program to run on.
+      properties:
+        average_queue_time:
+          description: Current wait time on the queue for execution.
+          example: 1181215
+          format: unix-timestamp
+          type: number
+        backend:
+          description: 'Specifies target hardware and generation where applies: `simulator`, `qpu.aria-1`, `qpu.aria-2`, `qpu.forte-1`, `qpu.forte-enterprise-1`, `qpu.forte-enterprise-2`, `qpu.forte-enterprise-3`'
+          example: qpu.aria-1
+          type: string
+        characterization_id:
+          description: Current characterization ID for this backend
+          example: 617a1f8b-59d4-435d-aa33-695433d7155e
+          type: string
+        degraded:
+          description: Flag to tell if the backend is degraded or not.
+          type: boolean
+        kw:
+          description: The amount of energy used by the backend in kilowatt-hours.
+          example: 4902.81
+          format: double
+          type: number
+        last_updated:
+          description: Last date time the backend status was updated.
+          example: '2025-06-16T00:00:00Z'
+          type: string
+        location:
+          description: The location of the backend.
+          example: College Park, MD, USA
+          type: string
+        qubits:
+          description: The number of qubits available.
+          example: 25
+          minimum: 0
+          type: integer
+        status:
+          description: 'Current status of the backend: `available`, `unavailable`, `retired`.'
+          type: string
+      required:
+      - backend
+      - status
+      - qubits
+      - average_queue_time
+      - last_updated
+      type: object
+  securitySchemes:
+    apiKeyAuth:
+      description: 'API keys are associated with a user and can be created on the [IonQ Quantum Cloud](https://cloud.ionq.com) application. To authenticate, prefix your API Key with `apiKey ` and place it in the `Authorization` request header. Ex: `Authorization: apiKey your-api-key`'
+      in: header
+      name: Authorization
+      type: apiKey

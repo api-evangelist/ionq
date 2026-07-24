@@ -1,0 +1,235 @@
+openapi: 3.0.3
+info:
+  contact:
+    email: support@ionq.co
+    name: IonQ
+    url: https://ionq.com/
+  description: '*Last updated: May 15, 2026*
+
+    IonQ''s API for accessing the IonQ Quantum Cloud platform
+
+
+    Please subscribe for automated updates when we perform maintenance or
+
+    experience an outage.
+
+
+    In addition, you may use the [status endpoint](#tag/status) to check the
+
+    current status of our API.
+
+
+    ## Authentication
+
+
+    <SecurityDefinitions />
+
+    '
+  title: IonQ Cloud Platform backends characterizations API
+  version: v0.4
+servers:
+- url: https://api.ionq.co/v0.4
+tags:
+- name: characterizations
+paths:
+  /backends/{backend}/characterizations:
+    get:
+      description: This endpoint retrieves an array of all available backend characterizations, with pagination.
+      operationId: getCharacterizationsForBackend
+      parameters:
+      - $ref: '#/components/parameters/backend'
+      - description: Characterizations starting at this time (e.g., `start=2025-12-31`)
+        in: query
+        name: start
+        schema:
+          type: string
+      - description: Characterizations before this time (e.g., `end=2025-12-31`)
+        in: query
+        name: end
+        schema:
+          type: string
+      - description: How many objects to return.
+        in: query
+        name: limit
+        schema:
+          default: 10
+          maximum: 10
+          minimum: 1
+          type: integer
+      - $ref: '#/components/parameters/pagination-page'
+      responses:
+        '200':
+          $ref: '#/components/responses/ListCharacterizations'
+      security: []
+      summary: Get All Backend Characterizations
+      tags:
+      - characterizations
+      x-codeSamples:
+      - lang: curl
+        source: 'curl "https://api.ionq.co/v0.4/backends/qpu.aria-1/characterizations"
+
+          '
+  /backends/{backend}/characterizations/{UUID}:
+    get:
+      description: This endpoint retrieves a characterization.
+      operationId: getCharacterization
+      parameters:
+      - $ref: '#/components/parameters/backend'
+      - $ref: '#/components/parameters/uuid'
+      responses:
+        '200':
+          $ref: '#/components/responses/GetCharacterization'
+      summary: Get a Characterization
+      tags:
+      - characterizations
+      x-codeSamples:
+      - lang: curl
+        source: "curl \"https://api.ionq.co/v0.4/backends/qpu.aria-1/characterizations/aa54e783-0a9b-4f73-ad2f-63983b6aa4a8\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
+components:
+  responses:
+    GetCharacterization:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Characterization'
+      description: Successfully retrieved current characterization
+    ListCharacterizations:
+      content:
+        application/json:
+          schema:
+            description: Response body from requesting characterization data.
+            properties:
+              characterizations:
+                description: A page of characterizations measurements.
+                items:
+                  $ref: '#/components/schemas/Characterization'
+                type: array
+              pages:
+                description: The number of remaining pages of characterization measurements.
+                type: integer
+            required:
+            - characterizations
+            type: object
+      description: Successfully retrieved characterizations.
+  schemas:
+    pagination-page:
+      default: 1
+      description: Specify the page of results to return.
+      minimum: 1
+      type: integer
+    Characterization:
+      description: Quantum hardware characterization data.
+      properties:
+        backend:
+          description: 'The backend calibrated hardware: `simulator`, `qpu.aria-1`, `qpu.aria-2`, `qpu.forte-1`, `qpu.forte-enterprise-1`, `qpu.forte-enterprise-2`, `qpu.forte-enterprise-3`'
+          type: string
+        connectivity:
+          description: An array of valid, unordered tuples of possible qubits for executing two-qubit gates (e.g., `[[0, 1], [0, 2], [1, 2]]`)
+          example:
+          - - 0
+            - 1
+          - - 0
+            - 2
+          - - 10
+            - 9
+          items:
+            items:
+              type: integer
+            type: array
+          type: array
+        date:
+          description: Date time of the measurement, in ISO format.
+          example: '2025-06-16T00:00:00Z'
+          type: string
+        fidelity:
+          description: 'Fidelity for single-qubit (`1q`) and two-qubit (`2q`) gates, and State Preparation and Measurement (`spam`) operations.
+
+            Currently provides only median fidelity; additional statistical data will be added in the future.
+
+            '
+          properties:
+            spam:
+              description: SPAM error correction information.
+              properties:
+                median:
+                  example: 0.9962
+                  type: number
+                stderr:
+                  description: SPAM error.
+                  example: null
+                  minimum: 0
+                  type: integer
+              required:
+              - median
+              type: object
+          required:
+          - spam
+          type: object
+        id:
+          description: UUID of the characterization.
+          format: uuid
+          type: string
+        qubits:
+          description: The number of qubits available.
+          example: 25
+          minimum: 1
+          type: integer
+        timing:
+          description: 'Time, in seconds, of various system properties: `t1` time, `t2` time, `1q` gate time, `2q` gate time, `readout` time, and qubit `reset` time.'
+          properties:
+            1q:
+              type: integer
+            2q:
+              type: integer
+            readout:
+              description: Readout time.
+              type: integer
+            reset:
+              description: qubit reset time.
+              type: integer
+            t1:
+              example: 10
+              type: integer
+            t2:
+              example: 1
+              type: integer
+          required:
+          - readout
+          - reset
+          type: object
+      type: object
+  parameters:
+    backend:
+      description: A backend where jobs can run on.
+      in: path
+      name: backend
+      required: true
+      schema:
+        enum:
+        - qpu.aria-1
+        - qpu.aria-2
+        - qpu.forte-1
+        - qpu.forte-enterprise-1
+        - qpu.forte-enterprise-2
+        - qpu.forte-enterprise-3
+        type: string
+    uuid:
+      description: A UUID identifying a specific resource
+      example: 617a1f8b-59d4-435d-aa33-695433d7155e
+      in: path
+      name: UUID
+      required: true
+      schema:
+        format: uuid
+        type: string
+    pagination-page:
+      in: query
+      name: page
+      schema:
+        $ref: '#/components/schemas/pagination-page'
+  securitySchemes:
+    apiKeyAuth:
+      description: 'API keys are associated with a user and can be created on the [IonQ Quantum Cloud](https://cloud.ionq.com) application. To authenticate, prefix your API Key with `apiKey ` and place it in the `Authorization` request header. Ex: `Authorization: apiKey your-api-key`'
+      in: header
+      name: Authorization
+      type: apiKey
