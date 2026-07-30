@@ -1,62 +1,160 @@
 aid: ionq
 url: https://raw.githubusercontent.com/api-evangelist/ionq/refs/heads/main/apis.yml
 apis:
-  - aid: ionq:ionq-quantum-cloud-api
-    name: IonQ Quantum Cloud API
-    tags:
-      - Quantum Computing
-      - Trapped Ion
-      - QPU
-      - Jobs
-      - Sessions
-      - Backends
-      - Cloud
-    humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
-    baseURL: https://api.ionq.co/v0.4
-    properties:
-      - url: https://docs.ionq.com/api-reference/v0.4/introduction
-        type: Documentation
-      - url: https://docs.ionq.com/guides/direct-api-submission
-        name: Direct API Submission
-        type: Documentation
-      - url: openapi/ionq-quantum-cloud-openapi.yml
-        type: OpenAPI
-      - url: json-schema/ionq-job-schema.json
-        type: JSONSchema
-      - url: json-schema/ionq-backend-schema.json
-        type: JSONSchema
-      - url: json-schema/ionq-session-schema.json
-        type: JSONSchema
-      - url: json-ld/ionq-context.jsonld
-        type: JSONLD
-    description: >-
-      REST API for submitting quantum circuits, managing jobs and sessions, inspecting backends and characterizations,
-      and tracking cost and usage on the IonQ Quantum Cloud. Backends include the qpu.aria-1, qpu.aria-2, qpu.forte-1,
-      qpu.forte-enterprise-1 trapped-ion QPUs and the IonQ noisy/ideal simulator (up to 29 qubits). Supports
-      single-circuit, multi-circuit, native-gate, QAOA, and Quantum Function jobs. Authentication via Authorization
-      header `apiKey $IONQ_API_KEY`.
-  - aid: ionq:ionq-quantum-cloud-api-v0-3
-    name: IonQ Quantum Cloud API (v0.3 Legacy)
-    tags:
-      - Quantum Computing
-      - Trapped Ion
-      - QPU
-      - Legacy
-    humanURL: https://docs.ionq.com/api-reference/v0.3/introduction
-    baseURL: https://api.ionq.co/v0.3
-    properties:
-      - url: https://docs.ionq.com/api-reference/v0.3/introduction
-        type: Documentation
-      - url: https://docs.ionq.com/api-reference/v0.3/migrating-from-old-versions
-        name: Migrating from v0.2
-        type: Documentation
-      - url: https://docs.ionq.com/api-reference/v0.4/migration-from-v0.3
-        name: Migration from v0.3 to v0.4
-        type: Documentation
-    description: >-
-      The previous-generation IonQ Quantum Cloud REST API (v0.3) for submitting and managing jobs, characterizations,
-      backends, and reports. Superseded by v0.4 which adds Sessions, separated cost/results endpoints, and restructured
-      characterizations. v0.3 remains supported for existing integrations.
+- aid: ionq:ionq-quantum-cloud-api-v0-3
+  name: IonQ Quantum Cloud API (v0.3 Legacy)
+  tags:
+  - Quantum Computing
+  - Trapped Ion
+  - QPU
+  - Legacy
+  humanURL: https://docs.ionq.com/api-reference/v0.3/introduction
+  baseURL: https://api.ionq.co/v0.3
+  properties:
+  - url: https://docs.ionq.com/api-reference/v0.3/introduction
+    type: Documentation
+  - url: https://docs.ionq.com/api-reference/v0.3/migrating-from-old-versions
+    name: Migrating from v0.2
+    type: Documentation
+  - url: https://docs.ionq.com/api-reference/v0.4/migration-from-v0.3
+    name: Migration from v0.3 to v0.4
+    type: Documentation
+  description: >-
+    The previous-generation IonQ Quantum Cloud REST API (v0.3) for submitting and managing jobs, characterizations,
+    backends, and reports. Superseded by v0.4 which adds Sessions, separated cost/results endpoints, and
+    restructured characterizations. v0.3 remains supported for existing integrations.
+- aid: ionq:ionq-backends-api
+  name: IonQ backends API
+  description: The backends API from IonQ — 2 operation(s) for backends.
+  humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
+  baseURL: https://api.ionq.co/v0.4
+  tags:
+  - backends
+  properties:
+  - type: OpenAPI
+    url: openapi/ionq-backends-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ionq.com/api-reference/v0.4/introduction
+  - type: Documentation
+    url: https://docs.ionq.com/guides/direct-api-submission
+  - type: JSONSchema
+    url: json-schema/ionq-job-schema.json
+  - type: JSONSchema
+    url: json-schema/ionq-backend-schema.json
+  - type: JSONSchema
+    url: json-schema/ionq-session-schema.json
+  - type: JSONLD
+    url: json-ld/ionq-context.jsonld
+- aid: ionq:ionq-characterizations-api
+  name: IonQ characterizations API
+  description: The characterizations API from IonQ — 2 operation(s) for characterizations.
+  humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
+  baseURL: https://api.ionq.co/v0.4
+  tags:
+  - characterizations
+  properties:
+  - type: OpenAPI
+    url: openapi/ionq-characterizations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ionq.com/api-reference/v0.4/introduction
+  - type: Documentation
+    url: https://docs.ionq.com/guides/direct-api-submission
+  - type: JSONSchema
+    url: json-schema/ionq-job-schema.json
+  - type: JSONSchema
+    url: json-schema/ionq-backend-schema.json
+  - type: JSONSchema
+    url: json-schema/ionq-session-schema.json
+  - type: JSONLD
+    url: json-ld/ionq-context.jsonld
+- aid: ionq:ionq-jobs-api
+  name: IonQ Jobs API
+  description: The Jobs API from IonQ — 11 operation(s) for jobs.
+  humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
+  baseURL: https://api.ionq.co/v0.4
+  tags:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/ionq-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ionq.com/api-reference/v0.4/introduction
+  - type: Documentation
+    url: https://docs.ionq.com/guides/direct-api-submission
+  - type: JSONSchema
+    url: json-schema/ionq-job-schema.json
+  - type: JSONSchema
+    url: json-schema/ionq-backend-schema.json
+  - type: JSONSchema
+    url: json-schema/ionq-session-schema.json
+  - type: JSONLD
+    url: json-ld/ionq-context.jsonld
+- aid: ionq:ionq-sessions-api
+  name: IonQ Sessions API
+  description: The Sessions API from IonQ — 4 operation(s) for sessions.
+  humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
+  baseURL: https://api.ionq.co/v0.4
+  tags:
+  - Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/ionq-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ionq.com/api-reference/v0.4/introduction
+  - type: Documentation
+    url: https://docs.ionq.com/guides/direct-api-submission
+  - type: JSONSchema
+    url: json-schema/ionq-job-schema.json
+  - type: JSONSchema
+    url: json-schema/ionq-backend-schema.json
+  - type: JSONSchema
+    url: json-schema/ionq-session-schema.json
+  - type: JSONLD
+    url: json-ld/ionq-context.jsonld
+- aid: ionq:ionq-usage-api
+  name: IonQ usage API
+  description: The usage API from IonQ — 1 operation(s) for usage.
+  humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
+  baseURL: https://api.ionq.co/v0.4
+  tags:
+  - usage
+  properties:
+  - type: OpenAPI
+    url: openapi/ionq-usage-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ionq.com/api-reference/v0.4/introduction
+  - type: Documentation
+    url: https://docs.ionq.com/guides/direct-api-submission
+  - type: JSONSchema
+    url: json-schema/ionq-job-schema.json
+  - type: JSONSchema
+    url: json-schema/ionq-backend-schema.json
+  - type: JSONSchema
+    url: json-schema/ionq-session-schema.json
+  - type: JSONLD
+    url: json-ld/ionq-context.jsonld
+- aid: ionq:ionq-whoami-api
+  name: IonQ whoami API
+  description: The whoami API from IonQ — 1 operation(s) for whoami.
+  humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
+  baseURL: https://api.ionq.co/v0.4
+  tags:
+  - whoami
+  properties:
+  - type: OpenAPI
+    url: openapi/ionq-whoami-api-openapi.yml
+  - type: Documentation
+    url: https://docs.ionq.com/api-reference/v0.4/introduction
+  - type: Documentation
+    url: https://docs.ionq.com/guides/direct-api-submission
+  - type: JSONSchema
+    url: json-schema/ionq-job-schema.json
+  - type: JSONSchema
+    url: json-schema/ionq-backend-schema.json
+  - type: JSONSchema
+    url: json-schema/ionq-session-schema.json
+  - type: JSONLD
+    url: json-ld/ionq-context.jsonld
 name: IonQ
 tags:
   - Quantum Computing
@@ -70,9 +168,24 @@ tags:
   - Hardware
   - Public Company
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ionq.png
 access: 3rd-Party
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/ionq/overview
   - type: AgenticAccess
     url: agentic-access/ionq-agentic-access.yml
   - type: DomainSecurity
