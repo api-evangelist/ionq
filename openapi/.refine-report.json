@@ -1,0 +1,24 @@
+{
+  "provider": "ionq",
+  "sources": [
+    "ionq-backends-api-openapi.yml",
+    "ionq-characterizations-api-openapi.yml",
+    "ionq-jobs-api-openapi.yml",
+    "ionq-sessions-api-openapi.yml",
+    "ionq-usage-api-openapi.yml",
+    "ionq-whoami-api-openapi.yml"
+  ],
+  "outputs": [
+    "ionq-backends-api-openapi.yml",
+    "ionq-characterizations-api-openapi.yml",
+    "ionq-jobs-api-openapi.yml",
+    "ionq-sessions-api-openapi.yml",
+    "ionq-usage-api-openapi.yml",
+    "ionq-whoami-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

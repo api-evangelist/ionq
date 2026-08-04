@@ -1,0 +1,189 @@
+{
+  "info": {
+    "_postman_id": "c8633d22-64b2-43c0-987d-34b38e325049",
+    "name": "IonQ Cloud Platform backends API",
+    "description": "*Last updated: May 15, 2026*\nIonQ's API for accessing the IonQ Quantum Cloud platform\n\nPlease subscribe for automated updates when we perform maintenance or\nexperience an outage.\n\nIn addition, you may use the [status endpoint](#tag/status) to check the\ncurrent status of our API.\n\n## Authentication\n\n<SecurityDefinitions />\n\n\nContact Support:\n Name: IonQ\n Email: support@ionq.co",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:58:52.000Z",
+    "updatedAt": "2026-07-28T01:58:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c8633d22-64b2-43c0-987d-34b38e325049"
+  },
+  "item": [
+    {
+      "name": "backends",
+      "item": [
+        {
+          "name": "{backend}",
+          "item": [
+            {
+              "name": "Get a Backend",
+              "id": "9a758a6f-63f9-415b-9aba-72c7e6466ea5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/backends/:backend",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "backends",
+                    ":backend"
+                  ],
+                  "variable": [
+                    {
+                      "id": "cbdc8436-e73c-4b4c-ba0d-87a35d34d126",
+                      "key": "backend",
+                      "value": "qpu.forte-enterprise-2",
+                      "description": "(Required) A backend where jobs can run on."
+                    }
+                  ]
+                },
+                "description": "This endpoint retrieves a backend."
+              },
+              "response": [
+                {
+                  "id": "2f57329b-de98-411f-9455-32833c62258d",
+                  "name": "Successfully retrieved backend.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/backends/:backend",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "backends",
+                        ":backend"
+                      ],
+                      "variable": [
+                        {
+                          "key": "backend"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"backend\": \"<string>\",\n  \"status\": \"<string>\",\n  \"qubits\": \"<integer>\",\n  \"average_queue_time\": \"<number>\",\n  \"last_updated\": \"<string>\",\n  \"characterization_id\": \"<string>\",\n  \"degraded\": \"<boolean>\",\n  \"kw\": \"<double>\",\n  \"location\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:58:52.000Z",
+                  "updatedAt": "2026-07-28T01:58:52.000Z",
+                  "uid": "35240-2f57329b-de98-411f-9455-32833c62258d"
+                }
+              ],
+              "createdAt": "2026-07-28T01:58:52.000Z",
+              "updatedAt": "2026-07-28T01:58:52.000Z",
+              "uid": "35240-9a758a6f-63f9-415b-9aba-72c7e6466ea5"
+            }
+          ],
+          "id": "dab8ba74-6c56-42c4-bb22-4ff3b5066fb9",
+          "createdAt": "2026-07-28T01:58:52.000Z",
+          "updatedAt": "2026-07-28T01:58:52.000Z",
+          "uid": "35240-dab8ba74-6c56-42c4-bb22-4ff3b5066fb9"
+        },
+        {
+          "name": "Get Backends",
+          "id": "ec939921-f601-4d9c-88b9-0b6cc6bfd656",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/backends",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "backends"
+              ]
+            },
+            "description": "This endpoint retrieves all backends."
+          },
+          "response": [
+            {
+              "id": "83e7cefc-58bb-40cf-9a6c-a229b7a2d5e4",
+              "name": "Successfully retrieved backend.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/backends",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "backends"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"backend\": \"<string>\",\n    \"status\": \"<string>\",\n    \"qubits\": \"<integer>\",\n    \"average_queue_time\": \"<number>\",\n    \"last_updated\": \"<string>\",\n    \"characterization_id\": \"<string>\",\n    \"degraded\": \"<boolean>\",\n    \"kw\": \"<double>\",\n    \"location\": \"<string>\"\n  },\n  {\n    \"backend\": \"<string>\",\n    \"status\": \"<string>\",\n    \"qubits\": \"<integer>\",\n    \"average_queue_time\": \"<number>\",\n    \"last_updated\": \"<string>\",\n    \"characterization_id\": \"<string>\",\n    \"degraded\": \"<boolean>\",\n    \"kw\": \"<double>\",\n    \"location\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-07-28T01:58:52.000Z",
+              "updatedAt": "2026-07-28T01:58:52.000Z",
+              "uid": "35240-83e7cefc-58bb-40cf-9a6c-a229b7a2d5e4"
+            }
+          ],
+          "createdAt": "2026-07-28T01:58:52.000Z",
+          "updatedAt": "2026-07-28T01:58:52.000Z",
+          "uid": "35240-ec939921-f601-4d9c-88b9-0b6cc6bfd656"
+        }
+      ],
+      "id": "9654acde-ced7-4bd6-a014-3050f43d3bb0",
+      "createdAt": "2026-07-28T01:58:52.000Z",
+      "updatedAt": "2026-07-28T01:58:52.000Z",
+      "uid": "35240-9654acde-ced7-4bd6-a014-3050f43d3bb0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ionq.co/v0.4"
+    }
+  ]
+}

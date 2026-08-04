@@ -1,0 +1,681 @@
+{
+  "info": {
+    "_postman_id": "4f39efc7-4198-4e67-b444-b78fcad2f805",
+    "name": "IonQ Cloud Platform backends Sessions API",
+    "description": "*Last updated: May 15, 2026*\nIonQ's API for accessing the IonQ Quantum Cloud platform\n\nPlease subscribe for automated updates when we perform maintenance or\nexperience an outage.\n\nIn addition, you may use the [status endpoint](#tag/status) to check the\ncurrent status of our API.\n\n## Authentication\n\n<SecurityDefinitions />\n\n\nContact Support:\n Name: IonQ\n Email: support@ionq.co",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:58:58.000Z",
+    "updatedAt": "2026-07-28T01:58:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4f39efc7-4198-4e67-b444-b78fcad2f805"
+  },
+  "item": [
+    {
+      "name": "sessions",
+      "item": [
+        {
+          "name": "{session_id}",
+          "item": [
+            {
+              "name": "end",
+              "item": [
+                {
+                  "name": "End Session",
+                  "id": "504fbc29-1a37-494f-b216-28bcb01a5eda",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/:session_id/end",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        ":session_id",
+                        "end"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3e628dbb-5fab-4cd0-bdf2-bf1a70f5dcdd",
+                          "key": "session_id",
+                          "value": "<string>",
+                          "description": "(Required) The id of the session \u2014 this id is provided in the response on session creation."
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "d26227a1-3d4e-4f40-96e6-e28ae199b695",
+                      "name": "Successfully end a session.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sessions/:session_id/end",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sessions",
+                            ":session_id",
+                            "end"
+                          ],
+                          "variable": [
+                            {
+                              "key": "session_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"organization_id\": \"<string>\",\n  \"backend\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"creator_id\": \"<string>\",\n  \"ended_at\": \"<dateTime>\",\n  \"ender_id\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"status\": \"created\",\n  \"started_at\": \"<dateTime>\",\n  \"settings\": {\n    \"job_count_limit\": \"<integer>\",\n    \"duration_limit_min\": \"<integer>\",\n    \"cost_limit\": {\n      \"unit\": \"<string>\",\n      \"value\": \"<double>\"\n    },\n    \"expires_at\": \"<dateTime>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:58:58.000Z",
+                      "updatedAt": "2026-07-28T01:58:58.000Z",
+                      "uid": "35240-d26227a1-3d4e-4f40-96e6-e28ae199b695"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:58:58.000Z",
+                  "updatedAt": "2026-07-28T01:58:58.000Z",
+                  "uid": "35240-504fbc29-1a37-494f-b216-28bcb01a5eda"
+                }
+              ],
+              "id": "9f2cf516-9da0-437b-adfe-bbe0a737e91e",
+              "createdAt": "2026-07-28T01:58:58.000Z",
+              "updatedAt": "2026-07-28T01:58:58.000Z",
+              "uid": "35240-9f2cf516-9da0-437b-adfe-bbe0a737e91e"
+            },
+            {
+              "name": "jobs",
+              "item": [
+                {
+                  "name": "Get Session Jobs",
+                  "id": "0ec720c6-99e2-4758-8b04-22e6a0644f26",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/:session_id/jobs?ids=<string>&ids=<string>&parent_job_id=<string>&status=ready&target=<string>&session_id=<string>&submitter_id=<string>&limit=<integer>&next=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        ":session_id",
+                        "jobs"
+                      ],
+                      "query": [
+                        {
+                          "key": "ids",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "ids",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "parent_job_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "status",
+                          "value": "ready"
+                        },
+                        {
+                          "description": "Filter jobs by backend target. Supports single target or comma-separated list of targets.",
+                          "key": "target",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "session_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "The id of another user within a shared project to view their submitted jobs. Ignored if not a project member.",
+                          "key": "submitter_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "next",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "8716716e-835d-4232-a00d-1beb5add2bf4",
+                          "key": "session_id",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "b451577d-cab9-4d5e-8c0f-a375a1694abc",
+                      "name": "Successfully retrieved a list of jobs from a session.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sessions/:session_id/jobs?ids=<string>&parent_job_id=<string>&status=ready&target=<string>&session_id=<string>&submitter_id=<string>&limit=<integer>&next=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sessions",
+                            ":session_id",
+                            "jobs"
+                          ],
+                          "query": [
+                            {
+                              "key": "ids",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "parent_job_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "status",
+                              "value": "ready"
+                            },
+                            {
+                              "description": "Filter jobs by backend target. Supports single target or comma-separated list of targets.",
+                              "key": "target",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "session_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The id of another user within a shared project to view their submitted jobs. Ignored if not a project member.",
+                              "key": "submitter_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "next",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "session_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"jobs\": [\n    {\n      \"id\": \"<string>\",\n      \"status\": \"completed\",\n      \"type\": \"<string>\",\n      \"backend\": \"<string>\",\n      \"dry_run\": \"<boolean>\",\n      \"submitter_id\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"parent_job_id\": \"<string>\",\n      \"session_id\": \"<string>\",\n      \"metadata\": {\n        \"fugiat_522\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"submitted_at\": \"<string>\",\n      \"started_at\": \"<string>\",\n      \"completed_at\": \"<string>\",\n      \"predicted_wait_time_ms\": \"<integer>\",\n      \"predicted_execution_duration_ms\": \"<integer>\",\n      \"execution_duration_ms\": \"<integer>\",\n      \"failure\": {\n        \"code\": \"SimulationError\",\n        \"message\": \"<string>\"\n      },\n      \"output\": {\n        \"ametee\": {}\n      },\n      \"settings\": {\n        \"dolor_96\": {},\n        \"dolorc9d\": {},\n        \"quis50c\": {}\n      },\n      \"stats\": {\n        \"commodo8cf\": {},\n        \"fugiat_eb\": {}\n      },\n      \"results\": {},\n      \"shots\": \"<integer>\",\n      \"noise\": {\n        \"model\": \"ideal\",\n        \"seed\": \"<integer>\"\n      },\n      \"cost_model\": \"quantum_compute_time\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"status\": \"ready\",\n      \"type\": \"<string>\",\n      \"backend\": \"<string>\",\n      \"dry_run\": \"<boolean>\",\n      \"submitter_id\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"parent_job_id\": \"<string>\",\n      \"session_id\": \"<string>\",\n      \"metadata\": {\n        \"esse_3bd\": \"<string>\",\n        \"consequat9a\": \"<string>\",\n        \"anim58e\": \"<string>\"\n      },\n      \"name\": \"<string>\",\n      \"submitted_at\": \"<string>\",\n      \"started_at\": \"<string>\",\n      \"completed_at\": \"<string>\",\n      \"predicted_wait_time_ms\": \"<integer>\",\n      \"predicted_execution_duration_ms\": \"<integer>\",\n      \"execution_duration_ms\": \"<integer>\",\n      \"failure\": {\n        \"code\": \"SystemCancel\",\n        \"message\": \"<string>\"\n      },\n      \"output\": {\n        \"quis_4\": {},\n        \"dolorec__\": {}\n      },\n      \"settings\": {\n        \"quisc0c\": {},\n        \"aliqua_d_\": {}\n      },\n      \"stats\": {\n        \"dolor_0\": {},\n        \"in_2\": {},\n        \"ut_0\": {},\n        \"est_d8\": {}\n      },\n      \"results\": {},\n      \"shots\": \"<integer>\",\n      \"noise\": {\n        \"model\": \"aria-1\",\n        \"seed\": \"<integer>\"\n      },\n      \"cost_model\": \"execution_time\"\n    }\n  ],\n  \"next\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:58:58.000Z",
+                      "updatedAt": "2026-07-28T01:58:58.000Z",
+                      "uid": "35240-b451577d-cab9-4d5e-8c0f-a375a1694abc"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:58:58.000Z",
+                  "updatedAt": "2026-07-28T01:58:58.000Z",
+                  "uid": "35240-0ec720c6-99e2-4758-8b04-22e6a0644f26"
+                }
+              ],
+              "id": "9062c335-c2da-46e1-a400-b9ffc747a93d",
+              "createdAt": "2026-07-28T01:58:58.000Z",
+              "updatedAt": "2026-07-28T01:58:58.000Z",
+              "uid": "35240-9062c335-c2da-46e1-a400-b9ffc747a93d"
+            },
+            {
+              "name": "Get Session",
+              "id": "820fbbb8-53f9-4b0d-9d49-3282e4872eb0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sessions/:session_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sessions",
+                    ":session_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c901371a-654d-4290-96b9-ac2a1db98abe",
+                      "key": "session_id",
+                      "value": "<string>",
+                      "description": "(Required) The id of the session \u2014 this id is provided in the response on session creation."
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "93504ab9-1ce8-4263-a64a-5c420a3128c0",
+                  "name": "Successfully retrieved a session.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sessions/:session_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sessions",
+                        ":session_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "session_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"organization_id\": \"<string>\",\n  \"backend\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"creator_id\": \"<string>\",\n  \"ended_at\": \"<dateTime>\",\n  \"ender_id\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"status\": \"created\",\n  \"started_at\": \"<dateTime>\",\n  \"settings\": {\n    \"job_count_limit\": \"<integer>\",\n    \"duration_limit_min\": \"<integer>\",\n    \"cost_limit\": {\n      \"unit\": \"<string>\",\n      \"value\": \"<double>\"\n    },\n    \"expires_at\": \"<dateTime>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:58:58.000Z",
+                  "updatedAt": "2026-07-28T01:58:58.000Z",
+                  "uid": "35240-93504ab9-1ce8-4263-a64a-5c420a3128c0"
+                }
+              ],
+              "createdAt": "2026-07-28T01:58:58.000Z",
+              "updatedAt": "2026-07-28T01:58:58.000Z",
+              "uid": "35240-820fbbb8-53f9-4b0d-9d49-3282e4872eb0"
+            }
+          ],
+          "id": "1d223f32-77d0-41f8-911b-fcf56ba84416",
+          "createdAt": "2026-07-28T01:58:58.000Z",
+          "updatedAt": "2026-07-28T01:58:58.000Z",
+          "uid": "35240-1d223f32-77d0-41f8-911b-fcf56ba84416"
+        },
+        {
+          "name": "Create Session",
+          "id": "e88b2bcc-8230-41ec-b48c-944a6e69c3d1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"backend\": \"<string>\",\n  \"settings\": {\n    \"job_count_limit\": \"<integer>\",\n    \"duration_limit_min\": \"<integer>\",\n    \"cost_limit\": {\n      \"unit\": \"<string>\",\n      \"value\": \"<double>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/sessions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sessions"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "60848ab7-3490-4521-81de-1e666b6fd746",
+              "name": "Created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"backend\": \"<string>\",\n  \"settings\": {\n    \"job_count_limit\": \"<integer>\",\n    \"duration_limit_min\": \"<integer>\",\n    \"cost_limit\": {\n      \"unit\": \"<string>\",\n      \"value\": \"<double>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sessions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sessions"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"organization_id\": \"<string>\",\n  \"backend\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"creator_id\": \"<string>\",\n  \"ended_at\": \"<dateTime>\",\n  \"ender_id\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"status\": \"created\",\n  \"started_at\": \"<dateTime>\",\n  \"settings\": {\n    \"job_count_limit\": \"<integer>\",\n    \"duration_limit_min\": \"<integer>\",\n    \"cost_limit\": {\n      \"unit\": \"<string>\",\n      \"value\": \"<double>\"\n    },\n    \"expires_at\": \"<dateTime>\"\n  }\n}",
+              "createdAt": "2026-07-28T01:58:58.000Z",
+              "updatedAt": "2026-07-28T01:58:58.000Z",
+              "uid": "35240-60848ab7-3490-4521-81de-1e666b6fd746"
+            }
+          ],
+          "createdAt": "2026-07-28T01:58:58.000Z",
+          "updatedAt": "2026-07-28T01:58:58.000Z",
+          "uid": "35240-e88b2bcc-8230-41ec-b48c-944a6e69c3d1"
+        },
+        {
+          "name": "Get Sessions",
+          "id": "ccd284dd-e89e-46b8-98b9-5c6215afd5e5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sessions?active=<boolean>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sessions"
+              ],
+              "query": [
+                {
+                  "key": "active",
+                  "value": "<boolean>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "64ee5591-8944-4830-8fb3-8c6587186902",
+              "name": "Successfully retrieved a list of sessions.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sessions?active=<boolean>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sessions"
+                  ],
+                  "query": [
+                    {
+                      "key": "active",
+                      "value": "<boolean>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"organization_id\": \"<string>\",\n  \"sessions\": [\n    {\n      \"id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"organization_id\": \"<string>\",\n      \"backend\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"creator_id\": \"<string>\",\n      \"ended_at\": \"<dateTime>\",\n      \"ender_id\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"status\": \"created\",\n      \"started_at\": \"<dateTime>\",\n      \"settings\": {\n        \"job_count_limit\": \"<integer>\",\n        \"duration_limit_min\": \"<integer>\",\n        \"cost_limit\": {\n          \"unit\": \"<string>\",\n          \"value\": \"<double>\"\n        },\n        \"expires_at\": \"<dateTime>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"organization_id\": \"<string>\",\n      \"backend\": \"<string>\",\n      \"project_id\": \"<string>\",\n      \"creator_id\": \"<string>\",\n      \"ended_at\": \"<dateTime>\",\n      \"ender_id\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"status\": \"created\",\n      \"started_at\": \"<dateTime>\",\n      \"settings\": {\n        \"job_count_limit\": \"<integer>\",\n        \"duration_limit_min\": \"<integer>\",\n        \"cost_limit\": {\n          \"unit\": \"<string>\",\n          \"value\": \"<double>\"\n        },\n        \"expires_at\": \"<dateTime>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T01:58:58.000Z",
+              "updatedAt": "2026-07-28T01:58:58.000Z",
+              "uid": "35240-64ee5591-8944-4830-8fb3-8c6587186902"
+            }
+          ],
+          "createdAt": "2026-07-28T01:58:58.000Z",
+          "updatedAt": "2026-07-28T01:58:58.000Z",
+          "uid": "35240-ccd284dd-e89e-46b8-98b9-5c6215afd5e5"
+        }
+      ],
+      "id": "b370f973-9468-431a-9e63-62e2908235e2",
+      "createdAt": "2026-07-28T01:58:58.000Z",
+      "updatedAt": "2026-07-28T01:58:58.000Z",
+      "uid": "35240-b370f973-9468-431a-9e63-62e2908235e2"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ionq.co/v0.4"
+    }
+  ]
+}

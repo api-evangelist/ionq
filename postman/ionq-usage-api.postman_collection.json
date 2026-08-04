@@ -1,0 +1,176 @@
+{
+  "info": {
+    "_postman_id": "c8f650be-b154-49ae-9b08-79f20bea46cb",
+    "name": "IonQ Cloud Platform backends usage API",
+    "description": "*Last updated: May 15, 2026*\nIonQ's API for accessing the IonQ Quantum Cloud platform\n\nPlease subscribe for automated updates when we perform maintenance or\nexperience an outage.\n\nIn addition, you may use the [status endpoint](#tag/status) to check the\ncurrent status of our API.\n\n## Authentication\n\n<SecurityDefinitions />\n\n\nContact Support:\n Name: IonQ\n Email: support@ionq.co",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:59:00.000Z",
+    "updatedAt": "2026-07-28T01:59:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c8f650be-b154-49ae-9b08-79f20bea46cb"
+  },
+  "item": [
+    {
+      "name": "organizations",
+      "item": [
+        {
+          "name": "{organization_id}",
+          "item": [
+            {
+              "name": "usage",
+              "item": [
+                {
+                  "name": "Get usage costs",
+                  "id": "d0a426f3-bb8c-4eb9-b1bb-14d6cc7f71d8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/organizations/:organization_id/usage?start_date=<date>&end_date=<date>&group_by=project&modality=weekly",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "organizations",
+                        ":organization_id",
+                        "usage"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Start date, inclusive",
+                          "key": "start_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) End date, exclusive",
+                          "key": "end_date",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "(Required) QPU Usage grouping",
+                          "key": "group_by",
+                          "value": "project"
+                        },
+                        {
+                          "description": "(Required) Report modality",
+                          "key": "modality",
+                          "value": "weekly"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "aa8e94aa-e887-4877-ac68-0fec1362380e",
+                          "key": "organization_id",
+                          "value": "<uuid>",
+                          "description": "(Required) The UUID of the organization \u2014 this UUID is provided in the response on organization creation."
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the costs of a given group type, broken down by the given date modality."
+                  },
+                  "response": [
+                    {
+                      "id": "223c9b89-d1b4-4a64-bc24-37dc43649ec3",
+                      "name": "Successfully retrieved a list of projects.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/organizations/:organization_id/usage?start_date=<date>&end_date=<date>&group_by=project&modality=weekly",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "organizations",
+                            ":organization_id",
+                            "usage"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Start date, inclusive",
+                              "key": "start_date",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "(Required) End date, exclusive",
+                              "key": "end_date",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "(Required) QPU Usage grouping",
+                              "key": "group_by",
+                              "value": "project"
+                            },
+                            {
+                              "description": "(Required) Report modality",
+                              "key": "modality",
+                              "value": "weekly"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "organization_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"group_type\": \"user\",\n  \"modality\": \"weekly\",\n  \"amount_total\": \"<number>\",\n  \"job_count\": \"<integer>\",\n  \"organization\": \"<uuid>\",\n  \"time_us_total\": \"<number>\",\n  \"usage_data\": [\n    {\n      \"from\": \"<date>\",\n      \"job_count\": \"<integer>\",\n      \"amount\": \"<number>\",\n      \"time_us\": \"<number>\",\n      \"group_usages\": [\n        {\n          \"amount\": \"<number>\",\n          \"group_id\": \"<string>\",\n          \"group_name\": \"<string>\",\n          \"job_count\": \"<integer>\",\n          \"time_us\": \"<number>\"\n        },\n        {\n          \"amount\": \"<number>\",\n          \"group_id\": \"<string>\",\n          \"group_name\": \"<string>\",\n          \"job_count\": \"<integer>\",\n          \"time_us\": \"<number>\"\n        }\n      ]\n    },\n    {\n      \"from\": \"<date>\",\n      \"job_count\": \"<integer>\",\n      \"amount\": \"<number>\",\n      \"time_us\": \"<number>\",\n      \"group_usages\": [\n        {\n          \"amount\": \"<number>\",\n          \"group_id\": \"<string>\",\n          \"group_name\": \"<string>\",\n          \"job_count\": \"<integer>\",\n          \"time_us\": \"<number>\"\n        },\n        {\n          \"amount\": \"<number>\",\n          \"group_id\": \"<string>\",\n          \"group_name\": \"<string>\",\n          \"job_count\": \"<integer>\",\n          \"time_us\": \"<number>\"\n        }\n      ]\n    }\n  ],\n  \"usage_from\": \"<dateTime>\",\n  \"usage_to\": \"<dateTime>\",\n  \"usage_unit\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:59:01.000Z",
+                      "updatedAt": "2026-07-28T01:59:01.000Z",
+                      "uid": "35240-223c9b89-d1b4-4a64-bc24-37dc43649ec3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:59:01.000Z",
+                  "updatedAt": "2026-07-28T01:59:01.000Z",
+                  "uid": "35240-d0a426f3-bb8c-4eb9-b1bb-14d6cc7f71d8"
+                }
+              ],
+              "id": "4c32599a-8698-427b-9515-6d635c7bc9b2",
+              "createdAt": "2026-07-28T01:59:01.000Z",
+              "updatedAt": "2026-07-28T01:59:01.000Z",
+              "uid": "35240-4c32599a-8698-427b-9515-6d635c7bc9b2"
+            }
+          ],
+          "id": "9d93b83b-2e07-4149-bb24-2378eee854f9",
+          "createdAt": "2026-07-28T01:59:01.000Z",
+          "updatedAt": "2026-07-28T01:59:01.000Z",
+          "uid": "35240-9d93b83b-2e07-4149-bb24-2378eee854f9"
+        }
+      ],
+      "id": "2c033261-68c2-4ead-99b4-b66ff35e1b04",
+      "createdAt": "2026-07-28T01:59:01.000Z",
+      "updatedAt": "2026-07-28T01:59:01.000Z",
+      "uid": "35240-2c033261-68c2-4ead-99b4-b66ff35e1b04"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ionq.co/v0.4"
+    }
+  ]
+}

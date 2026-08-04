@@ -1,0 +1,97 @@
+{
+  "info": {
+    "_postman_id": "d83b33d3-9eed-4b2d-abd0-209407137365",
+    "name": "IonQ Cloud Platform backends whoami API",
+    "description": "*Last updated: May 15, 2026*\nIonQ's API for accessing the IonQ Quantum Cloud platform\n\nPlease subscribe for automated updates when we perform maintenance or\nexperience an outage.\n\nIn addition, you may use the [status endpoint](#tag/status) to check the\ncurrent status of our API.\n\n## Authentication\n\n<SecurityDefinitions />\n\n\nContact Support:\n Name: IonQ\n Email: support@ionq.co",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:59:02.000Z",
+    "updatedAt": "2026-07-28T01:59:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d83b33d3-9eed-4b2d-abd0-209407137365"
+  },
+  "item": [
+    {
+      "name": "whoami",
+      "item": [
+        {
+          "name": "Get current key",
+          "id": "7a6e67d9-1d73-41f2-8583-464e90bce62e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/whoami",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "whoami"
+              ]
+            },
+            "description": "Retrieves current key associated with this session."
+          },
+          "response": [
+            {
+              "id": "b039eac5-bb40-4c32-82d8-847d4ea3bf7f",
+              "name": "Successfully retrieved a current of key from this session.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/whoami",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "whoami"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"key_id\": \"<uuid>\",\n  \"key_name\": \"<string>\",\n  \"project_id\": \"<uuid>\"\n}",
+              "createdAt": "2026-07-28T01:59:02.000Z",
+              "updatedAt": "2026-07-28T01:59:02.000Z",
+              "uid": "35240-b039eac5-bb40-4c32-82d8-847d4ea3bf7f"
+            }
+          ],
+          "createdAt": "2026-07-28T01:59:02.000Z",
+          "updatedAt": "2026-07-28T01:59:02.000Z",
+          "uid": "35240-7a6e67d9-1d73-41f2-8583-464e90bce62e"
+        }
+      ],
+      "id": "84b82906-b6fe-4d4d-930d-50e1e1befaaa",
+      "createdAt": "2026-07-28T01:59:02.000Z",
+      "updatedAt": "2026-07-28T01:59:02.000Z",
+      "uid": "35240-84b82906-b6fe-4d4d-930d-50e1e1befaaa"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ionq.co/v0.4"
+    }
+  ]
+}

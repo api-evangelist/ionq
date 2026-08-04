@@ -1,0 +1,279 @@
+{
+  "info": {
+    "_postman_id": "c647a506-15e0-46a5-a9bd-57438091ab9d",
+    "name": "IonQ Cloud Platform backends characterizations API",
+    "description": "*Last updated: May 15, 2026*\nIonQ's API for accessing the IonQ Quantum Cloud platform\n\nPlease subscribe for automated updates when we perform maintenance or\nexperience an outage.\n\nIn addition, you may use the [status endpoint](#tag/status) to check the\ncurrent status of our API.\n\n## Authentication\n\n<SecurityDefinitions />\n\n\nContact Support:\n Name: IonQ\n Email: support@ionq.co",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:58:53.000Z",
+    "updatedAt": "2026-07-28T01:58:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c647a506-15e0-46a5-a9bd-57438091ab9d"
+  },
+  "item": [
+    {
+      "name": "backends",
+      "item": [
+        {
+          "name": "{backend}",
+          "item": [
+            {
+              "name": "characterizations",
+              "item": [
+                {
+                  "name": "{UUID}",
+                  "item": [
+                    {
+                      "name": "Get a Characterization",
+                      "id": "c4a965f2-686b-4848-871f-e76177077ebe",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/backends/:backend/characterizations/:UUID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "backends",
+                            ":backend",
+                            "characterizations",
+                            ":UUID"
+                          ],
+                          "variable": [
+                            {
+                              "id": "fa331e95-012f-462f-a9bc-b9a04efbe672",
+                              "key": "backend",
+                              "value": "qpu.forte-enterprise-3",
+                              "description": "(Required) A backend where jobs can run on."
+                            },
+                            {
+                              "id": "01770af1-7601-41f0-97d2-30d31df2a534",
+                              "key": "UUID",
+                              "value": "<uuid>",
+                              "description": "(Required) A UUID identifying a specific resource"
+                            }
+                          ]
+                        },
+                        "description": "This endpoint retrieves a characterization."
+                      },
+                      "response": [
+                        {
+                          "id": "2b7bca24-ab53-4598-93a1-6353c1c66b0f",
+                          "name": "Successfully retrieved current characterization",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/backends/:backend/characterizations/:UUID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "backends",
+                                ":backend",
+                                "characterizations",
+                                ":UUID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "backend"
+                                },
+                                {
+                                  "key": "UUID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"backend\": \"<string>\",\n  \"connectivity\": [\n    [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  ],\n  \"date\": \"<string>\",\n  \"fidelity\": {\n    \"spam\": {\n      \"median\": \"<number>\",\n      \"stderr\": \"<integer>\"\n    }\n  },\n  \"id\": \"<uuid>\",\n  \"qubits\": \"<integer>\",\n  \"timing\": {\n    \"readout\": \"<integer>\",\n    \"reset\": \"<integer>\",\n    \"1q\": \"<integer>\",\n    \"2q\": \"<integer>\",\n    \"t1\": \"<integer>\",\n    \"t2\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-07-28T01:58:54.000Z",
+                          "updatedAt": "2026-07-28T01:58:54.000Z",
+                          "uid": "35240-2b7bca24-ab53-4598-93a1-6353c1c66b0f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:58:54.000Z",
+                      "updatedAt": "2026-07-28T01:58:54.000Z",
+                      "uid": "35240-c4a965f2-686b-4848-871f-e76177077ebe"
+                    }
+                  ],
+                  "id": "72a6c5d6-f370-4dda-86a4-dd004c7b720e",
+                  "createdAt": "2026-07-28T01:58:54.000Z",
+                  "updatedAt": "2026-07-28T01:58:54.000Z",
+                  "uid": "35240-72a6c5d6-f370-4dda-86a4-dd004c7b720e"
+                },
+                {
+                  "name": "Get All Backend Characterizations",
+                  "id": "19eaa283-fca8-4721-95f0-f7ab6d6568ad",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/backends/:backend/characterizations?start=<string>&end=<string>&limit=10&page=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "backends",
+                        ":backend",
+                        "characterizations"
+                      ],
+                      "query": [
+                        {
+                          "description": "Characterizations starting at this time (e.g., `start=2025-12-31`)",
+                          "key": "start",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Characterizations before this time (e.g., `end=2025-12-31`)",
+                          "key": "end",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "How many objects to return.",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "key": "page",
+                          "value": "1"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "e7747e37-e870-4b33-a123-511b63909c6a",
+                          "key": "backend",
+                          "value": "qpu.forte-enterprise-3",
+                          "description": "(Required) A backend where jobs can run on."
+                        }
+                      ]
+                    },
+                    "description": "This endpoint retrieves an array of all available backend characterizations, with pagination."
+                  },
+                  "response": [
+                    {
+                      "id": "adc2b378-3247-487f-843e-1ca20370571e",
+                      "name": "Successfully retrieved characterizations.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/backends/:backend/characterizations?start=<string>&end=<string>&limit=10&page=1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "backends",
+                            ":backend",
+                            "characterizations"
+                          ],
+                          "query": [
+                            {
+                              "description": "Characterizations starting at this time (e.g., `start=2025-12-31`)",
+                              "key": "start",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Characterizations before this time (e.g., `end=2025-12-31`)",
+                              "key": "end",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "How many objects to return.",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "key": "page",
+                              "value": "1"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "backend"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"characterizations\": [\n    {\n      \"backend\": \"<string>\",\n      \"connectivity\": [\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      ],\n      \"date\": \"<string>\",\n      \"fidelity\": {\n        \"spam\": {\n          \"median\": \"<number>\",\n          \"stderr\": \"<integer>\"\n        }\n      },\n      \"id\": \"<uuid>\",\n      \"qubits\": \"<integer>\",\n      \"timing\": {\n        \"readout\": \"<integer>\",\n        \"reset\": \"<integer>\",\n        \"1q\": \"<integer>\",\n        \"2q\": \"<integer>\",\n        \"t1\": \"<integer>\",\n        \"t2\": \"<integer>\"\n      }\n    },\n    {\n      \"backend\": \"<string>\",\n      \"connectivity\": [\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      ],\n      \"date\": \"<string>\",\n      \"fidelity\": {\n        \"spam\": {\n          \"median\": \"<number>\",\n          \"stderr\": \"<integer>\"\n        }\n      },\n      \"id\": \"<uuid>\",\n      \"qubits\": \"<integer>\",\n      \"timing\": {\n        \"readout\": \"<integer>\",\n        \"reset\": \"<integer>\",\n        \"1q\": \"<integer>\",\n        \"2q\": \"<integer>\",\n        \"t1\": \"<integer>\",\n        \"t2\": \"<integer>\"\n      }\n    }\n  ],\n  \"pages\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T01:58:54.000Z",
+                      "updatedAt": "2026-07-28T01:58:54.000Z",
+                      "uid": "35240-adc2b378-3247-487f-843e-1ca20370571e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:58:54.000Z",
+                  "updatedAt": "2026-07-28T01:58:54.000Z",
+                  "uid": "35240-19eaa283-fca8-4721-95f0-f7ab6d6568ad"
+                }
+              ],
+              "id": "88619b07-26c8-4055-9d76-b2cc3b2d2232",
+              "createdAt": "2026-07-28T01:58:54.000Z",
+              "updatedAt": "2026-07-28T01:58:54.000Z",
+              "uid": "35240-88619b07-26c8-4055-9d76-b2cc3b2d2232"
+            }
+          ],
+          "id": "de44d736-9442-44c2-95c0-01b016623ce7",
+          "createdAt": "2026-07-28T01:58:54.000Z",
+          "updatedAt": "2026-07-28T01:58:54.000Z",
+          "uid": "35240-de44d736-9442-44c2-95c0-01b016623ce7"
+        }
+      ],
+      "id": "f70e6928-c49b-4eb3-b5e2-779dda6fac13",
+      "createdAt": "2026-07-28T01:58:54.000Z",
+      "updatedAt": "2026-07-28T01:58:54.000Z",
+      "uid": "35240-f70e6928-c49b-4eb3-b5e2-779dda6fac13"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.ionq.co/v0.4"
+    }
+  ]
+}
