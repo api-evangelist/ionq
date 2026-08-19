@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IonQ Cloud Platform backends Sessions API",
+    "version": "v0.4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GetSessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/sessions",
+            "params": [
+              {
+                "name": "active",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "CreateSession",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ionq.co/v0.4/sessions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "EndSession",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.ionq.co/v0.4/sessions/:session_id/end",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the session — this id is provided in the response on session creation."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetSession",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/sessions/:session_id",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the session — this id is provided in the response on session creation."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "GetSessionJobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/sessions/:session_id/jobs",
+            "params": [
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "parent_job_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "target",
+                "value": "simulator",
+                "type": "query",
+                "description": "Filter jobs by backend target. Supports single target or comma-separated list of targets."
+              },
+              {
+                "name": "session_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "submitter_id",
+                "value": "",
+                "type": "query",
+                "description": "The id of another user within a shared project to view their submitted jobs. Ignored if not a project member."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

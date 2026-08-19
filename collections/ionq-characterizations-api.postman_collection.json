@@ -1,0 +1,269 @@
+{
+  "item": [
+    {
+      "id": "acc8d17b-9795-402e-8f20-01b33c64bc41",
+      "name": "characterizations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d79c6009-51bb-43c7-bdce-4320072d1765",
+          "name": "Get All Backend Characterizations",
+          "request": {
+            "name": "Get All Backend Characterizations",
+            "description": {
+              "content": "This endpoint retrieves an array of all available backend characterizations, with pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "backends",
+                ":backend",
+                "characterizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "Characterizations starting at this time (e.g., `start=2025-12-31`)"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "Characterizations before this time (e.g., `end=2025-12-31`)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "How many objects to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "backend",
+                  "description": "(Required) A backend where jobs can run on."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "253876b4-7cb1-4f4f-b7dd-f311161dda29",
+              "name": "Successfully retrieved characterizations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backends",
+                    ":backend",
+                    "characterizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "backend",
+                      "description": "(Required) A backend where jobs can run on."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"characterizations\": [\n    {\n      \"backend\": \"string\",\n      \"connectivity\": [\n        [\n          0,\n          1\n        ],\n        [\n          0,\n          2\n        ],\n        [\n          10,\n          9\n        ]\n      ],\n      \"date\": \"2025-06-16T00:00:00Z\",\n      \"fidelity\": {\n        \"spam\": {\n          \"median\": 0.9962,\n          \"stderr\": 4702\n        }\n      },\n      \"id\": \"f0013f87-2562-c65e-117b-2ecbd4b66077\",\n      \"qubits\": 25,\n      \"timing\": {\n        \"readout\": 6340,\n        \"reset\": 3921,\n        \"1q\": 1887,\n        \"2q\": 3975,\n        \"t1\": 10,\n        \"t2\": 1\n      }\n    },\n    {\n      \"backend\": \"string\",\n      \"connectivity\": [\n        [\n          0,\n          1\n        ],\n        [\n          0,\n          2\n        ],\n        [\n          10,\n          9\n        ]\n      ],\n      \"date\": \"2025-06-16T00:00:00Z\",\n      \"fidelity\": {\n        \"spam\": {\n          \"median\": 0.9962,\n          \"stderr\": 3957\n        }\n      },\n      \"id\": \"447a5ed8-74a0-729d-d93a-6131ba258583\",\n      \"qubits\": 25,\n      \"timing\": {\n        \"readout\": 1217,\n        \"reset\": 1266,\n        \"1q\": 8916,\n        \"2q\": 4907,\n        \"t1\": 10,\n        \"t2\": 1\n      }\n    }\n  ],\n  \"pages\": 7092\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67ebb5fa-764c-48b9-a35b-dcd67e21e28a",
+          "name": "Get a Characterization",
+          "request": {
+            "name": "Get a Characterization",
+            "description": {
+              "content": "This endpoint retrieves a characterization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "backends",
+                ":backend",
+                "characterizations",
+                ":UUID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "backend",
+                  "description": "(Required) A backend where jobs can run on."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "UUID",
+                  "description": "(Required) A UUID identifying a specific resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a32fe051-3c6c-44c2-812c-684a129551c4",
+              "name": "Successfully retrieved current characterization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backends",
+                    ":backend",
+                    "characterizations",
+                    ":UUID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "backend",
+                      "description": "(Required) A backend where jobs can run on."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "UUID",
+                      "description": "(Required) A UUID identifying a specific resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"backend\": \"string\",\n  \"connectivity\": [\n    [\n      0,\n      1\n    ],\n    [\n      0,\n      2\n    ],\n    [\n      10,\n      9\n    ]\n  ],\n  \"date\": \"2025-06-16T00:00:00Z\",\n  \"fidelity\": {\n    \"spam\": {\n      \"median\": 0.9962,\n      \"stderr\": 2340\n    }\n  },\n  \"id\": \"270f2956-fbcf-59f6-e17e-7bcb110c9781\",\n  \"qubits\": 25,\n  \"timing\": {\n    \"readout\": 7281,\n    \"reset\": 4331,\n    \"1q\": 2558,\n    \"2q\": 9085,\n    \"t1\": 10,\n    \"t2\": 1\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ionq.co/v0.4",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7235350f-560e-4510-92ec-57e24e952abe",
+    "name": "IonQ Cloud Platform backends characterizations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "*Last updated: May 15, 2026*\nIonQ's API for accessing the IonQ Quantum Cloud platform\n\nPlease subscribe for automated updates when we perform maintenance or\nexperience an outage.\n\nIn addition, you may use the [status endpoint](#tag/status) to check the\ncurrent status of our API.\n\n## Authentication\n\n<SecurityDefinitions />\n\n\nContact Support:\n Name: IonQ\n Email: support@ionq.co",
+      "type": "text/plain"
+    }
+  }
+}

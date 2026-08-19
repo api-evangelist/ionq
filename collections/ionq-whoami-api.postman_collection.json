@@ -1,0 +1,102 @@
+{
+  "item": [
+    {
+      "id": "b108e06b-2018-403c-aa79-037d50e4de55",
+      "name": "whoami",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "80e94f89-943d-4de3-9cb7-a02a7c96c7b9",
+          "name": "Get current key",
+          "request": {
+            "name": "Get current key",
+            "description": {
+              "content": "Retrieves current key associated with this session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "whoami"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "953f375c-17ea-47ab-884f-76ad1873d25d",
+              "name": "Successfully retrieved a current of key from this session.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "whoami"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_id\": \"e060759f-4348-4767-a645-8c0301265791\",\n  \"key_name\": \"My First Key\",\n  \"project_id\": \"944904d6-2e30-4cfb-8bc4-04afaabcdd42\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ionq.co/v0.4",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e0239585-e050-45a0-a33c-d0b2b51791eb",
+    "name": "IonQ Cloud Platform backends whoami API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "*Last updated: May 15, 2026*\nIonQ's API for accessing the IonQ Quantum Cloud platform\n\nPlease subscribe for automated updates when we perform maintenance or\nexperience an outage.\n\nIn addition, you may use the [status endpoint](#tag/status) to check the\ncurrent status of our API.\n\n## Authentication\n\n<SecurityDefinitions />\n\n\nContact Support:\n Name: IonQ\n Email: support@ionq.co",
+      "type": "text/plain"
+    }
+  }
+}

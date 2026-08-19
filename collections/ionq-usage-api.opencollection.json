@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IonQ Cloud Platform backends usage API",
+    "version": "v0.4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "usage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get usage costs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/organizations/:organization_id/usage",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "71d164e-6ebe-4126-8839-f1529bb01a00",
+                "type": "path",
+                "description": "The UUID of the organization — this UUID is provided in the response on organization creation."
+              },
+              {
+                "name": "start_date",
+                "value": "2023-07-01",
+                "type": "query",
+                "description": "Start date, inclusive"
+              },
+              {
+                "name": "end_date",
+                "value": "2023-08-01",
+                "type": "query",
+                "description": "End date, exclusive"
+              },
+              {
+                "name": "group_by",
+                "value": "",
+                "type": "query",
+                "description": "QPU Usage grouping"
+              },
+              {
+                "name": "modality",
+                "value": "",
+                "type": "query",
+                "description": "Report modality"
+              }
+            ]
+          },
+          "docs": "Retrieves the costs of a given group type, broken down by the given date modality."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

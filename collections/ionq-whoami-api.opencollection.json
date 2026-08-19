@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IonQ Cloud Platform backends whoami API",
+    "version": "v0.4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "whoami",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/whoami"
+          },
+          "docs": "Retrieves current key associated with this session."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

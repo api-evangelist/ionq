@@ -1,0 +1,164 @@
+{
+  "item": [
+    {
+      "id": "79448d40-b558-426d-84fb-0ec07c4da26b",
+      "name": "usage",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "158d9b08-7af8-434f-aa5f-540e9acde002",
+          "name": "Get usage costs",
+          "request": {
+            "name": "Get usage costs",
+            "description": {
+              "content": "Retrieves the costs of a given group type, broken down by the given date modality.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organization_id",
+                "usage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>",
+                  "description": "(Required) Start date, inclusive"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<date>",
+                  "description": "(Required) End date, exclusive"
+                },
+                {
+                  "disabled": false,
+                  "key": "group_by",
+                  "value": "<string>",
+                  "description": "(Required) QPU Usage grouping"
+                },
+                {
+                  "disabled": false,
+                  "key": "modality",
+                  "value": "<string>",
+                  "description": "(Required) Report modality"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "organization_id",
+                  "description": "(Required) The UUID of the organization — this UUID is provided in the response on organization creation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe9db606-cba5-4566-afc7-0f1c6a19b53a",
+              "name": "Successfully retrieved a list of projects.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organization_id",
+                    "usage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "2023-07-01"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "2023-08-01"
+                    },
+                    {
+                      "key": "group_by",
+                      "value": "project"
+                    },
+                    {
+                      "key": "modality",
+                      "value": "daily"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "organization_id",
+                      "description": "(Required) The UUID of the organization — this UUID is provided in the response on organization creation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"group_type\": \"project\",\n  \"modality\": \"daily\",\n  \"amount_total\": 151.31,\n  \"job_count\": 514,\n  \"organization\": \"4e9ca796-c472-1ae4-8f6d-b978159141cc\",\n  \"time_us_total\": 1566154.312523,\n  \"usage_data\": [\n    {\n      \"from\": \"2023-07-01\",\n      \"job_count\": 10,\n      \"amount\": 1614.23,\n      \"time_us\": 5143166.13413,\n      \"group_usages\": [\n        {\n          \"amount\": 144.39,\n          \"group_id\": \"2bfd0fd5-5854-4916-917f-a907af586755\",\n          \"group_name\": \"Project Jumping Lemming\",\n          \"job_count\": 9,\n          \"time_us\": 1566154.312523\n        },\n        {\n          \"amount\": 144.39,\n          \"group_id\": \"2bfd0fd5-5854-4916-917f-a907af586755\",\n          \"group_name\": \"Project Jumping Lemming\",\n          \"job_count\": 9,\n          \"time_us\": 1566154.312523\n        }\n      ]\n    },\n    {\n      \"from\": \"2023-07-01\",\n      \"job_count\": 10,\n      \"amount\": 1614.23,\n      \"time_us\": 5143166.13413,\n      \"group_usages\": [\n        {\n          \"amount\": 144.39,\n          \"group_id\": \"2bfd0fd5-5854-4916-917f-a907af586755\",\n          \"group_name\": \"Project Jumping Lemming\",\n          \"job_count\": 9,\n          \"time_us\": 1566154.312523\n        },\n        {\n          \"amount\": 144.39,\n          \"group_id\": \"2bfd0fd5-5854-4916-917f-a907af586755\",\n          \"group_name\": \"Project Jumping Lemming\",\n          \"job_count\": 9,\n          \"time_us\": 1566154.312523\n        }\n      ]\n    }\n  ],\n  \"usage_from\": \"2025-10-01T00:00:00Z\",\n  \"usage_to\": \"2025-11-01T00:00:00Z\",\n  \"usage_unit\": \"USD\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ionq.co/v0.4",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4e5c52a0-f20e-43b8-b450-23ee54825337",
+    "name": "IonQ Cloud Platform backends usage API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "*Last updated: May 15, 2026*\nIonQ's API for accessing the IonQ Quantum Cloud platform\n\nPlease subscribe for automated updates when we perform maintenance or\nexperience an outage.\n\nIn addition, you may use the [status endpoint](#tag/status) to check the\ncurrent status of our API.\n\n## Authentication\n\n<SecurityDefinitions />\n\n\nContact Support:\n Name: IonQ\n Email: support@ionq.co",
+      "type": "text/plain"
+    }
+  }
+}

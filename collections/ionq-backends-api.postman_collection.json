@@ -1,0 +1,190 @@
+{
+  "item": [
+    {
+      "id": "c8d8cbc9-4b88-4a78-ab3b-b2ba00a7ea96",
+      "name": "backends",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d9c7021e-5c06-4a97-86f1-de8237347af2",
+          "name": "Get Backends",
+          "request": {
+            "name": "Get Backends",
+            "description": {
+              "content": "This endpoint retrieves all backends.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "backends"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f5899017-68f2-44e2-907d-0aa8088ea4f8",
+              "name": "Successfully retrieved backend.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backends"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"backend\": \"qpu.aria-1\",\n    \"status\": \"string\",\n    \"qubits\": 25,\n    \"average_queue_time\": 1181215,\n    \"last_updated\": \"2025-06-16T00:00:00Z\",\n    \"characterization_id\": \"617a1f8b-59d4-435d-aa33-695433d7155e\",\n    \"degraded\": false,\n    \"kw\": 4902.81,\n    \"location\": \"College Park, MD, USA\"\n  },\n  {\n    \"backend\": \"qpu.aria-1\",\n    \"status\": \"string\",\n    \"qubits\": 25,\n    \"average_queue_time\": 1181215,\n    \"last_updated\": \"2025-06-16T00:00:00Z\",\n    \"characterization_id\": \"617a1f8b-59d4-435d-aa33-695433d7155e\",\n    \"degraded\": true,\n    \"kw\": 4902.81,\n    \"location\": \"College Park, MD, USA\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74c205f2-1771-4bfd-8152-0d3421557bb7",
+          "name": "Get a Backend",
+          "request": {
+            "name": "Get a Backend",
+            "description": {
+              "content": "This endpoint retrieves a backend.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "backends",
+                ":backend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "backend",
+                  "description": "(Required) A backend where jobs can run on."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b2e39337-b0cc-40f2-84a2-7a22fda168f4",
+              "name": "Successfully retrieved backend.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "backends",
+                    ":backend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "backend",
+                      "description": "(Required) A backend where jobs can run on."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"backend\": \"qpu.aria-1\",\n  \"status\": \"string\",\n  \"qubits\": 25,\n  \"average_queue_time\": 1181215,\n  \"last_updated\": \"2025-06-16T00:00:00Z\",\n  \"characterization_id\": \"617a1f8b-59d4-435d-aa33-695433d7155e\",\n  \"degraded\": true,\n  \"kw\": 4902.81,\n  \"location\": \"College Park, MD, USA\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.ionq.co/v0.4",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3fbcc15c-2913-4303-81cc-00807aea0653",
+    "name": "IonQ Cloud Platform backends API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "*Last updated: May 15, 2026*\nIonQ's API for accessing the IonQ Quantum Cloud platform\n\nPlease subscribe for automated updates when we perform maintenance or\nexperience an outage.\n\nIn addition, you may use the [status endpoint](#tag/status) to check the\ncurrent status of our API.\n\n## Authentication\n\n<SecurityDefinitions />\n\n\nContact Support:\n Name: IonQ\n Email: support@ionq.co",
+      "type": "text/plain"
+    }
+  }
+}

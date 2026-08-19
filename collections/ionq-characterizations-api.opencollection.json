@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "IonQ Cloud Platform backends characterizations API",
+    "version": "v0.4"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "characterizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Backend Characterizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/backends/:backend/characterizations",
+            "params": [
+              {
+                "name": "backend",
+                "value": "",
+                "type": "path",
+                "description": "A backend where jobs can run on."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Characterizations starting at this time (e.g., `start=2025-12-31`)"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "Characterizations before this time (e.g., `end=2025-12-31`)"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "How many objects to return."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves an array of all available backend characterizations, with pagination."
+        },
+        {
+          "info": {
+            "name": "Get a Characterization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.ionq.co/v0.4/backends/:backend/characterizations/:UUID",
+            "params": [
+              {
+                "name": "backend",
+                "value": "",
+                "type": "path",
+                "description": "A backend where jobs can run on."
+              },
+              {
+                "name": "UUID",
+                "value": "617a1f8b-59d4-435d-aa33-695433d7155e",
+                "type": "path",
+                "description": "A UUID identifying a specific resource"
+              }
+            ]
+          },
+          "docs": "This endpoint retrieves a characterization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
