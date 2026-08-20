@@ -29,6 +29,8 @@ apis:
   humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
   baseURL: https://api.ionq.co/v0.4
   tags:
+  - Backend
+  tags_raw:
   - backends
   properties:
   - type: OpenAPI
@@ -73,6 +75,8 @@ apis:
   humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
   baseURL: https://api.ionq.co/v0.4
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -117,6 +121,8 @@ apis:
   humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
   baseURL: https://api.ionq.co/v0.4
   tags:
+  - Usage
+  tags_raw:
   - usage
   properties:
   - type: OpenAPI
@@ -139,6 +145,8 @@ apis:
   humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
   baseURL: https://api.ionq.co/v0.4
   tags:
+  - Whoami
+  tags_raw:
   - whoami
   properties:
   - type: OpenAPI
@@ -157,6 +165,17 @@ apis:
     url: json-ld/ionq-context.jsonld
 name: IonQ
 tags:
+  - Quantum Computing
+  - Trapped Ion
+  - QPU
+  - ARIA
+  - Forte
+  - Tempo
+  - Quantum Cloud
+  - Cloud
+  - Hardware
+  - Public Company
+tags_raw:
   - Quantum Computing
   - Trapped Ion
   - QPU
