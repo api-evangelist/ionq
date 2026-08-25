@@ -5,7 +5,7 @@
       "source": "https://ionq.com/news/rss.xml",
       "feed_url": "https://ionq.com/news/rss.xml",
       "title": "",
-      "saved": 1,
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -20,6 +20,6 @@
       "error": "HTTPError"
     }
   ],
-  "post_count": 59,
-  "fetched": "2026-08-15T12:11:08Z"
+  "post_count": 60,
+  "fetched": "2026-08-22T20:20:02Z"
 }
