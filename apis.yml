@@ -145,7 +145,7 @@ apis:
   humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
   baseURL: https://api.ionq.co/v0.4
   tags:
-  - Whoami
+  - whoami
   tags_raw:
   - whoami
   properties:
@@ -168,7 +168,7 @@ tags:
   - Quantum Computing
   - Trapped Ion
   - QPU
-  - ARIA
+  - Aria
   - Forte
   - Tempo
   - Quantum Cloud
