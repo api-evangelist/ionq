@@ -206,11 +206,12 @@ accessModel:
   try_now: true
   public: false
   label: Freemium · Self-serve signup
-  confidence: high
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ionq.png
 access: 3rd-Party
@@ -450,7 +451,7 @@ common:
     updated: '2026-05-24'
 created: '2026-05-24T00:00:00.000Z'
 modified: '2026-05-24'
-position: Provider
+position: Producing
 description: >-
   IonQ (NYSE IONQ) is a College Park, Maryland-based public trapped-ion quantum computing company. IonQ designs,
   manufactures, and operates trapped-ion quantum computers (Aria, Forte, Forte Enterprise, Tempo, Harmony) and delivers
