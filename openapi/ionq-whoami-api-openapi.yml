@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     email: support@ionq.co
@@ -14,23 +14,18 @@ info:
     experience an outage.
 
 
-    In addition, you may use the [status endpoint](#tag/status) to check the
+    In addition, you may use the status endpoint to check the
 
     current status of our API.
 
 
-    ## Authentication
-
-
-    <SecurityDefinitions />
-
-    '
-  title: IonQ Cloud Platform backends whoami API
+    ## Authentication'
+  title: IonQ Cloud Platform Whoami API
   version: v0.4
 servers:
 - url: https://api.ionq.co/v0.4
 tags:
-- name: whoami
+- name: Whoami
 paths:
   /whoami:
     get:
@@ -41,7 +36,7 @@ paths:
           $ref: '#/components/responses/Whoami'
       summary: Get current key
       tags:
-      - whoami
+      - Whoami
       x-codeSamples:
       - lang: curl
         source: "curl \"https://api.ionq.co/v0.4/whoami\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"

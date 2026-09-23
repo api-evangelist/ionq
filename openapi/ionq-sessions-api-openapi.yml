@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     email: support@ionq.co
@@ -14,18 +14,13 @@ info:
     experience an outage.
 
 
-    In addition, you may use the [status endpoint](#tag/status) to check the
+    In addition, you may use the status endpoint to check the
 
     current status of our API.
 
 
-    ## Authentication
-
-
-    <SecurityDefinitions />
-
-    '
-  title: IonQ Cloud Platform backends Sessions API
+    ## Authentication'
+  title: IonQ Cloud Platform Sessions API
   version: v0.4
 servers:
 - url: https://api.ionq.co/v0.4
@@ -53,6 +48,8 @@ paths:
               $ref: '#/components/schemas/CreateSessionRequest'
       tags:
       - Sessions
+      summary: Create session
+      x-summary-source: derived
     get:
       operationId: GetSessions
       responses:
@@ -72,6 +69,8 @@ paths:
           type: boolean
       tags:
       - Sessions
+      summary: Get sessions
+      x-summary-source: derived
   /sessions/{session_id}/end:
     post:
       operationId: EndSession
@@ -93,6 +92,8 @@ paths:
           type: string
       tags:
       - Sessions
+      summary: End session
+      x-summary-source: derived
   /sessions/{session_id}:
     get:
       operationId: GetSession
@@ -114,6 +115,8 @@ paths:
           type: string
       tags:
       - Sessions
+      summary: Get session
+      x-summary-source: derived
   /sessions/{session_id}/jobs:
     get:
       operationId: GetSessionJobs
@@ -221,78 +224,10 @@ paths:
           type: string
       tags:
       - Sessions
+      summary: Get session jobs
+      x-summary-source: derived
 components:
   schemas:
-    SessionSettings:
-      properties:
-        job_count_limit:
-          type: integer
-          format: int32
-        duration_limit_min:
-          type: integer
-          format: int32
-        cost_limit:
-          $ref: '#/components/schemas/SessionCostLimit'
-        expires_at:
-          type: string
-          format: date-time
-      type: object
-      additionalProperties: false
-    GetJobsResponse:
-      properties:
-        jobs:
-          items:
-            $ref: '#/components/schemas/BaseJob'
-          type: array
-        next:
-          type: string
-          nullable: true
-      required:
-      - jobs
-      - next
-      type: object
-      additionalProperties: false
-    SessionStatusEnum:
-      enum:
-      - created
-      - started
-      - ended
-      type: string
-    SessionsResponse:
-      properties:
-        organization_id:
-          type: string
-        sessions:
-          items:
-            $ref: '#/components/schemas/Session'
-          type: array
-      required:
-      - organization_id
-      - sessions
-      type: object
-      additionalProperties: false
-    CreateSessionRequest:
-      properties:
-        backend:
-          type: string
-        settings:
-          $ref: '#/components/schemas/SessionSettingsRequest'
-      required:
-      - backend
-      type: object
-      additionalProperties: false
-    SessionCostLimit:
-      properties:
-        unit:
-          type: string
-        value:
-          type: number
-          format: double
-      required:
-      - unit
-      - value
-      type: object
-      additionalProperties: false
     Noise:
       properties:
         model:
@@ -304,201 +239,6 @@ components:
       - model
       type: object
       additionalProperties: false
-    IsoTimestamp:
-      type: string
-    CostModel:
-      type: string
-      enum:
-      - quantum_compute_time
-      - execution_time
-    NoiseModel:
-      type: string
-      enum:
-      - ideal
-      - harmony
-      - harmony-1
-      - harmony-2
-      - aria-1
-      - aria-2
-      - forte-1
-      - forte-enterprise-1
-    JsonObject:
-      properties: {}
-      type: object
-      additionalProperties: {}
-    Session:
-      properties:
-        id:
-          type: string
-          description: The id of the session.
-        created_at:
-          type: string
-          format: date-time
-        organization_id:
-          type: string
-        backend:
-          type: string
-          nullable: true
-        project_id:
-          type: string
-          nullable: true
-        creator_id:
-          type: string
-          nullable: true
-        ended_at:
-          type: string
-          format: date-time
-          nullable: true
-        ender_id:
-          type: string
-          nullable: true
-        settings:
-          $ref: '#/components/schemas/SessionSettings'
-        active:
-          type: boolean
-        status:
-          $ref: '#/components/schemas/SessionStatusEnum'
-        started_at:
-          type: string
-          format: date-time
-          nullable: true
-      required:
-      - id
-      - created_at
-      - organization_id
-      - backend
-      - project_id
-      - creator_id
-      - ended_at
-      - ender_id
-      - active
-      - status
-      - started_at
-      type: object
-      additionalProperties: false
-    SessionSettingsRequest:
-      properties:
-        job_count_limit:
-          type: integer
-          format: int32
-        duration_limit_min:
-          type: integer
-          format: int32
-        cost_limit:
-          $ref: '#/components/schemas/SessionCostLimit'
-      type: object
-      additionalProperties: false
-    BaseJob:
-      properties:
-        id:
-          type: string
-        status:
-          $ref: '#/components/schemas/JobStatus'
-        type:
-          type: string
-        backend:
-          type: string
-        dry_run:
-          type: boolean
-        submitter_id:
-          type: string
-          description: The id of the user who submitted the job
-        project_id:
-          type: string
-          nullable: true
-        parent_job_id:
-          type: string
-          nullable: true
-        session_id:
-          type: string
-          nullable: true
-        metadata:
-          allOf:
-          - $ref: '#/components/schemas/JobMetadata'
-          nullable: true
-        name:
-          type: string
-          nullable: true
-        submitted_at:
-          $ref: '#/components/schemas/IsoTimestamp'
-        started_at:
-          allOf:
-          - $ref: '#/components/schemas/IsoTimestamp'
-          nullable: true
-        completed_at:
-          allOf:
-          - $ref: '#/components/schemas/IsoTimestamp'
-          nullable: true
-        predicted_wait_time_ms:
-          type: integer
-          format: int32
-          nullable: true
-        predicted_execution_duration_ms:
-          type: integer
-          format: int32
-          nullable: true
-        execution_duration_ms:
-          type: integer
-          format: int32
-          nullable: true
-          description: How long the job actually took to run on the QPU. Null if the job hasn't run yet.
-        shots:
-          type: integer
-          format: int32
-        noise:
-          $ref: '#/components/schemas/Noise'
-          description: Only present in the response when `backend` is simulator.
-        failure:
-          allOf:
-          - $ref: '#/components/schemas/Failure'
-          nullable: true
-        cost_model:
-          $ref: '#/components/schemas/CostModel'
-          description: The billing model used for this job.
-        output:
-          $ref: '#/components/schemas/JsonObject'
-        settings:
-          $ref: '#/components/schemas/JsonObject'
-        stats:
-          $ref: '#/components/schemas/JsonObject'
-        results:
-          allOf:
-          - $ref: '#/components/schemas/JsonObject'
-          nullable: true
-      required:
-      - id
-      - status
-      - type
-      - backend
-      - dry_run
-      - submitter_id
-      - project_id
-      - parent_job_id
-      - session_id
-      - metadata
-      - name
-      - submitted_at
-      - started_at
-      - completed_at
-      - predicted_wait_time_ms
-      - predicted_execution_duration_ms
-      - execution_duration_ms
-      - failure
-      - output
-      - settings
-      - stats
-      - results
-      type: object
-      additionalProperties: false
-    JobStatus:
-      type: string
-      enum:
-      - submitted
-      - ready
-      - started
-      - canceled
-      - failed
-      - completed
     Failure:
       properties:
         code:
@@ -531,11 +271,285 @@ components:
       - message
       type: object
       additionalProperties: false
+    NoiseModel:
+      type: string
+      enum:
+      - ideal
+      - harmony
+      - harmony-1
+      - harmony-2
+      - aria-1
+      - aria-2
+      - forte-1
+      - forte-enterprise-1
+    CostModel:
+      type: string
+      enum:
+      - quantum_compute_time
+      - execution_time
+    IsoTimestamp:
+      type: string
+    SessionsResponse:
+      properties:
+        organization_id:
+          type: string
+        sessions:
+          items:
+            $ref: '#/components/schemas/Session'
+          type: array
+      required:
+      - organization_id
+      - sessions
+      type: object
+      additionalProperties: false
+    JsonObject:
+      properties: {}
+      type: object
+      additionalProperties: {}
+    CreateSessionRequest:
+      properties:
+        backend:
+          type: string
+        settings:
+          $ref: '#/components/schemas/SessionSettingsRequest'
+      required:
+      - backend
+      type: object
+      additionalProperties: false
+    Session:
+      properties:
+        id:
+          type: string
+          description: The id of the session.
+        created_at:
+          type: string
+          format: date-time
+        organization_id:
+          type: string
+        backend:
+          type:
+          - string
+          - 'null'
+        project_id:
+          type:
+          - string
+          - 'null'
+        creator_id:
+          type:
+          - string
+          - 'null'
+        ended_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        ender_id:
+          type:
+          - string
+          - 'null'
+        settings:
+          $ref: '#/components/schemas/SessionSettings'
+        active:
+          type: boolean
+        status:
+          $ref: '#/components/schemas/SessionStatusEnum'
+        started_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - id
+      - created_at
+      - organization_id
+      - backend
+      - project_id
+      - creator_id
+      - ended_at
+      - ender_id
+      - active
+      - status
+      - started_at
+      type: object
+      additionalProperties: false
+    BaseJob:
+      properties:
+        id:
+          type: string
+        status:
+          $ref: '#/components/schemas/JobStatus'
+        type:
+          type: string
+        backend:
+          type: string
+        dry_run:
+          type: boolean
+        submitter_id:
+          type: string
+          description: The id of the user who submitted the job
+        project_id:
+          type:
+          - string
+          - 'null'
+        parent_job_id:
+          type:
+          - string
+          - 'null'
+        session_id:
+          type:
+          - string
+          - 'null'
+        metadata:
+          allOf:
+          - $ref: '#/components/schemas/JobMetadata'
+        name:
+          type:
+          - string
+          - 'null'
+        submitted_at:
+          $ref: '#/components/schemas/IsoTimestamp'
+        started_at:
+          allOf:
+          - $ref: '#/components/schemas/IsoTimestamp'
+        completed_at:
+          allOf:
+          - $ref: '#/components/schemas/IsoTimestamp'
+        predicted_wait_time_ms:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        predicted_execution_duration_ms:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        execution_duration_ms:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          description: How long the job actually took to run on the QPU. Null if the job hasn't run yet.
+        shots:
+          type: integer
+          format: int32
+        noise:
+          $ref: '#/components/schemas/Noise'
+          description: Only present in the response when `backend` is simulator.
+        failure:
+          allOf:
+          - $ref: '#/components/schemas/Failure'
+        cost_model:
+          $ref: '#/components/schemas/CostModel'
+          description: The billing model used for this job.
+        output:
+          $ref: '#/components/schemas/JsonObject'
+        settings:
+          $ref: '#/components/schemas/JsonObject'
+        stats:
+          $ref: '#/components/schemas/JsonObject'
+        results:
+          allOf:
+          - $ref: '#/components/schemas/JsonObject'
+      required:
+      - id
+      - status
+      - type
+      - backend
+      - dry_run
+      - submitter_id
+      - project_id
+      - parent_job_id
+      - session_id
+      - metadata
+      - name
+      - submitted_at
+      - started_at
+      - completed_at
+      - predicted_wait_time_ms
+      - predicted_execution_duration_ms
+      - execution_duration_ms
+      - failure
+      - output
+      - settings
+      - stats
+      - results
+      type: object
+      additionalProperties: false
+    GetJobsResponse:
+      properties:
+        jobs:
+          items:
+            $ref: '#/components/schemas/BaseJob'
+          type: array
+        next:
+          type:
+          - string
+          - 'null'
+      required:
+      - jobs
+      - next
+      type: object
+      additionalProperties: false
+    SessionCostLimit:
+      properties:
+        unit:
+          type: string
+        value:
+          type: number
+          format: double
+      required:
+      - unit
+      - value
+      type: object
+      additionalProperties: false
     JobMetadata:
       properties: {}
       type: object
       additionalProperties:
         type: string
+    SessionStatusEnum:
+      enum:
+      - created
+      - started
+      - ended
+      type: string
+    JobStatus:
+      type: string
+      enum:
+      - submitted
+      - ready
+      - started
+      - canceled
+      - failed
+      - completed
+    SessionSettingsRequest:
+      properties:
+        job_count_limit:
+          type: integer
+          format: int32
+        duration_limit_min:
+          type: integer
+          format: int32
+        cost_limit:
+          $ref: '#/components/schemas/SessionCostLimit'
+      type: object
+      additionalProperties: false
+    SessionSettings:
+      properties:
+        job_count_limit:
+          type: integer
+          format: int32
+        duration_limit_min:
+          type: integer
+          format: int32
+        cost_limit:
+          $ref: '#/components/schemas/SessionCostLimit'
+        expires_at:
+          type: string
+          format: date-time
+      type: object
+      additionalProperties: false
   securitySchemes:
     apiKeyAuth:
       description: 'API keys are associated with a user and can be created on the [IonQ Quantum Cloud](https://cloud.ionq.com) application. To authenticate, prefix your API Key with `apiKey ` and place it in the `Authorization` request header. Ex: `Authorization: apiKey your-api-key`'

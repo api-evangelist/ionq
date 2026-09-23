@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     email: support@ionq.co
@@ -14,23 +14,18 @@ info:
     experience an outage.
 
 
-    In addition, you may use the [status endpoint](#tag/status) to check the
+    In addition, you may use the status endpoint to check the
 
     current status of our API.
 
 
-    ## Authentication
-
-
-    <SecurityDefinitions />
-
-    '
-  title: IonQ Cloud Platform backends usage API
+    ## Authentication'
+  title: IonQ Cloud Platform Usage API
   version: v0.4
 servers:
 - url: https://api.ionq.co/v0.4
 tags:
-- name: usage
+- name: Usage
 paths:
   /organizations/{organization_id}/usage:
     get:
@@ -71,12 +66,44 @@ paths:
           $ref: '#/components/responses/UsagesResponse'
       summary: Get usage costs
       tags:
-      - usage
+      - Usage
       x-codeSamples:
       - lang: curl
         source: "curl \"https://api.ionq.co/v0.4/organizations/com.my.org/usage?group_by=project&start_date=2025-01-01&end_date=2025-03-02&modality=weekly\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
 components:
   schemas:
+    GroupUsage:
+      description: A group's single date usage
+      properties:
+        amount:
+          description: The cost amount for the group of the given date
+          example: 144.39
+          type: number
+        group_id:
+          description: The unique ID from the group
+          example: 2bfd0fd5-5854-4916-917f-a907af586755
+          type: string
+        group_name:
+          description: The group's descriptive name
+          example: Project Jumping Lemming
+          type: string
+        job_count:
+          description: The number of jobs run for the group on the given date
+          example: 9
+          type: integer
+        time_us:
+          description: The QPU time in microseconds
+          example: 1566154.312523
+          type: number
+      type: object
+    group_by:
+      description: QPU Usage grouping
+      enum:
+      - job
+      - project
+      - user
+      example: project
+      type: string
     organization_id:
       description: UUID of an organization.
       example: 71d164e-6ebe-4126-8839-f1529bb01a00
@@ -128,38 +155,6 @@ components:
       - group_type
       - modality
       type: object
-    GroupUsage:
-      description: A group's single date usage
-      properties:
-        amount:
-          description: The cost amount for the group of the given date
-          example: 144.39
-          type: number
-        group_id:
-          description: The unique ID from the group
-          example: 2bfd0fd5-5854-4916-917f-a907af586755
-          type: string
-        group_name:
-          description: The group's descriptive name
-          example: Project Jumping Lemming
-          type: string
-        job_count:
-          description: The number of jobs run for the group on the given date
-          example: 9
-          type: integer
-        time_us:
-          description: The QPU time in microseconds
-          example: 1566154.312523
-          type: number
-      type: object
-    modality:
-      description: Report modality
-      enum:
-      - daily
-      - weekly
-      - monthly
-      example: daily
-      type: string
     Usage:
       description: Single date of QPU usage
       properties:
@@ -192,13 +187,13 @@ components:
       - time_us
       - group_usages
       type: object
-    group_by:
-      description: QPU Usage grouping
+    modality:
+      description: Report modality
       enum:
-      - job
-      - project
-      - user
-      example: project
+      - daily
+      - weekly
+      - monthly
+      example: daily
       type: string
   parameters:
     organization_id:

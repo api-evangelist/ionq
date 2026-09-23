@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     email: support@ionq.co
@@ -14,18 +14,13 @@ info:
     experience an outage.
 
 
-    In addition, you may use the [status endpoint](#tag/status) to check the
+    In addition, you may use the status endpoint to check the
 
     current status of our API.
 
 
-    ## Authentication
-
-
-    <SecurityDefinitions />
-
-    '
-  title: IonQ Cloud Platform backends Jobs API
+    ## Authentication'
+  title: IonQ Cloud Platform Jobs API
   version: v0.4
 servers:
 - url: https://api.ionq.co/v0.4
@@ -59,9 +54,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/JobCreationPayload'
-      description: 'Submit a single-circuit or multi-circuit job for simulation or execution. In `ionq.multi-circuit.v1` payloads, each entry in `input.circuits` inherits the parent `input.gateset` unless the circuit sets its own `gateset`.
-
-        '
+      description: Submit a single-circuit or multi-circuit job for simulation or execution. In `ionq.multi-circuit.v1` payloads, each entry in `input.circuits` inherits the parent `input.gateset` unless the circuit sets its own `gateset`.
       x-codeSamples:
       - lang: curl
         label: Single-circuit QIS job
@@ -71,6 +64,8 @@ paths:
         source: "curl -X POST \"https://api.ionq.co/v0.4/jobs\" \\\n  -H \"Authorization: apiKey your-api-key\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"type\": \"ionq.multi-circuit.v1\",\n    \"backend\": \"simulator\",\n    \"shots\": 500,\n    \"input\": {\n      \"gateset\": \"native\",\n      \"qubits\": 2,\n      \"circuits\": [\n        {\n          \"name\": \"qis circuit override\",\n          \"gateset\": \"qis\",\n          \"circuit\": [\n            {\n              \"gate\": \"h\",\n              \"target\": 0\n            },\n            {\n              \"gate\": \"cnot\",\n              \"target\": 0,\n              \"control\": 1\n            }\n          ]\n        },\n        {\n          \"name\": \"native circuit from parent\",\n          \"circuit\": [\n            {\n              \"gate\": \"ms\",\n              \"targets\": [0, 1],\n              \"phases\": [0, 0.25]\n            },\n            {\n              \"gate\": \"gpi2\",\n              \"target\": 0,\n              \"phase\": 0.75\n            }\n          ]\n        }\n      ]\n    }\n  }'\n"
       tags:
       - Jobs
+      summary: Create job
+      x-summary-source: derived
     get:
       operationId: GetJobs
       responses:
@@ -183,6 +178,8 @@ paths:
         source: "# Get all jobs:\ncurl \"https://api.ionq.co/v0.4/jobs\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
       tags:
       - Jobs
+      summary: Get jobs
+      x-summary-source: derived
     delete:
       operationId: DeleteJobs
       responses:
@@ -214,6 +211,8 @@ paths:
         source: "curl -X DELETE \"https://api.ionq.co/v0.4/jobs\" \\\n  -H \"Authorization: apiKey your-api-key\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n        \"ids\": [\n            \"617a1f8b-59d4-435d-aa33-695433d7155e\",\n            \"2ccf2773-4c28-468e-a290-2f8554808a25\",\n            \"f92df2b6-d212-4f4a-b9ea-024b58c5c3e8\"\n        ]\n    }'\n"
       tags:
       - Jobs
+      summary: Delete jobs
+      x-summary-source: derived
   /jobs/{UUID}:
     get:
       operationId: GetJob
@@ -303,6 +302,8 @@ paths:
         source: "curl \"https://api.ionq.co/v0.4/jobs/617a1f8b-59d4-435d-aa33-695433d7155e\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
       tags:
       - Jobs
+      summary: Get job
+      x-summary-source: derived
     delete:
       operationId: DeleteJob
       responses:
@@ -334,6 +335,8 @@ paths:
         source: "curl -X DELETE \"https://api.ionq.co/v0.4/jobs/617a1f8b-59d4-435d-aa33-695433d7155e\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
       tags:
       - Jobs
+      summary: Delete job
+      x-summary-source: derived
   /jobs/{UUID}/cost:
     get:
       operationId: GetJobCost
@@ -365,6 +368,8 @@ paths:
         source: "curl \"https://api.ionq.co/v0.4/jobs/0197379a-c3b8-7548-9da4-bbb7067311c1/cost\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
       tags:
       - Jobs
+      summary: Get job cost
+      x-summary-source: derived
   /jobs/{UUID}/circuits/{lang}:
     get:
       operationId: GetCompiledFile
@@ -405,6 +410,8 @@ paths:
           - qasm3
       tags:
       - Jobs
+      summary: Get compiled file
+      x-summary-source: derived
   /jobs/{UUID}/status/cancel:
     put:
       operationId: CancelJob
@@ -471,6 +478,8 @@ paths:
         source: "curl -X PUT \"https://api.ionq.co/v0.4/jobs/status/cancel\" \\\n  -H \"Authorization: apiKey your-api-key\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n        \"ids\": [\n            \"617a1f8b-59d4-435d-aa33-695433d7155e\",\n            \"2ccf2773-4c28-468e-a290-2f8554808a25\",\n            \"f92df2b6-d212-4f4a-b9ea-024b58c5c3e8\"\n        ]\n    }'\n"
       tags:
       - Jobs
+      summary: Cancel jobs
+      x-summary-source: derived
   /jobs/estimate:
     get:
       operationId: EstimateJobCost
@@ -539,6 +548,8 @@ paths:
           type: boolean
       tags:
       - Jobs
+      summary: Estimate job cost
+      x-summary-source: derived
   /jobs/{UUID}/results/probabilities:
     get:
       operationId: GetJobProbabilities
@@ -551,7 +562,7 @@ paths:
                 $ref: '#/components/schemas/GetResultsResponse'
         '404':
           description: Job not found or not yet completed.
-      summary: Fetch the probability distribution for a completed job.
+      summary: Fetch the probability distribution for a completed job
       security:
       - apiKeyAuth: []
       parameters:
@@ -596,6 +607,8 @@ paths:
           type: string
       tags:
       - Jobs
+      summary: Get variant probabilities
+      x-summary-source: derived
   /jobs/{UUID}/variants/{variantId}/results/histogram:
     get:
       operationId: GetVariantHistogram
@@ -623,6 +636,8 @@ paths:
           type: string
       tags:
       - Jobs
+      summary: Get variant histogram
+      x-summary-source: derived
   /jobs/{UUID}/variants/{variantId}/results/shots:
     get:
       operationId: GetVariantShots
@@ -650,139 +665,31 @@ paths:
           type: string
       tags:
       - Jobs
+      summary: Get variant shots
+      x-summary-source: derived
 components:
   schemas:
-    CircuitJobCreationPayload:
+    Noise:
       properties:
-        name:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/JobMetadata'
-          description: User defined metadata
-        shots:
+        model:
+          $ref: '#/components/schemas/NoiseModel'
+        seed:
           type: integer
           format: int32
-          default: 100
-          minimum: 1
-          maximum: 1000000
-        backend:
-          $ref: '#/components/schemas/JobBackends'
-        session_id:
-          type: string
-        settings:
-          properties:
-            error_mitigation:
-              properties:
-                debiasing:
-                  type: boolean
-              type: object
-              description: To turn on debiasing, you must request at least 500 shots
-            compilation:
-              properties:
-                opt:
-                  type: number
-                  format: double
-                precision:
-                  type: string
-              type: object
-          type: object
-        dry_run:
-          type: boolean
-        noise:
-          $ref: '#/components/schemas/Noise'
-        type:
-          type: string
-          enum:
-          - ionq.circuit.v1
-          nullable: false
-        input:
-          $ref: '#/components/schemas/JsonCircuitInput'
       required:
-      - backend
-      - type
-      - input
+      - model
       type: object
       additionalProperties: false
-    GetVariantResultsResponse:
-      properties: {}
-      type: object
-      additionalProperties:
-        type: number
-        format: double
-    JobDeletedResponse:
+    Ansatz:
       properties:
-        id:
+        data:
+          title: Data
           type: string
-          example: 617a1f8b-59d4-435d-aa33-695433d7155e
-        status:
-          type: string
-          enum:
-          - deleted
-          nullable: false
       required:
-      - id
-      - status
+      - data
       type: object
-      additionalProperties: false
-    QisGate:
+    IsoTimestamp:
       type: string
-      enum:
-      - x
-      - y
-      - z
-      - rx
-      - ry
-      - rz
-      - h
-      - s
-      - si
-      - v
-      - vi
-      - t
-      - ti
-      - not
-      - cnot
-      - swap
-      - xx
-      - yy
-      - zz
-      - pauliexp
-    GetJobCostResponse:
-      properties:
-        dry_run:
-          type: boolean
-          example: false
-        estimated_cost:
-          properties:
-            value:
-              type: number
-              format: double
-              example: 24.83
-            unit:
-              type: string
-              example: usd
-          required:
-          - value
-          - unit
-          type: object
-        cost:
-          properties:
-            value:
-              type: number
-              format: double
-              example: 24.83
-            unit:
-              type: string
-              example: usd
-          required:
-          - value
-          - unit
-          type: object
-      required:
-      - dry_run
-      - estimated_cost
-      type: object
-      additionalProperties: false
     JsonObject:
       properties: {}
       type: object
@@ -800,329 +707,36 @@ components:
           type: string
       type: object
       additionalProperties: false
-    GetJobEstimateQueryParams:
-      properties:
-        backend:
-          $ref: '#/components/schemas/JobBackends'
-        type:
-          type: string
-          default: ionq.circuit.v1
-        qubits:
-          type: integer
-          format: int32
-          default: 25
-        shots:
-          type: integer
-          format: int32
-          default: 1000
-        1q_gates:
-          type: integer
-          format: int32
-          default: 0
-        2q_gates:
-          type: integer
-          format: int32
-          default: 0
-        error_mitigation:
-          type: boolean
-          default: false
-      required:
-      - backend
-      type: object
-      additionalProperties: false
-    QuantumFunctionInput:
-      oneOf:
-      - $ref: '#/components/schemas/HamiltonianEnergyInput'
-      - $ref: '#/components/schemas/GenericQuantumFunctionInput'
-      discriminator:
-        propertyName: type
-        mapping:
-          hamiltonian-energy: '#/components/schemas/HamiltonianEnergyInput'
-    QuadraticConstraint:
-      description: "A class to model quadratic inequality constraints of the form\n\n.. math::\n\n    x^T P x + r^T x \\leq c."
-      properties:
-        quadratic_coeff:
-          items:
-            items:
-              type: number
-            type: array
-          title: Quadratic Coeff
-          type: array
-        linear_coeff:
-          items:
-            type: number
-          title: Linear Coeff
-          type: array
-        rhs:
-          title: Rhs
-          type: number
-      required:
-      - quadratic_coeff
-      - linear_coeff
-      - rhs
-      type: object
-    JobStatus:
-      type: string
-      enum:
-      - submitted
-      - ready
-      - started
-      - canceled
-      - failed
-      - completed
-    Registers:
-      properties: {}
-      type: object
-      additionalProperties:
-        items:
-          type: number
-          format: double
-          nullable: true
-        type: array
-    JobBackends:
-      type: string
-      description: 'Available options: `simulator`, `qpu.aria-1`, `qpu.aria-2`, `qpu.forte-1`, `qpu.forte-enterprise-1`'
-    BaseJob:
-      properties:
-        id:
-          type: string
-        status:
-          $ref: '#/components/schemas/JobStatus'
-        type:
-          type: string
-        backend:
-          type: string
-        dry_run:
-          type: boolean
-        submitter_id:
-          type: string
-          description: The id of the user who submitted the job
-        project_id:
-          type: string
-          nullable: true
-        parent_job_id:
-          type: string
-          nullable: true
-        session_id:
-          type: string
-          nullable: true
-        metadata:
-          allOf:
-          - $ref: '#/components/schemas/JobMetadata'
-          nullable: true
-        name:
-          type: string
-          nullable: true
-        submitted_at:
-          $ref: '#/components/schemas/IsoTimestamp'
-        started_at:
-          allOf:
-          - $ref: '#/components/schemas/IsoTimestamp'
-          nullable: true
-        completed_at:
-          allOf:
-          - $ref: '#/components/schemas/IsoTimestamp'
-          nullable: true
-        predicted_wait_time_ms:
-          type: integer
-          format: int32
-          nullable: true
-        predicted_execution_duration_ms:
-          type: integer
-          format: int32
-          nullable: true
-        execution_duration_ms:
-          type: integer
-          format: int32
-          nullable: true
-          description: How long the job actually took to run on the QPU. Null if the job hasn't run yet.
-        shots:
-          type: integer
-          format: int32
-        noise:
-          $ref: '#/components/schemas/Noise'
-          description: Only present in the response when `backend` is simulator.
-        failure:
-          allOf:
-          - $ref: '#/components/schemas/Failure'
-          nullable: true
-        cost_model:
-          $ref: '#/components/schemas/CostModel'
-          description: The billing model used for this job.
-        output:
-          $ref: '#/components/schemas/JsonObject'
-        settings:
-          $ref: '#/components/schemas/JsonObject'
-        stats:
-          $ref: '#/components/schemas/JsonObject'
-        results:
-          allOf:
-          - $ref: '#/components/schemas/JsonObject'
-          nullable: true
-      required:
-      - id
-      - status
-      - type
-      - backend
-      - dry_run
-      - submitter_id
-      - project_id
-      - parent_job_id
-      - session_id
-      - metadata
-      - name
-      - submitted_at
-      - started_at
-      - completed_at
-      - predicted_wait_time_ms
-      - predicted_execution_duration_ms
-      - execution_duration_ms
-      - failure
-      - output
-      - settings
-      - stats
-      - results
-      type: object
-      additionalProperties: false
-    NumberMap:
+    GetVariantResultsResponse:
       properties: {}
       type: object
       additionalProperties:
         type: number
         format: double
-    CircuitJobStats:
-      properties:
-        qubits:
-          type: integer
-          format: int32
-        circuits:
-          type: integer
-          format: int32
-        gate_counts:
-          $ref: '#/components/schemas/NumberMap'
-        kwh:
-          type: number
-          format: double
-        predicted_quantum_compute_time_us:
-          type: integer
-          format: int32
-        billed_quantum_compute_time_us:
-          type: integer
-          format: int32
+    GenericQuantumFunctionInput:
       type: object
-      additionalProperties: false
-    Noise:
       properties:
-        model:
-          $ref: '#/components/schemas/NoiseModel'
-        seed:
-          type: integer
-          format: int32
-      required:
-      - model
-      type: object
-      additionalProperties: false
-    CircuitJobSettings:
-      properties:
-        compilation:
-          $ref: '#/components/schemas/CircuitJobCompilationSettings'
-        error_mitigation:
-          properties:
-            debiasing:
-              anyOf:
-              - properties:
-                  phi_chi_twirling:
-                    properties:
-                      p2q:
-                        type: number
-                        format: double
-                      t2q:
-                        type: number
-                        format: double
-                      t1q:
-                        type: number
-                        format: double
-                    type: object
-                type: object
-              - type: boolean
-          type: object
-      type: object
-      additionalProperties: false
-    CostModel:
-      type: string
-      enum:
-      - quantum_compute_time
-      - execution_time
-    HamiltonianEnergyData:
-      properties:
-        hamiltonian:
-          items:
-            $ref: '#/components/schemas/HamiltonianPauliTerm'
-          title: Hamiltonian
-          type: array
-        ansatz:
-          $ref: '#/components/schemas/Ansatz'
-        linear_constraints:
-          default: []
-          items:
-            $ref: '#/components/schemas/LinearConstraint'
-          title: Linear Constraints
-          type: array
-        quadratic_constraints:
-          default: []
-          items:
-            $ref: '#/components/schemas/QuadraticConstraint'
-          title: Quadratic Constraints
-          type: array
-        penalty:
-          default: 0
-          nullable: true
-          title: Penalty
-          type: number
-        cvar_alpha:
-          default: null
-          nullable: true
-          title: Cvar Alpha
-          type: number
-      required:
-      - hamiltonian
-      - ansatz
-      type: object
-    QISCircuit:
-      properties:
-        name:
+        type:
           type: string
-        circuit:
-          items:
-            $ref: '#/components/schemas/Gate_QisGate'
-          type: array
-          description: Circuit gates. Can be either QIS gates or Native gates depending on the gateset property.
-        qubits:
-          type: integer
-          format: int32
-        registers:
-          $ref: '#/components/schemas/Registers'
-          description: Registers to use in your circuit. Each register is a list of qubit indices (starting from zero).
-        gateset:
-          type: string
-          enum:
-          - qis
-          nullable: false
-          description: 'Optional gateset override for this individual circuit. If not specified, inherits from parent.
-
-            When set, the circuit must use the appropriate gate format (QIS).'
-      required:
-      - circuit
-      type: object
-      additionalProperties: false
-    Ansatz:
-      properties:
         data:
-          title: Data
-          type: string
+          type: object
+        params:
+          type: array
+          items:
+            type: number
       required:
+      - type
       - data
+    JobsBulkOperationRequest:
+      properties:
+        ids:
+          items:
+            type: string
+          type: array
+      required:
+      - ids
       type: object
+      additionalProperties: false
     JobsDeletedResponse:
       properties:
         ids:
@@ -1133,219 +747,9 @@ components:
           type: string
           enum:
           - deleted
-          nullable: false
       required:
       - ids
       - status
-      type: object
-      additionalProperties: false
-    LinearConstraint:
-      description: "A class to model linear inequality constraints of the form\n\n.. math::\n\n    A x \\leq b."
-      properties:
-        coeffs:
-          items:
-            type: number
-          title: Coeffs
-          type: array
-        rhs:
-          title: Rhs
-          type: number
-      required:
-      - coeffs
-      - rhs
-      type: object
-    MultiCircuitJobCreationPayload:
-      properties:
-        name:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/JobMetadata'
-          description: User defined metadata
-        shots:
-          type: integer
-          format: int32
-          default: 100
-          minimum: 1
-          maximum: 1000000
-        backend:
-          $ref: '#/components/schemas/JobBackends'
-        session_id:
-          type: string
-        settings:
-          properties:
-            error_mitigation:
-              properties:
-                debiasing:
-                  type: boolean
-              type: object
-              description: To turn on debiasing, you must request at least 500 shots
-            compilation:
-              properties:
-                opt:
-                  type: number
-                  format: double
-                precision:
-                  type: string
-              type: object
-          type: object
-        dry_run:
-          type: boolean
-        noise:
-          $ref: '#/components/schemas/Noise'
-        type:
-          type: string
-          enum:
-          - ionq.multi-circuit.v1
-          nullable: false
-        input:
-          $ref: '#/components/schemas/JsonMultiCircuitInput'
-          description: 'Submit multiple circuits in a single job. Each circuit inherits the parent
-
-            `input.gateset` unless overridden by `circuits[].gateset`.'
-      required:
-      - backend
-      - type
-      - input
-      type: object
-      additionalProperties: false
-      title: JSON Multi Circuit Job
-      description: 'Submit multiple circuits in a single job. Each circuit inherits the parent `input.gateset` unless overridden by `circuits[].gateset`.
-
-        '
-      example:
-        type: ionq.multi-circuit.v1
-        backend: simulator
-        shots: 500
-        input:
-          gateset: native
-          qubits: 2
-          circuits:
-          - name: qis circuit override
-            gateset: qis
-            circuit:
-            - gate: h
-              target: 0
-            - gate: cnot
-              target: 0
-              control: 1
-          - name: native circuit from parent
-            circuit:
-            - gate: ms
-              targets:
-              - 0
-              - 1
-              phases:
-              - 0
-              - 0.25
-            - gate: gpi2
-              target: 0
-              phase: 0.75
-    JobCanceledResponse:
-      properties:
-        id:
-          type: string
-          example: 617a1f8b-59d4-435d-aa33-695433d7155e
-        status:
-          type: string
-          enum:
-          - canceled
-          nullable: false
-      required:
-      - id
-      - status
-      type: object
-      additionalProperties: false
-    Failure:
-      properties:
-        code:
-          type: string
-          enum:
-          - InvalidInput
-          - CompilationError
-          - ContractExpiredError
-          - DebiasingError
-          - InternalError
-          - NotEnoughQubits
-          - OptimizationError
-          - PreflightError
-          - QuantumCircuitComplexityError
-          - QuantumComputerError
-          - QuotaExhaustedError
-          - SimulationError
-          - SimulationTimeout
-          - SystemCancel
-          - TooLongPredictedExecutionTime
-          - TooManyControls
-          - TooManyGates
-          - TooManyShots
-          - UnknownBillingError
-          - UnsupportedGate
-        message:
-          type: string
-      required:
-      - code
-      - message
-      type: object
-      additionalProperties: false
-    GetResultsResponse:
-      properties: {}
-      type: object
-      additionalProperties:
-        type: number
-        format: double
-    GetJobsResponse:
-      properties:
-        jobs:
-          items:
-            $ref: '#/components/schemas/BaseJob'
-          type: array
-        next:
-          type: string
-          nullable: true
-      required:
-      - jobs
-      - next
-      type: object
-      additionalProperties: false
-    Gate_NativeGate:
-      properties:
-        gate:
-          $ref: '#/components/schemas/NativeGate'
-        target:
-          type: integer
-          format: int32
-        targets:
-          items:
-            type: number
-            format: double
-          type: array
-          description: The qubits that a quantum gate is applied to
-        controls:
-          items:
-            type: number
-            format: double
-          type: array
-          description: The qubits that determine whether the operation is applied to targets.
-        phase:
-          type: number
-          format: double
-          description: Phase for gpi/gpi2 gates
-        phases:
-          items:
-            type: number
-            format: double
-          type: array
-          description: Phases for ms gate
-        angle:
-          type: number
-          format: double
-          description: Interaction angle for ms gate (in turns, default 0.25)
-        rotation:
-          type: number
-          format: double
-          description: Rotation angle for rx/ry/rz gates
-      required:
-      - gate
       type: object
       additionalProperties: false
     GetJobEstimateResponse:
@@ -1394,17 +798,414 @@ components:
       - current_predicted_queue_time
       type: object
       additionalProperties: false
-    NoiseModel:
+    CircuitJobResult:
+      properties:
+        probabilities:
+          properties:
+            url:
+              type: string
+          required:
+          - url
+          type: object
+        histogram:
+          properties:
+            url:
+              type: string
+          required:
+          - url
+          type: object
+        shots:
+          properties:
+            url:
+              type: string
+          required:
+          - url
+          type: object
+      type: object
+      additionalProperties: false
+    HamiltonianPauliTerm:
+      properties:
+        pauli_string:
+          title: Pauli String
+          type: string
+        coefficient:
+          title: Coefficient
+          type: number
+      required:
+      - pauli_string
+      - coefficient
+      type: object
+    GetJobEstimateQueryParams:
+      properties:
+        backend:
+          $ref: '#/components/schemas/JobBackends'
+        type:
+          type: string
+          default: ionq.circuit.v1
+        qubits:
+          type: integer
+          format: int32
+          default: 25
+        shots:
+          type: integer
+          format: int32
+          default: 1000
+        1q_gates:
+          type: integer
+          format: int32
+          default: 0
+        2q_gates:
+          type: integer
+          format: int32
+          default: 0
+        error_mitigation:
+          type: boolean
+          default: false
+      required:
+      - backend
+      type: object
+      additionalProperties: false
+    QuadraticConstraint:
+      description: "A class to model quadratic inequality constraints of the form\n\n.. math::\n\n    x^T P x + r^T x \\leq c."
+      properties:
+        quadratic_coeff:
+          items:
+            items:
+              type: number
+            type: array
+          title: Quadratic Coeff
+          type: array
+        linear_coeff:
+          items:
+            type: number
+          title: Linear Coeff
+          type: array
+        rhs:
+          title: Rhs
+          type: number
+      required:
+      - quadratic_coeff
+      - linear_coeff
+      - rhs
+      type: object
+    QctrlQaoaJobInput:
+      type: object
+      properties:
+        problem_type:
+          type: string
+          enum:
+          - maxcut
+        problem:
+          type: object
+          description: A NetworkX adjacency_graph object
+          example:
+            directed: false
+            multigraph: false
+            graph: []
+            nodes:
+            - id: 0
+            - id: 1
+            - id: 2
+            adjacency:
+            - - id: 1
+              - id: 2
+            - - id: 0
+              - id: 2
+            - - id: 0
+              - id: 1
+      required:
+      - problem_type
+      - problem
+    QisCircuitInput:
+      properties:
+        qubits:
+          type: integer
+          format: int32
+          minimum: 1
+        circuit:
+          items:
+            $ref: '#/components/schemas/Gate_QisGate'
+          type: array
+        gateset:
+          type: string
+          enum:
+          - qis
+      required:
+      - circuit
+      - gateset
+      type: object
+      additionalProperties: false
+    HamiltonianEnergyInput:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - hamiltonian-energy
+            data:
+              $ref: '#/components/schemas/HamiltonianEnergyData'
+          required:
+          - type
+          - data
+        params:
+          type: array
+          items:
+            type: number
+      required:
+      - data
+    GetJobCostResponse:
+      properties:
+        dry_run:
+          type: boolean
+          example: false
+        estimated_cost:
+          properties:
+            value:
+              type: number
+              format: double
+              example: 24.83
+            unit:
+              type: string
+              example: usd
+          required:
+          - value
+          - unit
+          type: object
+        cost:
+          properties:
+            value:
+              type: number
+              format: double
+              example: 24.83
+            unit:
+              type: string
+              example: usd
+          required:
+          - value
+          - unit
+          type: object
+      required:
+      - dry_run
+      - estimated_cost
+      type: object
+      additionalProperties: false
+    QuantumFunctionInput:
+      oneOf:
+      - $ref: '#/components/schemas/HamiltonianEnergyInput'
+      - $ref: '#/components/schemas/GenericQuantumFunctionInput'
+      discriminator:
+        propertyName: type
+        mapping:
+          hamiltonian-energy: '#/components/schemas/HamiltonianEnergyInput'
+    NumberMap:
+      properties: {}
+      type: object
+      additionalProperties:
+        type: number
+        format: double
+    JobCreationPayload:
+      anyOf:
+      - $ref: '#/components/schemas/CircuitJobCreationPayload'
+        title: Single Circuit
+      - $ref: '#/components/schemas/MultiCircuitJobCreationPayload'
+        title: Multi Circuit
+      - $ref: '#/components/schemas/QuantumFunctionJobCreationPayload'
+        title: Quantum Function
+      - $ref: '#/components/schemas/QctrlQaoaJobCreationPayload'
+        title: QAOA Function
+      example:
+        type: ionq.circuit.v1
+        input:
+          qubits: 1
+          gateset: qis
+          circuit:
+          - gate: h
+            target: 0
+        backend: qpu.forte-1
+        shots: 500
+        settings:
+          error_mitigation:
+            debiasing: false
+    NativeGate:
       type: string
       enum:
-      - ideal
-      - harmony
-      - harmony-1
-      - harmony-2
-      - aria-1
-      - aria-2
-      - forte-1
-      - forte-enterprise-1
+      - zz
+      - ms
+      - gpi
+      - gpi2
+      - nop
+    JsonCircuitInput:
+      anyOf:
+      - $ref: '#/components/schemas/QisCircuitInput'
+        title: Qis Circuit
+      - $ref: '#/components/schemas/NativeCircuitInput'
+        title: Native Circuit
+    HamiltonianEnergyData:
+      properties:
+        hamiltonian:
+          items:
+            $ref: '#/components/schemas/HamiltonianPauliTerm'
+          title: Hamiltonian
+          type: array
+        ansatz:
+          $ref: '#/components/schemas/Ansatz'
+        linear_constraints:
+          default: []
+          items:
+            $ref: '#/components/schemas/LinearConstraint'
+          title: Linear Constraints
+          type: array
+        quadratic_constraints:
+          default: []
+          items:
+            $ref: '#/components/schemas/QuadraticConstraint'
+          title: Quadratic Constraints
+          type: array
+        penalty:
+          default: 0
+          title: Penalty
+          type:
+          - number
+          - 'null'
+        cvar_alpha:
+          default: null
+          title: Cvar Alpha
+          type:
+          - number
+          - 'null'
+      required:
+      - hamiltonian
+      - ansatz
+      type: object
+    QisGate:
+      type: string
+      enum:
+      - x
+      - y
+      - z
+      - rx
+      - ry
+      - rz
+      - h
+      - s
+      - si
+      - v
+      - vi
+      - t
+      - ti
+      - not
+      - cnot
+      - swap
+      - xx
+      - yy
+      - zz
+      - pauliexp
+    JobBackends:
+      type: string
+      description: 'Available options: `simulator`, `qpu.aria-1`, `qpu.aria-2`, `qpu.forte-1`, `qpu.forte-enterprise-1`'
+    JobDeletedResponse:
+      properties:
+        id:
+          type: string
+          example: 617a1f8b-59d4-435d-aa33-695433d7155e
+        status:
+          type: string
+          enum:
+          - deleted
+      required:
+      - id
+      - status
+      type: object
+      additionalProperties: false
+    Failure:
+      properties:
+        code:
+          type: string
+          enum:
+          - InvalidInput
+          - CompilationError
+          - ContractExpiredError
+          - DebiasingError
+          - InternalError
+          - NotEnoughQubits
+          - OptimizationError
+          - PreflightError
+          - QuantumCircuitComplexityError
+          - QuantumComputerError
+          - QuotaExhaustedError
+          - SimulationError
+          - SimulationTimeout
+          - SystemCancel
+          - TooLongPredictedExecutionTime
+          - TooManyControls
+          - TooManyGates
+          - TooManyShots
+          - UnknownBillingError
+          - UnsupportedGate
+        message:
+          type: string
+      required:
+      - code
+      - message
+      type: object
+      additionalProperties: false
+    JobCreationResponse:
+      properties:
+        id:
+          type: string
+          example: 617a1f8b-59d4-435d-aa33-695433d7155e
+        status:
+          $ref: '#/components/schemas/JobStatus'
+        session_id:
+          type:
+          - string
+          - 'null'
+          example: null
+      required:
+      - id
+      - status
+      - session_id
+      type: object
+      additionalProperties: false
+    QuantumFunctionJobCreationPayload:
+      type: object
+      properties:
+        name:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/JobMetadata'
+        shots:
+          type: integer
+          format: int32
+          default: 100
+          maximum: 1000000
+        backend:
+          $ref: '#/components/schemas/JobBackends'
+        session_id:
+          type: string
+        settings:
+          type: object
+          properties:
+            error_mitigation:
+              type: object
+              properties:
+                debiasing:
+                  type: boolean
+        dry_run:
+          type: boolean
+        type:
+          type: string
+          enum:
+          - quantum-function
+        input:
+          $ref: '#/components/schemas/QuantumFunctionInput'
+      required:
+      - backend
+      - type
+      - input
     GetCircuitJobResponse:
       properties:
         id:
@@ -1421,43 +1222,47 @@ components:
           type: string
           description: The id of the user who submitted the job
         project_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         parent_job_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         session_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         metadata:
           allOf:
           - $ref: '#/components/schemas/JobMetadata'
-          nullable: true
         name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         submitted_at:
           $ref: '#/components/schemas/IsoTimestamp'
         started_at:
           allOf:
           - $ref: '#/components/schemas/IsoTimestamp'
-          nullable: true
         completed_at:
           allOf:
           - $ref: '#/components/schemas/IsoTimestamp'
-          nullable: true
         predicted_wait_time_ms:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         predicted_execution_duration_ms:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         execution_duration_ms:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
           description: How long the job actually took to run on the QPU. Null if the job hasn't run yet.
         shots:
           type: integer
@@ -1468,7 +1273,6 @@ components:
         failure:
           allOf:
           - $ref: '#/components/schemas/Failure'
-          nullable: true
         cost_model:
           $ref: '#/components/schemas/CostModel'
           description: The billing model used for this job.
@@ -1481,12 +1285,12 @@ components:
         results:
           allOf:
           - $ref: '#/components/schemas/CircuitJobResult'
-          nullable: true
         child_job_ids:
           items:
             type: string
-          type: array
-          nullable: true
+          type:
+          - array
+          - 'null'
       required:
       - id
       - status
@@ -1513,72 +1317,292 @@ components:
       - child_job_ids
       type: object
       additionalProperties: false
-    CircuitJobResult:
+    JsonMultiCircuitInput:
       properties:
-        probabilities:
-          properties:
-            url:
-              type: string
-          required:
-          - url
-          type: object
-        histogram:
-          properties:
-            url:
-              type: string
-          required:
-          - url
-          type: object
+        gateset:
+          type: string
+          enum:
+          - qis
+          - native
+        circuits:
+          items:
+            anyOf:
+            - $ref: '#/components/schemas/QISCircuit'
+            - $ref: '#/components/schemas/NativeCircuit'
+          type: array
+        qubits:
+          type: integer
+          format: int32
+          minimum: 1
+      required:
+      - gateset
+      - circuits
+      type: object
+    BaseJob:
+      properties:
+        id:
+          type: string
+        status:
+          $ref: '#/components/schemas/JobStatus'
+        type:
+          type: string
+        backend:
+          type: string
+        dry_run:
+          type: boolean
+        submitter_id:
+          type: string
+          description: The id of the user who submitted the job
+        project_id:
+          type:
+          - string
+          - 'null'
+        parent_job_id:
+          type:
+          - string
+          - 'null'
+        session_id:
+          type:
+          - string
+          - 'null'
+        metadata:
+          allOf:
+          - $ref: '#/components/schemas/JobMetadata'
+        name:
+          type:
+          - string
+          - 'null'
+        submitted_at:
+          $ref: '#/components/schemas/IsoTimestamp'
+        started_at:
+          allOf:
+          - $ref: '#/components/schemas/IsoTimestamp'
+        completed_at:
+          allOf:
+          - $ref: '#/components/schemas/IsoTimestamp'
+        predicted_wait_time_ms:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        predicted_execution_duration_ms:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        execution_duration_ms:
+          type:
+          - integer
+          - 'null'
+          format: int32
+          description: How long the job actually took to run on the QPU. Null if the job hasn't run yet.
         shots:
+          type: integer
+          format: int32
+        noise:
+          $ref: '#/components/schemas/Noise'
+          description: Only present in the response when `backend` is simulator.
+        failure:
+          allOf:
+          - $ref: '#/components/schemas/Failure'
+        cost_model:
+          $ref: '#/components/schemas/CostModel'
+          description: The billing model used for this job.
+        output:
+          $ref: '#/components/schemas/JsonObject'
+        settings:
+          $ref: '#/components/schemas/JsonObject'
+        stats:
+          $ref: '#/components/schemas/JsonObject'
+        results:
+          allOf:
+          - $ref: '#/components/schemas/JsonObject'
+      required:
+      - id
+      - status
+      - type
+      - backend
+      - dry_run
+      - submitter_id
+      - project_id
+      - parent_job_id
+      - session_id
+      - metadata
+      - name
+      - submitted_at
+      - started_at
+      - completed_at
+      - predicted_wait_time_ms
+      - predicted_execution_duration_ms
+      - execution_duration_ms
+      - failure
+      - output
+      - settings
+      - stats
+      - results
+      type: object
+      additionalProperties: false
+    JobCanceledResponse:
+      properties:
+        id:
+          type: string
+          example: 617a1f8b-59d4-435d-aa33-695433d7155e
+        status:
+          type: string
+          enum:
+          - canceled
+      required:
+      - id
+      - status
+      type: object
+      additionalProperties: false
+    JobMetadata:
+      properties: {}
+      type: object
+      additionalProperties:
+        type: string
+    CircuitJobCreationPayload:
+      properties:
+        name:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/JobMetadata'
+          description: User defined metadata
+        shots:
+          type: integer
+          format: int32
+          default: 100
+          minimum: 1
+          maximum: 1000000
+        backend:
+          $ref: '#/components/schemas/JobBackends'
+        session_id:
+          type: string
+        settings:
           properties:
-            url:
-              type: string
-          required:
-          - url
+            error_mitigation:
+              properties:
+                debiasing:
+                  type: boolean
+              type: object
+              description: To turn on debiasing, you must request at least 500 shots
+            compilation:
+              properties:
+                opt:
+                  type: number
+                  format: double
+                precision:
+                  type: string
+              type: object
+          type: object
+        dry_run:
+          type: boolean
+        noise:
+          $ref: '#/components/schemas/Noise'
+        type:
+          type: string
+          enum:
+          - ionq.circuit.v1
+        input:
+          $ref: '#/components/schemas/JsonCircuitInput'
+      required:
+      - backend
+      - type
+      - input
+      type: object
+      additionalProperties: false
+    CircuitJobSettings:
+      properties:
+        compilation:
+          $ref: '#/components/schemas/CircuitJobCompilationSettings'
+        error_mitigation:
+          properties:
+            debiasing:
+              anyOf:
+              - properties:
+                  phi_chi_twirling:
+                    properties:
+                      p2q:
+                        type: number
+                        format: double
+                      t2q:
+                        type: number
+                        format: double
+                      t1q:
+                        type: number
+                        format: double
+                    type: object
+                type: object
+              - type: boolean
           type: object
       type: object
       additionalProperties: false
-    JsonCircuitInput:
-      anyOf:
-      - $ref: '#/components/schemas/QisCircuitInput'
-        title: Qis Circuit
-      - $ref: '#/components/schemas/NativeCircuitInput'
-        title: Native Circuit
-    HamiltonianEnergyInput:
-      type: object
+    QISCircuit:
       properties:
-        data:
-          type: object
-          properties:
-            type:
-              type: string
-              enum:
-              - hamiltonian-energy
-            data:
-              $ref: '#/components/schemas/HamiltonianEnergyData'
-          required:
-          - type
-          - data
-        params:
-          type: array
+        name:
+          type: string
+        circuit:
           items:
-            type: number
+            $ref: '#/components/schemas/Gate_QisGate'
+          type: array
+          description: Circuit gates. Can be either QIS gates or Native gates depending on the gateset property.
+        qubits:
+          type: integer
+          format: int32
+        registers:
+          $ref: '#/components/schemas/Registers'
+          description: Registers to use in your circuit. Each register is a list of qubit indices (starting from zero).
+        gateset:
+          type: string
+          enum:
+          - qis
+          description: 'Optional gateset override for this individual circuit. If not specified, inherits from parent.
+
+            When set, the circuit must use the appropriate gate format (QIS).'
       required:
-      - data
-    GetJobResponse:
-      $ref: '#/components/schemas/GetCircuitJobResponse'
-    NativeGate:
+      - circuit
+      type: object
+      additionalProperties: false
+    GetResultsResponse:
+      properties: {}
+      type: object
+      additionalProperties:
+        type: number
+        format: double
+    NoiseModel:
       type: string
       enum:
-      - zz
-      - ms
-      - gpi
-      - gpi2
-      - nop
-    Gate_QisGate:
+      - ideal
+      - harmony
+      - harmony-1
+      - harmony-2
+      - aria-1
+      - aria-2
+      - forte-1
+      - forte-enterprise-1
+    NativeCircuitInput:
+      properties:
+        qubits:
+          type: integer
+          format: int32
+          minimum: 1
+        circuit:
+          items:
+            $ref: '#/components/schemas/Gate_NativeGate'
+          type: array
+        gateset:
+          type: string
+          enum:
+          - native
+      required:
+      - circuit
+      - gateset
+      type: object
+      additionalProperties: false
+    Gate_NativeGate:
       properties:
         gate:
-          $ref: '#/components/schemas/QisGate'
+          $ref: '#/components/schemas/NativeGate'
         target:
           type: integer
           format: int32
@@ -1594,9 +1618,20 @@ components:
             format: double
           type: array
           description: The qubits that determine whether the operation is applied to targets.
-        control:
-          type: integer
-          format: int32
+        phase:
+          type: number
+          format: double
+          description: Phase for gpi/gpi2 gates
+        phases:
+          items:
+            type: number
+            format: double
+          type: array
+          description: Phases for ms gate
+        angle:
+          type: number
+          format: double
+          description: Interaction angle for ms gate (in turns, default 0.25)
         rotation:
           type: number
           format: double
@@ -1605,6 +1640,32 @@ components:
       - gate
       type: object
       additionalProperties: false
+    CircuitJobStats:
+      properties:
+        qubits:
+          type: integer
+          format: int32
+        circuits:
+          type: integer
+          format: int32
+        gate_counts:
+          $ref: '#/components/schemas/NumberMap'
+        kwh:
+          type: number
+          format: double
+        predicted_quantum_compute_time_us:
+          type: integer
+          format: int32
+        billed_quantum_compute_time_us:
+          type: integer
+          format: int32
+      type: object
+      additionalProperties: false
+    CostModel:
+      type: string
+      enum:
+      - quantum_compute_time
+      - execution_time
     NativeCircuit:
       properties:
         name:
@@ -1624,55 +1685,11 @@ components:
           type: string
           enum:
           - native
-          nullable: false
           description: 'Optional gateset override for this individual circuit. If not specified, inherits from parent.
 
             When set, the circuit must use the appropriate gate format (Native).'
       required:
       - circuit
-      type: object
-      additionalProperties: false
-    GenericQuantumFunctionInput:
-      type: object
-      properties:
-        type:
-          type: string
-        data:
-          type: object
-        params:
-          type: array
-          items:
-            type: number
-      required:
-      - type
-      - data
-    JobsCanceledResponse:
-      properties:
-        ids:
-          items:
-            type: string
-          type: array
-          example:
-          - 617a1f8b-59d4-435d-aa33-695433d7155e
-          - 617a1f8b-59d4-435d-aa33-695433d7155f
-        status:
-          type: string
-          enum:
-          - canceled
-          nullable: false
-      required:
-      - ids
-      - status
-      type: object
-      additionalProperties: false
-    JobsBulkOperationRequest:
-      properties:
-        ids:
-          items:
-            type: string
-          type: array
-      required:
-      - ids
       type: object
       additionalProperties: false
     QctrlQaoaJobCreationPayload:
@@ -1726,190 +1743,190 @@ components:
       - type
       - input
       - external_settings
-    JobCreationPayload:
-      anyOf:
-      - $ref: '#/components/schemas/CircuitJobCreationPayload'
-        title: Single Circuit
-      - $ref: '#/components/schemas/MultiCircuitJobCreationPayload'
-        title: Multi Circuit
-      - $ref: '#/components/schemas/QuantumFunctionJobCreationPayload'
-        title: Quantum Function
-      - $ref: '#/components/schemas/QctrlQaoaJobCreationPayload'
-        title: QAOA Function
-      example:
-        type: ionq.circuit.v1
-        input:
-          qubits: 1
-          gateset: qis
-          circuit:
-          - gate: h
-            target: 0
-        backend: qpu.forte-1
-        shots: 500
-        settings:
-          error_mitigation:
-            debiasing: false
-    JsonMultiCircuitInput:
+    GetJobsResponse:
       properties:
-        gateset:
-          type: string
-          enum:
-          - qis
-          - native
-        circuits:
+        jobs:
           items:
-            anyOf:
-            - $ref: '#/components/schemas/QISCircuit'
-            - $ref: '#/components/schemas/NativeCircuit'
+            $ref: '#/components/schemas/BaseJob'
           type: array
-        qubits:
-          type: integer
-          format: int32
-          minimum: 1
+        next:
+          type:
+          - string
+          - 'null'
       required:
-      - gateset
-      - circuits
-      type: object
-    QctrlQaoaJobInput:
-      type: object
-      properties:
-        problem_type:
-          type: string
-          enum:
-          - maxcut
-        problem:
-          type: object
-          description: A NetworkX adjacency_graph object
-          example:
-            directed: false
-            multigraph: false
-            graph: []
-            nodes:
-            - id: 0
-            - id: 1
-            - id: 2
-            adjacency:
-            - - id: 1
-              - id: 2
-            - - id: 0
-              - id: 2
-            - - id: 0
-              - id: 1
-      required:
-      - problem_type
-      - problem
-    IsoTimestamp:
-      type: string
-    JobCreationResponse:
-      properties:
-        id:
-          type: string
-          example: 617a1f8b-59d4-435d-aa33-695433d7155e
-        status:
-          $ref: '#/components/schemas/JobStatus'
-        session_id:
-          type: string
-          nullable: true
-          example: null
-      required:
-      - id
-      - status
-      - session_id
+      - jobs
+      - next
       type: object
       additionalProperties: false
-    NativeCircuitInput:
-      properties:
-        qubits:
-          type: integer
-          format: int32
-          minimum: 1
-        circuit:
-          items:
-            $ref: '#/components/schemas/Gate_NativeGate'
-          type: array
-        gateset:
-          type: string
-          enum:
-          - native
-          nullable: false
-      required:
-      - circuit
-      - gateset
-      type: object
-      additionalProperties: false
-    JobMetadata:
+    Registers:
       properties: {}
       type: object
       additionalProperties:
-        type: string
-    HamiltonianPauliTerm:
-      properties:
-        pauli_string:
-          title: Pauli String
-          type: string
-        coefficient:
-          title: Coefficient
-          type: number
-      required:
-      - pauli_string
-      - coefficient
-      type: object
-    QisCircuitInput:
-      properties:
-        qubits:
-          type: integer
-          format: int32
-          minimum: 1
-        circuit:
-          items:
-            $ref: '#/components/schemas/Gate_QisGate'
-          type: array
-        gateset:
-          type: string
-          enum:
-          - qis
-          nullable: false
-      required:
-      - circuit
-      - gateset
-      type: object
-      additionalProperties: false
-    QuantumFunctionJobCreationPayload:
-      type: object
+        items:
+          type:
+          - number
+          - 'null'
+          format: double
+        type: array
+    MultiCircuitJobCreationPayload:
       properties:
         name:
           type: string
         metadata:
           $ref: '#/components/schemas/JobMetadata'
+          description: User defined metadata
         shots:
           type: integer
           format: int32
           default: 100
+          minimum: 1
           maximum: 1000000
         backend:
           $ref: '#/components/schemas/JobBackends'
         session_id:
           type: string
         settings:
-          type: object
           properties:
             error_mitigation:
-              type: object
               properties:
                 debiasing:
                   type: boolean
+              type: object
+              description: To turn on debiasing, you must request at least 500 shots
+            compilation:
+              properties:
+                opt:
+                  type: number
+                  format: double
+                precision:
+                  type: string
+              type: object
+          type: object
         dry_run:
           type: boolean
+        noise:
+          $ref: '#/components/schemas/Noise'
         type:
           type: string
           enum:
-          - quantum-function
+          - ionq.multi-circuit.v1
         input:
-          $ref: '#/components/schemas/QuantumFunctionInput'
+          $ref: '#/components/schemas/JsonMultiCircuitInput'
+          description: 'Submit multiple circuits in a single job. Each circuit inherits the parent
+
+            `input.gateset` unless overridden by `circuits[].gateset`.'
       required:
       - backend
       - type
       - input
+      type: object
+      additionalProperties: false
+      title: JSON Multi Circuit Job
+      description: 'Submit multiple circuits in a single job. Each circuit inherits the parent `input.gateset` unless overridden by `circuits[].gateset`.
+
+        '
+      example:
+        type: ionq.multi-circuit.v1
+        backend: simulator
+        shots: 500
+        input:
+          gateset: native
+          qubits: 2
+          circuits:
+          - name: qis circuit override
+            gateset: qis
+            circuit:
+            - gate: h
+              target: 0
+            - gate: cnot
+              target: 0
+              control: 1
+          - name: native circuit from parent
+            circuit:
+            - gate: ms
+              targets:
+              - 0
+              - 1
+              phases:
+              - 0
+              - 0.25
+            - gate: gpi2
+              target: 0
+              phase: 0.75
+    GetJobResponse:
+      $ref: '#/components/schemas/GetCircuitJobResponse'
+    JobsCanceledResponse:
+      properties:
+        ids:
+          items:
+            type: string
+          type: array
+          example:
+          - 617a1f8b-59d4-435d-aa33-695433d7155e
+          - 617a1f8b-59d4-435d-aa33-695433d7155f
+        status:
+          type: string
+          enum:
+          - canceled
+      required:
+      - ids
+      - status
+      type: object
+      additionalProperties: false
+    LinearConstraint:
+      description: "A class to model linear inequality constraints of the form\n\n.. math::\n\n    A x \\leq b."
+      properties:
+        coeffs:
+          items:
+            type: number
+          title: Coeffs
+          type: array
+        rhs:
+          title: Rhs
+          type: number
+      required:
+      - coeffs
+      - rhs
+      type: object
+    JobStatus:
+      type: string
+      enum:
+      - submitted
+      - ready
+      - started
+      - canceled
+      - failed
+      - completed
+    Gate_QisGate:
+      properties:
+        gate:
+          $ref: '#/components/schemas/QisGate'
+        target:
+          type: integer
+          format: int32
+        targets:
+          items:
+            type: number
+            format: double
+          type: array
+          description: The qubits that a quantum gate is applied to
+        controls:
+          items:
+            type: number
+            format: double
+          type: array
+          description: The qubits that determine whether the operation is applied to targets.
+        control:
+          type: integer
+          format: int32
+        rotation:
+          type: number
+          format: double
+          description: Rotation angle for rx/ry/rz gates
+      required:
+      - gate
+      type: object
+      additionalProperties: false
   securitySchemes:
     apiKeyAuth:
       description: 'API keys are associated with a user and can be created on the [IonQ Quantum Cloud](https://cloud.ionq.com) application. To authenticate, prefix your API Key with `apiKey ` and place it in the `Authorization` request header. Ex: `Authorization: apiKey your-api-key`'

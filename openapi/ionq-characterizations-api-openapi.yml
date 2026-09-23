@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   contact:
     email: support@ionq.co
@@ -14,18 +14,13 @@ info:
     experience an outage.
 
 
-    In addition, you may use the [status endpoint](#tag/status) to check the
+    In addition, you may use the status endpoint to check the
 
     current status of our API.
 
 
-    ## Authentication
-
-
-    <SecurityDefinitions />
-
-    '
-  title: IonQ Cloud Platform backends characterizations API
+    ## Authentication'
+  title: IonQ Cloud Platform Characterizations API
   version: v0.4
 servers:
 - url: https://api.ionq.co/v0.4
@@ -86,31 +81,35 @@ paths:
       - lang: curl
         source: "curl \"https://api.ionq.co/v0.4/backends/qpu.aria-1/characterizations/aa54e783-0a9b-4f73-ad2f-63983b6aa4a8\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
 components:
-  responses:
-    GetCharacterization:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Characterization'
-      description: Successfully retrieved current characterization
-    ListCharacterizations:
-      content:
-        application/json:
-          schema:
-            description: Response body from requesting characterization data.
-            properties:
-              characterizations:
-                description: A page of characterizations measurements.
-                items:
-                  $ref: '#/components/schemas/Characterization'
-                type: array
-              pages:
-                description: The number of remaining pages of characterization measurements.
-                type: integer
-            required:
-            - characterizations
-            type: object
-      description: Successfully retrieved characterizations.
+  parameters:
+    uuid:
+      description: A UUID identifying a specific resource
+      example: 617a1f8b-59d4-435d-aa33-695433d7155e
+      in: path
+      name: UUID
+      required: true
+      schema:
+        format: uuid
+        type: string
+    pagination-page:
+      in: query
+      name: page
+      schema:
+        $ref: '#/components/schemas/pagination-page'
+    backend:
+      description: A backend where jobs can run on.
+      in: path
+      name: backend
+      required: true
+      schema:
+        enum:
+        - qpu.aria-1
+        - qpu.aria-2
+        - qpu.forte-1
+        - qpu.forte-enterprise-1
+        - qpu.forte-enterprise-2
+        - qpu.forte-enterprise-3
+        type: string
   schemas:
     pagination-page:
       default: 1
@@ -198,35 +197,31 @@ components:
           - reset
           type: object
       type: object
-  parameters:
-    backend:
-      description: A backend where jobs can run on.
-      in: path
-      name: backend
-      required: true
-      schema:
-        enum:
-        - qpu.aria-1
-        - qpu.aria-2
-        - qpu.forte-1
-        - qpu.forte-enterprise-1
-        - qpu.forte-enterprise-2
-        - qpu.forte-enterprise-3
-        type: string
-    uuid:
-      description: A UUID identifying a specific resource
-      example: 617a1f8b-59d4-435d-aa33-695433d7155e
-      in: path
-      name: UUID
-      required: true
-      schema:
-        format: uuid
-        type: string
-    pagination-page:
-      in: query
-      name: page
-      schema:
-        $ref: '#/components/schemas/pagination-page'
+  responses:
+    ListCharacterizations:
+      content:
+        application/json:
+          schema:
+            description: Response body from requesting characterization data.
+            properties:
+              characterizations:
+                description: A page of characterizations measurements.
+                items:
+                  $ref: '#/components/schemas/Characterization'
+                type: array
+              pages:
+                description: The number of remaining pages of characterization measurements.
+                type: integer
+            required:
+            - characterizations
+            type: object
+      description: Successfully retrieved characterizations.
+    GetCharacterization:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Characterization'
+      description: Successfully retrieved current characterization
   securitySchemes:
     apiKeyAuth:
       description: 'API keys are associated with a user and can be created on the [IonQ Quantum Cloud](https://cloud.ionq.com) application. To authenticate, prefix your API Key with `apiKey ` and place it in the `Authorization` request header. Ex: `Authorization: apiKey your-api-key`'

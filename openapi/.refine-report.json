@@ -1,24 +1,55 @@
 {
   "provider": "ionq",
   "sources": [
-    "ionq-backends-api-openapi.yml",
-    "ionq-characterizations-api-openapi.yml",
-    "ionq-jobs-api-openapi.yml",
-    "ionq-sessions-api-openapi.yml",
-    "ionq-usage-api-openapi.yml",
-    "ionq-whoami-api-openapi.yml"
+    "_original/ionq-quantum-cloud-openapi.yml"
   ],
   "outputs": [
-    "ionq-backends-api-openapi.yml",
-    "ionq-characterizations-api-openapi.yml",
     "ionq-jobs-api-openapi.yml",
     "ionq-sessions-api-openapi.yml",
+    "ionq-backends-api-openapi.yml",
+    "ionq-characterizations-api-openapi.yml",
     "ionq-usage-api-openapi.yml",
     "ionq-whoami-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ionq-quantum-cloud-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "ionq-quantum-cloud-openapi.yml: tagged paths POST /jobs -> Jobs",
+    "ionq-quantum-cloud-openapi.yml: tagged paths GET /jobs -> Jobs",
+    "ionq-quantum-cloud-openapi.yml: tagged paths DELETE /jobs -> Jobs",
+    "ionq-quantum-cloud-openapi.yml: tagged paths GET /jobs/{UUID} -> Jobs",
+    "ionq-quantum-cloud-openapi.yml: tagged paths DELETE /jobs/{UUID} -> Jobs",
+    "ionq-quantum-cloud-openapi.yml: tagged paths GET /jobs/{UUID}/cost -> Jobs",
+    "ionq-quantum-cloud-openapi.yml: tagged paths GET /jobs/{UUID}/circuits/{lang} -> Jobs",
+    "ionq-quantum-cloud-openapi.yml: tagged paths PUT /jobs/{UUID}/status/cancel -> Jobs",
+    "ionq-quantum-cloud-openapi.yml: tagged paths PUT /jobs/status/cancel -> Jobs",
+    "ionq-quantum-cloud-openapi.yml: tagged paths GET /jobs/estimate -> Jobs",
+    "ionq-quantum-cloud-openapi.yml: tagged paths GET /jobs/{UUID}/results/probabilities -> Jobs",
+    "ionq-quantum-cloud-openapi.yml: tagged paths GET /jobs/{UUID}/variants/{variantId}/results/probabilities -> Jobs",
+    "ionq-quantum-cloud-openapi.yml: tagged paths GET /jobs/{UUID}/variants/{variantId}/results/histogram -> Jobs",
+    "ionq-quantum-cloud-openapi.yml: tagged paths GET /jobs/{UUID}/variants/{variantId}/results/shots -> Jobs",
+    "ionq-quantum-cloud-openapi.yml: tagged paths POST /sessions -> Sessions",
+    "ionq-quantum-cloud-openapi.yml: tagged paths GET /sessions -> Sessions",
+    "ionq-quantum-cloud-openapi.yml: tagged paths POST /sessions/{session_id}/end -> Sessions",
+    "ionq-quantum-cloud-openapi.yml: tagged paths GET /sessions/{session_id} -> Sessions",
+    "ionq-quantum-cloud-openapi.yml: tagged paths GET /sessions/{session_id}/jobs -> Sessions",
+    "ionq-quantum-cloud-openapi.yml: declared missing tag: Jobs",
+    "ionq-quantum-cloud-openapi.yml: declared missing tag: Sessions",
+    "ionq-quantum-cloud-openapi.yml: declared missing tag: backends",
+    "ionq-quantum-cloud-openapi.yml: declared missing tag: characterizations",
+    "ionq-quantum-cloud-openapi.yml: declared missing tag: usage",
+    "ionq-quantum-cloud-openapi.yml: declared missing tag: whoami",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "ionq-backends-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ionq-characterizations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ionq-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ionq-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ionq-usage-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ionq-whoami-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
