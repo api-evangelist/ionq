@@ -62,6 +62,37 @@ paths:
 
           '
 components:
+  parameters:
+    backend:
+      description: A backend where jobs can run on.
+      in: path
+      name: backend
+      required: true
+      schema:
+        enum:
+        - qpu.aria-1
+        - qpu.aria-2
+        - qpu.forte-1
+        - qpu.forte-enterprise-1
+        - qpu.forte-enterprise-2
+        - qpu.forte-enterprise-3
+        type: string
+  responses:
+    ListBackends:
+      content:
+        application/json:
+          schema:
+            description: The list of backends.
+            items:
+              $ref: '#/components/schemas/Backend'
+            type: array
+      description: Successfully retrieved backend.
+    GetBackend:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Backend'
+      description: Successfully retrieved backend.
   schemas:
     Backend:
       description: A backend that you can target your program to run on.
@@ -110,37 +141,6 @@ components:
       - average_queue_time
       - last_updated
       type: object
-  responses:
-    ListBackends:
-      content:
-        application/json:
-          schema:
-            description: The list of backends.
-            items:
-              $ref: '#/components/schemas/Backend'
-            type: array
-      description: Successfully retrieved backend.
-    GetBackend:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Backend'
-      description: Successfully retrieved backend.
-  parameters:
-    backend:
-      description: A backend where jobs can run on.
-      in: path
-      name: backend
-      required: true
-      schema:
-        enum:
-        - qpu.aria-1
-        - qpu.aria-2
-        - qpu.forte-1
-        - qpu.forte-enterprise-1
-        - qpu.forte-enterprise-2
-        - qpu.forte-enterprise-3
-        type: string
   securitySchemes:
     apiKeyAuth:
       description: 'API keys are associated with a user and can be created on the [IonQ Quantum Cloud](https://cloud.ionq.com) application. To authenticate, prefix your API Key with `apiKey ` and place it in the `Authorization` request header. Ex: `Authorization: apiKey your-api-key`'

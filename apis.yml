@@ -24,7 +24,7 @@ apis:
     backends, and reports. Superseded by v0.4 which adds Sessions, separated cost/results endpoints, and
     restructured characterizations. v0.3 remains supported for existing integrations.
 - aid: ionq:ionq-backends-api
-  name: IonQ backends API
+  name: IonQ Backends API
   description: The backends API from IonQ — 2 operation(s) for backends.
   humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
   baseURL: https://api.ionq.co/v0.4
@@ -48,7 +48,7 @@ apis:
   - type: JSONLD
     url: json-ld/ionq-context.jsonld
 - aid: ionq:ionq-characterizations-api
-  name: IonQ characterizations API
+  name: IonQ Characterizations API
   description: The characterizations API from IonQ — 2 operation(s) for characterizations.
   humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
   baseURL: https://api.ionq.co/v0.4
@@ -116,7 +116,7 @@ apis:
   - type: JSONLD
     url: json-ld/ionq-context.jsonld
 - aid: ionq:ionq-usage-api
-  name: IonQ usage API
+  name: IonQ Usage API
   description: The usage API from IonQ — 1 operation(s) for usage.
   humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
   baseURL: https://api.ionq.co/v0.4
@@ -140,7 +140,7 @@ apis:
   - type: JSONLD
     url: json-ld/ionq-context.jsonld
 - aid: ionq:ionq-whoami-api
-  name: IonQ whoami API
+  name: IonQ Whoami API
   description: The whoami API from IonQ — 1 operation(s) for whoami.
   humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
   baseURL: https://api.ionq.co/v0.4

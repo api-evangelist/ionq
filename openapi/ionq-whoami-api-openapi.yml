@@ -42,15 +42,14 @@ paths:
         source: "curl \"https://api.ionq.co/v0.4/whoami\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
 components:
   schemas:
-    key-id:
-      description: UUID of a API key.
-      example: e060759f-4348-4767-a645-8c0301265791
-      format: uuid
-      type: string
     project-id:
       description: UUID of a project.
       example: 944904d6-2e30-4cfb-8bc4-04afaabcdd42
       format: uuid
+      type: string
+    key-name:
+      description: key name.
+      example: My First Key
       type: string
     Whoami:
       description: Details of current API Key session.
@@ -65,9 +64,10 @@ components:
       - key_id
       - key_name
       type: object
-    key-name:
-      description: key name.
-      example: My First Key
+    key-id:
+      description: UUID of a API key.
+      example: e060759f-4348-4767-a645-8c0301265791
+      format: uuid
       type: string
   responses:
     Whoami:
