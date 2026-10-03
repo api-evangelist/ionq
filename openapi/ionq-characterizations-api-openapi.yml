@@ -81,37 +81,7 @@ paths:
       - lang: curl
         source: "curl \"https://api.ionq.co/v0.4/backends/qpu.aria-1/characterizations/aa54e783-0a9b-4f73-ad2f-63983b6aa4a8\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
 components:
-  responses:
-    ListCharacterizations:
-      content:
-        application/json:
-          schema:
-            description: Response body from requesting characterization data.
-            properties:
-              characterizations:
-                description: A page of characterizations measurements.
-                items:
-                  $ref: '#/components/schemas/Characterization'
-                type: array
-              pages:
-                description: The number of remaining pages of characterization measurements.
-                type: integer
-            required:
-            - characterizations
-            type: object
-      description: Successfully retrieved characterizations.
-    GetCharacterization:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Characterization'
-      description: Successfully retrieved current characterization
   schemas:
-    pagination-page:
-      default: 1
-      description: Specify the page of results to return.
-      minimum: 1
-      type: integer
     Characterization:
       description: Quantum hardware characterization data.
       properties:
@@ -193,6 +163,36 @@ components:
           - reset
           type: object
       type: object
+    pagination-page:
+      default: 1
+      description: Specify the page of results to return.
+      minimum: 1
+      type: integer
+  responses:
+    GetCharacterization:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Characterization'
+      description: Successfully retrieved current characterization
+    ListCharacterizations:
+      content:
+        application/json:
+          schema:
+            description: Response body from requesting characterization data.
+            properties:
+              characterizations:
+                description: A page of characterizations measurements.
+                items:
+                  $ref: '#/components/schemas/Characterization'
+                type: array
+              pages:
+                description: The number of remaining pages of characterization measurements.
+                type: integer
+            required:
+            - characterizations
+            type: object
+      description: Successfully retrieved characterizations.
   parameters:
     uuid:
       description: A UUID identifying a specific resource

@@ -228,6 +228,98 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    CostModel:
+      type: string
+      enum:
+      - quantum_compute_time
+      - execution_time
+    SessionSettingsRequest:
+      properties:
+        job_count_limit:
+          type: integer
+          format: int32
+        duration_limit_min:
+          type: integer
+          format: int32
+        cost_limit:
+          $ref: '#/components/schemas/SessionCostLimit'
+      type: object
+      additionalProperties: false
+    SessionStatusEnum:
+      enum:
+      - created
+      - started
+      - ended
+      type: string
+    Noise:
+      properties:
+        model:
+          $ref: '#/components/schemas/NoiseModel'
+        seed:
+          type: integer
+          format: int32
+      required:
+      - model
+      type: object
+      additionalProperties: false
+    Session:
+      properties:
+        id:
+          type: string
+          description: The id of the session.
+        created_at:
+          type: string
+          format: date-time
+        organization_id:
+          type: string
+        backend:
+          type:
+          - string
+          - 'null'
+        project_id:
+          type:
+          - string
+          - 'null'
+        creator_id:
+          type:
+          - string
+          - 'null'
+        ended_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        ender_id:
+          type:
+          - string
+          - 'null'
+        settings:
+          $ref: '#/components/schemas/SessionSettings'
+        active:
+          type: boolean
+        status:
+          $ref: '#/components/schemas/SessionStatusEnum'
+        started_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+      required:
+      - id
+      - created_at
+      - organization_id
+      - backend
+      - project_id
+      - creator_id
+      - ended_at
+      - ender_id
+      - active
+      - status
+      - started_at
+      type: object
+      additionalProperties: false
+    IsoTimestamp:
+      type: string
     Failure:
       properties:
         code:
@@ -260,24 +352,6 @@ components:
       - message
       type: object
       additionalProperties: false
-    IsoTimestamp:
-      type: string
-    JsonObject:
-      properties: {}
-      type: object
-      additionalProperties: {}
-    SessionSettingsRequest:
-      properties:
-        job_count_limit:
-          type: integer
-          format: int32
-        duration_limit_min:
-          type: integer
-          format: int32
-        cost_limit:
-          $ref: '#/components/schemas/SessionCostLimit'
-      type: object
-      additionalProperties: false
     GetJobsResponse:
       properties:
         jobs:
@@ -293,11 +367,46 @@ components:
       - next
       type: object
       additionalProperties: false
-    CostModel:
+    SessionCostLimit:
+      properties:
+        unit:
+          type: string
+        value:
+          type: number
+          format: double
+      required:
+      - unit
+      - value
+      type: object
+      additionalProperties: false
+    JobMetadata:
+      properties: {}
+      type: object
+      additionalProperties:
+        type: string
+    JobStatus:
       type: string
       enum:
-      - quantum_compute_time
-      - execution_time
+      - submitted
+      - ready
+      - started
+      - canceled
+      - failed
+      - completed
+    JsonObject:
+      properties: {}
+      type: object
+      additionalProperties: {}
+    CreateSessionRequest:
+      properties:
+        backend:
+          type: string
+        settings:
+          $ref: '#/components/schemas/SessionSettingsRequest'
+      required:
+      - backend
+      type: object
+      additionalProperties: false
     NoiseModel:
       type: string
       enum:
@@ -309,30 +418,6 @@ components:
       - aria-2
       - forte-1
       - forte-enterprise-1
-    JobMetadata:
-      properties: {}
-      type: object
-      additionalProperties:
-        type: string
-    CreateSessionRequest:
-      properties:
-        backend:
-          type: string
-        settings:
-          $ref: '#/components/schemas/SessionSettingsRequest'
-      required:
-      - backend
-      type: object
-      additionalProperties: false
-    JobStatus:
-      type: string
-      enum:
-      - submitted
-      - ready
-      - started
-      - canceled
-      - failed
-      - completed
     SessionsResponse:
       properties:
         organization_id:
@@ -346,24 +431,6 @@ components:
       - sessions
       type: object
       additionalProperties: false
-    SessionCostLimit:
-      properties:
-        unit:
-          type: string
-        value:
-          type: number
-          format: double
-      required:
-      - unit
-      - value
-      type: object
-      additionalProperties: false
-    SessionStatusEnum:
-      enum:
-      - created
-      - started
-      - ended
-      type: string
     BaseJob:
       properties:
         id:
@@ -466,73 +533,6 @@ components:
       - settings
       - stats
       - results
-      type: object
-      additionalProperties: false
-    Noise:
-      properties:
-        model:
-          $ref: '#/components/schemas/NoiseModel'
-        seed:
-          type: integer
-          format: int32
-      required:
-      - model
-      type: object
-      additionalProperties: false
-    Session:
-      properties:
-        id:
-          type: string
-          description: The id of the session.
-        created_at:
-          type: string
-          format: date-time
-        organization_id:
-          type: string
-        backend:
-          type:
-          - string
-          - 'null'
-        project_id:
-          type:
-          - string
-          - 'null'
-        creator_id:
-          type:
-          - string
-          - 'null'
-        ended_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        ender_id:
-          type:
-          - string
-          - 'null'
-        settings:
-          $ref: '#/components/schemas/SessionSettings'
-        active:
-          type: boolean
-        status:
-          $ref: '#/components/schemas/SessionStatusEnum'
-        started_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-      required:
-      - id
-      - created_at
-      - organization_id
-      - backend
-      - project_id
-      - creator_id
-      - ended_at
-      - ender_id
-      - active
-      - status
-      - started_at
       type: object
       additionalProperties: false
     SessionSettings:

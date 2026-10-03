@@ -78,6 +78,12 @@ components:
         - qpu.forte-enterprise-3
         type: string
   responses:
+    GetBackend:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Backend'
+      description: Successfully retrieved backend.
     ListBackends:
       content:
         application/json:
@@ -86,12 +92,6 @@ components:
             items:
               $ref: '#/components/schemas/Backend'
             type: array
-      description: Successfully retrieved backend.
-    GetBackend:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Backend'
       description: Successfully retrieved backend.
   schemas:
     Backend:
