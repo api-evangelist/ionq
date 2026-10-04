@@ -1,5 +1,8 @@
 aid: ionq
 url: https://raw.githubusercontent.com/api-evangelist/ionq/refs/heads/main/apis.yml
+x-docs-platform: mintlify
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
 apis:
 - aid: ionq:ionq-quantum-cloud-api-v0-3
   name: IonQ Quantum Cloud API (v0.3 Legacy)
