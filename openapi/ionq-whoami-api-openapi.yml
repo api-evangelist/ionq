@@ -54,6 +54,11 @@ components:
       example: e060759f-4348-4767-a645-8c0301265791
       format: uuid
       type: string
+    project-id:
+      description: UUID of a project.
+      example: 944904d6-2e30-4cfb-8bc4-04afaabcdd42
+      format: uuid
+      type: string
     Whoami:
       description: Details of current API Key session.
       properties:
@@ -70,11 +75,6 @@ components:
     key-name:
       description: key name.
       example: My First Key
-      type: string
-    project-id:
-      description: UUID of a project.
-      example: 944904d6-2e30-4cfb-8bc4-04afaabcdd42
-      format: uuid
       type: string
   securitySchemes:
     apiKeyAuth:

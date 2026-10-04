@@ -71,23 +71,17 @@ paths:
       - lang: curl
         source: "curl \"https://api.ionq.co/v0.4/organizations/com.my.org/usage?group_by=project&start_date=2025-01-01&end_date=2025-03-02&modality=weekly\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
 components:
+  parameters:
+    organization_id:
+      description: The UUID of the organization — this UUID is provided in the response on organization creation.
+      example: 71d164e-6ebe-4126-8839-f1529bb01a00
+      in: path
+      name: organization_id
+      required: true
+      schema:
+        format: uuid
+        type: string
   schemas:
-    modality:
-      description: Report modality
-      enum:
-      - daily
-      - weekly
-      - monthly
-      example: daily
-      type: string
-    group_by:
-      description: QPU Usage grouping
-      enum:
-      - job
-      - project
-      - user
-      example: project
-      type: string
     Usages:
       description: QPU usage details for a given modality and date range.
       properties:
@@ -134,11 +128,6 @@ components:
       - group_type
       - modality
       type: object
-    organization_id:
-      description: UUID of an organization.
-      example: 71d164e-6ebe-4126-8839-f1529bb01a00
-      format: uuid
-      type: string
     Usage:
       description: Single date of QPU usage
       properties:
@@ -195,6 +184,27 @@ components:
           example: 1566154.312523
           type: number
       type: object
+    group_by:
+      description: QPU Usage grouping
+      enum:
+      - job
+      - project
+      - user
+      example: project
+      type: string
+    organization_id:
+      description: UUID of an organization.
+      example: 71d164e-6ebe-4126-8839-f1529bb01a00
+      format: uuid
+      type: string
+    modality:
+      description: Report modality
+      enum:
+      - daily
+      - weekly
+      - monthly
+      example: daily
+      type: string
   responses:
     UsagesResponse:
       content:
@@ -202,16 +212,6 @@ components:
           schema:
             $ref: '#/components/schemas/Usages'
       description: Successfully retrieved a list of projects.
-  parameters:
-    organization_id:
-      description: The UUID of the organization — this UUID is provided in the response on organization creation.
-      example: 71d164e-6ebe-4126-8839-f1529bb01a00
-      in: path
-      name: organization_id
-      required: true
-      schema:
-        format: uuid
-        type: string
   securitySchemes:
     apiKeyAuth:
       description: 'API keys are associated with a user and can be created on the [IonQ Quantum Cloud](https://cloud.ionq.com) application. To authenticate, prefix your API Key with `apiKey ` and place it in the `Authorization` request header. Ex: `Authorization: apiKey your-api-key`'
