@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 aid: ionq
 name: IonQ Quantum Cloud Plans and Pricing
 description: |
@@ -84,3 +88,35 @@ partner_marketplaces:
     name: Google Cloud
     url: https://console.cloud.google.com/marketplace
     description: IonQ available through Google Cloud Marketplace listings.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - negotiated
+  units: []
+  plans:
+  - name: Free
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Volume-Based (QPU Access)
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Enterprise / Custom
+    access: other
+    model: negotiated
+    model_how: derived
+    units: []
+    periods: []
+  - name: IonQ Research Credits
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
