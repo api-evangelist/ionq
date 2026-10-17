@@ -49,14 +49,14 @@ components:
             $ref: '#/components/schemas/Whoami'
       description: Successfully retrieved a current of key from this session.
   schemas:
-    key-id:
-      description: UUID of a API key.
-      example: e060759f-4348-4767-a645-8c0301265791
-      format: uuid
-      type: string
     project-id:
       description: UUID of a project.
       example: 944904d6-2e30-4cfb-8bc4-04afaabcdd42
+      format: uuid
+      type: string
+    key-id:
+      description: UUID of a API key.
+      example: e060759f-4348-4767-a645-8c0301265791
       format: uuid
       type: string
     Whoami:

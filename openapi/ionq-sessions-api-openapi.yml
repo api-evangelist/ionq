@@ -228,30 +228,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    JobStatus:
-      type: string
-      enum:
-      - submitted
-      - ready
-      - started
-      - canceled
-      - failed
-      - completed
-    CreateSessionRequest:
-      properties:
-        backend:
-          type: string
-        settings:
-          $ref: '#/components/schemas/SessionSettingsRequest'
-      required:
-      - backend
+    JsonObject:
+      properties: {}
       type: object
-      additionalProperties: false
-    CostModel:
-      type: string
-      enum:
-      - quantum_compute_time
-      - execution_time
+      additionalProperties: {}
+    JobMetadata:
+      properties: {}
+      type: object
+      additionalProperties:
+        type: string
     SessionsResponse:
       properties:
         organization_id:
@@ -263,81 +248,6 @@ components:
       required:
       - organization_id
       - sessions
-      type: object
-      additionalProperties: false
-    JsonObject:
-      properties: {}
-      type: object
-      additionalProperties: {}
-    NoiseModel:
-      type: string
-      enum:
-      - ideal
-      - harmony
-      - harmony-1
-      - harmony-2
-      - aria-1
-      - aria-2
-      - forte-1
-      - forte-enterprise-1
-    SessionCostLimit:
-      properties:
-        unit:
-          type: string
-        value:
-          type: number
-          format: double
-      required:
-      - unit
-      - value
-      type: object
-      additionalProperties: false
-    JobMetadata:
-      properties: {}
-      type: object
-      additionalProperties:
-        type: string
-    Noise:
-      properties:
-        model:
-          $ref: '#/components/schemas/NoiseModel'
-        seed:
-          type: integer
-          format: int32
-      required:
-      - model
-      type: object
-      additionalProperties: false
-    Failure:
-      properties:
-        code:
-          type: string
-          enum:
-          - InvalidInput
-          - CompilationError
-          - ContractExpiredError
-          - DebiasingError
-          - InternalError
-          - NotEnoughQubits
-          - OptimizationError
-          - PreflightError
-          - QuantumCircuitComplexityError
-          - QuantumComputerError
-          - QuotaExhaustedError
-          - SimulationError
-          - SimulationTimeout
-          - SystemCancel
-          - TooLongPredictedExecutionTime
-          - TooManyControls
-          - TooManyGates
-          - TooManyShots
-          - UnknownBillingError
-          - UnsupportedGate
-        message:
-          type: string
-      required:
-      - code
-      - message
       type: object
       additionalProperties: false
     Session:
@@ -396,6 +306,45 @@ components:
       - started_at
       type: object
       additionalProperties: false
+    SessionSettings:
+      properties:
+        job_count_limit:
+          type: integer
+          format: int32
+        duration_limit_min:
+          type: integer
+          format: int32
+        cost_limit:
+          $ref: '#/components/schemas/SessionCostLimit'
+        expires_at:
+          type: string
+          format: date-time
+      type: object
+      additionalProperties: false
+    SessionSettingsRequest:
+      properties:
+        job_count_limit:
+          type: integer
+          format: int32
+        duration_limit_min:
+          type: integer
+          format: int32
+        cost_limit:
+          $ref: '#/components/schemas/SessionCostLimit'
+      type: object
+      additionalProperties: false
+    SessionCostLimit:
+      properties:
+        unit:
+          type: string
+        value:
+          type: number
+          format: double
+      required:
+      - unit
+      - value
+      type: object
+      additionalProperties: false
     GetJobsResponse:
       properties:
         jobs:
@@ -411,6 +360,82 @@ components:
       - next
       type: object
       additionalProperties: false
+    Noise:
+      properties:
+        model:
+          $ref: '#/components/schemas/NoiseModel'
+        seed:
+          type: integer
+          format: int32
+      required:
+      - model
+      type: object
+      additionalProperties: false
+    Failure:
+      properties:
+        code:
+          type: string
+          enum:
+          - InvalidInput
+          - CompilationError
+          - ContractExpiredError
+          - DebiasingError
+          - InternalError
+          - NotEnoughQubits
+          - OptimizationError
+          - PreflightError
+          - QuantumCircuitComplexityError
+          - QuantumComputerError
+          - QuotaExhaustedError
+          - SimulationError
+          - SimulationTimeout
+          - SystemCancel
+          - TooLongPredictedExecutionTime
+          - TooManyControls
+          - TooManyGates
+          - TooManyShots
+          - UnknownBillingError
+          - UnsupportedGate
+        message:
+          type: string
+      required:
+      - code
+      - message
+      type: object
+      additionalProperties: false
+    CostModel:
+      type: string
+      enum:
+      - quantum_compute_time
+      - execution_time
+    JobStatus:
+      type: string
+      enum:
+      - submitted
+      - ready
+      - started
+      - canceled
+      - failed
+      - completed
+    SessionStatusEnum:
+      enum:
+      - created
+      - started
+      - ended
+      type: string
+    IsoTimestamp:
+      type: string
+    NoiseModel:
+      type: string
+      enum:
+      - ideal
+      - harmony
+      - harmony-1
+      - harmony-2
+      - aria-1
+      - aria-2
+      - forte-1
+      - forte-enterprise-1
     BaseJob:
       properties:
         id:
@@ -515,41 +540,16 @@ components:
       - results
       type: object
       additionalProperties: false
-    SessionSettings:
+    CreateSessionRequest:
       properties:
-        job_count_limit:
-          type: integer
-          format: int32
-        duration_limit_min:
-          type: integer
-          format: int32
-        cost_limit:
-          $ref: '#/components/schemas/SessionCostLimit'
-        expires_at:
+        backend:
           type: string
-          format: date-time
+        settings:
+          $ref: '#/components/schemas/SessionSettingsRequest'
+      required:
+      - backend
       type: object
       additionalProperties: false
-    SessionStatusEnum:
-      enum:
-      - created
-      - started
-      - ended
-      type: string
-    SessionSettingsRequest:
-      properties:
-        job_count_limit:
-          type: integer
-          format: int32
-        duration_limit_min:
-          type: integer
-          format: int32
-        cost_limit:
-          $ref: '#/components/schemas/SessionCostLimit'
-      type: object
-      additionalProperties: false
-    IsoTimestamp:
-      type: string
   securitySchemes:
     apiKeyAuth:
       description: 'API keys are associated with a user and can be created on the [IonQ Quantum Cloud](https://cloud.ionq.com) application. To authenticate, prefix your API Key with `apiKey ` and place it in the `Authorization` request header. Ex: `Authorization: apiKey your-api-key`'
