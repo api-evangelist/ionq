@@ -1,230 +1,466 @@
 openapi: 3.2.0
 info:
-  contact:
-    email: support@ionq.co
-    name: IonQ
-    url: https://ionq.com/
-  description: '*Last updated: May 15, 2026*
+  title: IonQ Cloud Platform Characterizations API
+  version: v0.2
+  description: '*Last updated: October 19, 2026*
 
-    IonQ''s API for accessing the IonQ Quantum Cloud platform
+    # Introduction
 
-
-    Please subscribe for automated updates when we perform maintenance or
-
-    experience an outage.
+    Welcome to the IonQ platform! You can use our API and the `qcloud` command-line interface to submit and retrieve jobs on our quantum hardware as well as our high-performance simulator.
 
 
-    In addition, you may use the status endpoint to check the
+    Our API uses the REST architectural style; this means we provide unsurprising, resource-oriented URLs and take advantage of built-in HTTP response codes, authentication, verbs, and other features.
 
-    current status of our API.
+    We allow cross-site requests from any domain, and return JSON responses.
+
+
+    If you prefer to not think about HTTP, use our OpenAPI spec to generate bindings for your language of choice. Pre-generated bindings for Python and JavaScript are coming soon.
+
+
+    ## Non-breaking changes
+
+
+    * Histogram example expanded to include scientific notation for a JSON numeric value.
+
+
+    ## Migrating to v0.2
+
+
+    ### Breaking changes
+
+
+    * Calibrations endpoints has been deprecated in favor of Characterizations.
+
+
+    ### New features
+
+
+    * Ability to specifify target hardware generation on Job creation. e.g. `qpu.harmony` for targeting our 11-qubit system.
+
+    * Introduces Characterizations endpoints. Enables fetching current and historic characterizations for specific targets.
+
+    * Backends availability and other stats can now be fetched.
+
+
+    ## Migrating to v0.1
+
+
+    ### Breaking changes
+
+
+    Prerelease version `v0.1` has one major breaking change from `v0`:
+
+
+    * Canceling jobs is now done via a PUT. This allows us to more naturally support job deletion.
+
+
+    ### New features
+
+
+    * Completely deleting one or more jobs is now possible
+
+    * Multiple jobs may be canceled simultaneously
+
+    * A list of jobs may be fetched simultaneously
+
+
+    ## API status
+
+
+    API and quantum computer status is continuously reported at https://status.ionq.co/.
+
+    Please subscribe for automated updates when we perform maintenance or experience an outage.
+
+
+    In addition, you may use the status endpoint to check the current status of our API.
 
 
     ## Authentication'
-  title: IonQ Cloud Platform Characterizations API
-  version: v0.4
+  contact:
+    name: IonQ
+    email: support@ionq.co
+    url: https://ionq.com/
+  x-logo:
+    url: https://static.ionq.co/images/ionq-logo-dark.png
+    altText: IonQ Logo
+    href: '#'
 servers:
-- url: https://api.ionq.co/v0.4
+- url: https://api.ionq.co/v0.2
+  description: Current Endpoint
+- url: https://api.ionq.co/v0.1
+basePath: /v0.2
+security:
+- API Key: []
 tags:
 - name: characterizations
+  x-displayName: Characterizations
+  description: 'A **characterization** is a snapshot of the IonQ platform''s performance at a moment in time.
+
+    While our computers are continuously calibrated moment to moment, we periodically take measurements of gate fidelities and other statistics.'
 paths:
-  /backends/{backend}/characterizations:
+  /characterizations/backends/{backend}:
     get:
-      description: This endpoint retrieves an array of all available backend characterizations, with pagination.
       operationId: getCharacterizationsForBackend
-      parameters:
-      - $ref: '#/components/parameters/backend'
-      - description: Characterizations starting at this time (e.g., `start=2025-12-31`)
-        in: query
-        name: start
-        schema:
-          type: string
-      - description: Characterizations before this time (e.g., `end=2025-12-31`)
-        in: query
-        name: end
-        schema:
-          type: string
-      - description: How many objects to return.
-        in: query
-        name: limit
-        schema:
-          default: 10
-          maximum: 10
-          minimum: 1
-          type: integer
-      - $ref: '#/components/parameters/pagination-page'
-      responses:
-        '200':
-          $ref: '#/components/responses/ListCharacterizations'
-      security: []
       summary: Get All Backend Characterizations
+      description: This endpoint retrieves an array of all available backend characterizations, with pagination.
       tags:
       - characterizations
-      x-codeSamples:
-      - lang: curl
-        source: 'curl "https://api.ionq.co/v0.4/backends/qpu.aria-1/characterizations"
-
-          '
-  /backends/{backend}/characterizations/{UUID}:
-    get:
-      description: This endpoint retrieves a characterization.
-      operationId: getCharacterization
       parameters:
-      - $ref: '#/components/parameters/backend'
-      - $ref: '#/components/parameters/uuid'
+      - name: backend
+        in: path
+        required: true
+        description: A backend where jobs can run on.
+        schema:
+          type: string
+          enum:
+          - qpu.s11
+      - name: start
+        in: query
+        description: Characterizations starting at this time (e.g., `start=1585713600000`)
+        schema:
+          type: integer
+      - name: end
+        in: query
+        description: Characterizations before this time (e.g., `end=1585713600000`)
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: How many objects to return.
+        schema:
+          type: integer
+          default: 10
+          minimum: 1
+          maximum: 10
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+          minimum: 1
+          description: Specify the page of results to return.
       responses:
         '200':
-          $ref: '#/components/responses/GetCharacterization'
-      summary: Get a Characterization
-      tags:
-      - characterizations
+          description: Successfully retrieved characterizations.
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Response body from requesting characterization data.
+                required:
+                - characterizations
+                properties:
+                  characterizations:
+                    type: array
+                    description: A page of characterizations measurements.
+                    items:
+                      type: object
+                      description: Quantum hardware characterization data.
+                      properties:
+                        id:
+                          type: string
+                          description: UUID of the characterization.
+                          format: uuid
+                        date:
+                          type: integer
+                          description: Time of the measurement, from Unix epoch in seconds.
+                        target:
+                          type: string
+                          description: The target calibrated hardware.
+                          enum:
+                          - qpu.s11
+                        qubits:
+                          type: integer
+                          description: The number of qubits available.
+                          minimum: 0
+                        connectivity:
+                          type: array
+                          description: An array of valid, unordered tuples of possible qubits for executing two-qubit gates (e.g., `[[0, 1], [0, 2], [1, 2]]`)
+                          example:
+                          - - 0
+                            - 1
+                          - - 0
+                            - 2
+                          - '...'
+                          - - 10
+                            - 9
+                          items:
+                            type: array
+                            items:
+                              type: integer
+                        fidelity:
+                          type: object
+                          description: 'Fidelity for single-qubit (`1q`) and two-qubit (`2q`) gates, and State Preparation and Measurement (`spam`) operations.
+
+                            Currently provides only mean fidelity; additional statistical data will be added in the future.
+
+                            '
+                          required:
+                          - spam
+                          properties:
+                            spam:
+                              type: object
+                              description: SPAM error correction information.
+                              required:
+                              - mean
+                              properties:
+                                mean:
+                                  type: integer
+                                  description: Mean SPAM value.
+                                  minimum: 0
+                                stderr:
+                                  type: integer
+                                  description: SPAM error.
+                                  minimum: 0
+                        timing:
+                          type: object
+                          description: 'Time, in seconds, of various system properties: `t1` time, `t2` time, `1q` gate time, `2q` gate time, `readout` time, and qubit `reset` time.'
+                          required:
+                          - readout
+                          - reset
+                          properties:
+                            readout:
+                              type: integer
+                              description: Readout time.
+                            reset:
+                              type: integer
+                              description: qubit reset time.
+                  pages:
+                    type: integer
+                    description: The number of remaining pages of characterization measurements.
       x-codeSamples:
       - lang: curl
-        source: "curl \"https://api.ionq.co/v0.4/backends/qpu.aria-1/characterizations/aa54e783-0a9b-4f73-ad2f-63983b6aa4a8\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
-components:
-  schemas:
-    pagination-page:
-      default: 1
-      description: Specify the page of results to return.
-      minimum: 1
-      type: integer
-    Characterization:
-      description: Quantum hardware characterization data.
-      properties:
-        backend:
-          description: 'The backend calibrated hardware: `simulator`, `qpu.aria-1`, `qpu.aria-2`, `qpu.forte-1`, `qpu.forte-enterprise-1`, `qpu.forte-enterprise-2`, `qpu.forte-enterprise-3`'
+        source: "curl \"https://api.ionq.co/v0.2/characterizations/backends/qpu.s11\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
+  /characterizations/backends/{backend}/current:
+    get:
+      operationId: getCharacterizationsCurrentForBackend
+      summary: Get the Most Recent Backend Characterization
+      description: This endpoint retrieves the most recent backend characterization data available.
+      tags:
+      - characterizations
+      parameters:
+      - name: backend
+        in: path
+        required: true
+        description: A backend where jobs can run on.
+        schema:
           type: string
-        connectivity:
-          description: An array of valid, unordered tuples of possible qubits for executing two-qubit gates (e.g., `[[0, 1], [0, 2], [1, 2]]`)
-          example:
-          - - 0
-            - 1
-          - - 0
-            - 2
-          - - 10
-            - 9
-          items:
-            items:
-              type: integer
-            type: array
-          type: array
-        date:
-          description: Date time of the measurement, in ISO format.
-          example: '2025-06-16T00:00:00Z'
+          enum:
+          - qpu.s11
+      responses:
+        '200':
+          description: Successfully retrieved current characterization
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Quantum hardware characterization data.
+                properties:
+                  id:
+                    type: string
+                    description: UUID of the characterization.
+                    format: uuid
+                  date:
+                    type: integer
+                    description: Time of the measurement, from Unix epoch in seconds.
+                  target:
+                    type: string
+                    description: The target calibrated hardware.
+                    enum:
+                    - qpu.s11
+                  qubits:
+                    type: integer
+                    description: The number of qubits available.
+                    minimum: 0
+                  connectivity:
+                    type: array
+                    description: An array of valid, unordered tuples of possible qubits for executing two-qubit gates (e.g., `[[0, 1], [0, 2], [1, 2]]`)
+                    example:
+                    - - 0
+                      - 1
+                    - - 0
+                      - 2
+                    - '...'
+                    - - 10
+                      - 9
+                    items:
+                      type: array
+                      items:
+                        type: integer
+                  fidelity:
+                    type: object
+                    description: 'Fidelity for single-qubit (`1q`) and two-qubit (`2q`) gates, and State Preparation and Measurement (`spam`) operations.
+
+                      Currently provides only mean fidelity; additional statistical data will be added in the future.
+
+                      '
+                    required:
+                    - spam
+                    properties:
+                      spam:
+                        type: object
+                        description: SPAM error correction information.
+                        required:
+                        - mean
+                        properties:
+                          mean:
+                            type: integer
+                            description: Mean SPAM value.
+                            minimum: 0
+                          stderr:
+                            type: integer
+                            description: SPAM error.
+                            minimum: 0
+                  timing:
+                    type: object
+                    description: 'Time, in seconds, of various system properties: `t1` time, `t2` time, `1q` gate time, `2q` gate time, `readout` time, and qubit `reset` time.'
+                    required:
+                    - readout
+                    - reset
+                    properties:
+                      readout:
+                        type: integer
+                        description: Readout time.
+                      reset:
+                        type: integer
+                        description: qubit reset time.
+      x-codeSamples:
+      - lang: curl
+        source: "curl \"https://api.ionq.co/v0.2/characterizations/backends/qpu.s11/current\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
+  /characterizations/{UUID}:
+    get:
+      operationId: getCharacterization
+      summary: Get a Characterization
+      description: This endpoint retrieves a characterization.
+      tags:
+      - characterizations
+      parameters:
+      - name: UUID
+        in: path
+        required: true
+        example: 617a1f8b-59d4-435d-aa33-695433d7155e
+        description: A UUID identifying a specific resource
+        schema:
           type: string
-        fidelity:
-          description: 'Fidelity for single-qubit (`1q`) and two-qubit (`2q`) gates, and State Preparation and Measurement (`spam`) operations.
-
-            Currently provides only median fidelity; additional statistical data will be added in the future.
-
-            '
-          properties:
-            spam:
-              description: SPAM error correction information.
-              properties:
-                median:
-                  example: 0.9962
-                  type: number
-                stderr:
-                  description: SPAM error.
-                  example: null
-                  minimum: 0
-                  type: integer
-              required:
-              - median
-              type: object
-          required:
-          - spam
-          type: object
-        id:
-          description: UUID of the characterization.
           format: uuid
-          type: string
-        qubits:
-          description: The number of qubits available.
-          example: 25
-          minimum: 1
-          type: integer
-        timing:
-          description: 'Time, in seconds, of various system properties: `t1` time, `t2` time, `1q` gate time, `2q` gate time, `readout` time, and qubit `reset` time.'
-          properties:
-            1q:
-              type: integer
-            2q:
-              type: integer
-            readout:
-              description: Readout time.
-              type: integer
-            reset:
-              description: qubit reset time.
-              type: integer
-            t1:
-              example: 10
-              type: integer
-            t2:
-              example: 1
-              type: integer
-          required:
-          - readout
-          - reset
-          type: object
-      type: object
-  responses:
-    ListCharacterizations:
-      content:
-        application/json:
-          schema:
-            description: Response body from requesting characterization data.
-            properties:
-              characterizations:
-                description: A page of characterizations measurements.
-                items:
-                  $ref: '#/components/schemas/Characterization'
-                type: array
-              pages:
-                description: The number of remaining pages of characterization measurements.
-                type: integer
-            required:
-            - characterizations
-            type: object
-      description: Successfully retrieved characterizations.
-    GetCharacterization:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Characterization'
-      description: Successfully retrieved current characterization
-  parameters:
-    backend:
-      description: A backend where jobs can run on.
-      in: path
-      name: backend
-      required: true
-      schema:
-        enum:
-        - qpu.aria-1
-        - qpu.aria-2
-        - qpu.forte-1
-        - qpu.forte-enterprise-1
-        - qpu.forte-enterprise-2
-        - qpu.forte-enterprise-3
-        type: string
-    uuid:
-      description: A UUID identifying a specific resource
-      example: 617a1f8b-59d4-435d-aa33-695433d7155e
-      in: path
-      name: UUID
-      required: true
-      schema:
-        format: uuid
-        type: string
-    pagination-page:
-      in: query
-      name: page
-      schema:
-        $ref: '#/components/schemas/pagination-page'
+      responses:
+        '200':
+          description: Successfully retrieved current characterization
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Quantum hardware characterization data.
+                properties:
+                  id:
+                    type: string
+                    description: UUID of the characterization.
+                    format: uuid
+                  date:
+                    type: integer
+                    description: Time of the measurement, from Unix epoch in seconds.
+                  target:
+                    type: string
+                    description: The target calibrated hardware.
+                    enum:
+                    - qpu.s11
+                  qubits:
+                    type: integer
+                    description: The number of qubits available.
+                    minimum: 0
+                  connectivity:
+                    type: array
+                    description: An array of valid, unordered tuples of possible qubits for executing two-qubit gates (e.g., `[[0, 1], [0, 2], [1, 2]]`)
+                    example:
+                    - - 0
+                      - 1
+                    - - 0
+                      - 2
+                    - '...'
+                    - - 10
+                      - 9
+                    items:
+                      type: array
+                      items:
+                        type: integer
+                  fidelity:
+                    type: object
+                    description: 'Fidelity for single-qubit (`1q`) and two-qubit (`2q`) gates, and State Preparation and Measurement (`spam`) operations.
+
+                      Currently provides only mean fidelity; additional statistical data will be added in the future.
+
+                      '
+                    required:
+                    - spam
+                    properties:
+                      spam:
+                        type: object
+                        description: SPAM error correction information.
+                        required:
+                        - mean
+                        properties:
+                          mean:
+                            type: integer
+                            description: Mean SPAM value.
+                            minimum: 0
+                          stderr:
+                            type: integer
+                            description: SPAM error.
+                            minimum: 0
+                  timing:
+                    type: object
+                    description: 'Time, in seconds, of various system properties: `t1` time, `t2` time, `1q` gate time, `2q` gate time, `readout` time, and qubit `reset` time.'
+                    required:
+                    - readout
+                    - reset
+                    properties:
+                      readout:
+                        type: integer
+                        description: Readout time.
+                      reset:
+                        type: integer
+                        description: qubit reset time.
+      x-codeSamples:
+      - lang: curl
+        source: "curl \"https://api.ionq.co/v0.2/characterizations/aa54e783-0a9b-4f73-ad2f-63983b6aa4a8\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
+components:
   securitySchemes:
-    apiKeyAuth:
-      description: 'API keys are associated with a user and can be created on the [IonQ Quantum Cloud](https://cloud.ionq.com) application. To authenticate, prefix your API Key with `apiKey ` and place it in the `Authorization` request header. Ex: `Authorization: apiKey your-api-key`'
+    API_Key:
       in: header
       name: Authorization
       type: apiKey
+      description: 'We provide API keys to govern access&mdash;we''ll provision your account with one key, and more can be provided upon request.
+
+
+        Every key is fully privileged within the system, and should be kept private.
+
+
+        To authenticate, prefix your API Key with `apiKey ` and place it in the `Authorization` request header.
+
+        For example: `Authorization: apiKey your-api-key`
+
+        '
+x-tagGroups:
+- name: Managing Jobs
+  tags:
+  - jobs
+- name: Building Circuits
+  tags:
+  - quantum_programs
+- name: Characterization Data
+  tags:
+  - calibrations
+  - characterizations
+- name: Backends
+  tags:
+  - backends
+- name: User Metadata
+  tags:
+  - metadata
+- name: API Features
+  tags:
+  - api-feature-pagination
+  - api-feature-response-status
+- name: Telemetry
+  tags:
+  - status

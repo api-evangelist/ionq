@@ -96,64 +96,20 @@ apis:
     url: json-schema/ionq-session-schema.json
   - type: JSONLD
     url: json-ld/ionq-context.jsonld
-- aid: ionq:ionq-sessions-api
-  name: IonQ Sessions API
-  description: The Sessions API from IonQ — 4 operation(s) for sessions.
-  humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
-  baseURL: https://api.ionq.co/v0.4
+- aid: ionq:ionq-calibrations-api
+  name: IonQ Calibrations API
+  description: >-
+    A **calibration** is a snapshot of the IonQ platform's performance at a moment in time.
+
+    While our computers are continuously calibrated moment to moment, we periodically take measurements
+    of gate fidelities and other statistics.
+  humanURL: https://docs.ionq.com/api-reference/v0.3/introduction
+  baseURL: https://api.ionq.co/v0.3
   tags:
-  - Sessions
+  - calibrations
   properties:
   - type: OpenAPI
-    url: openapi/ionq-sessions-api-openapi.yml
-  - type: Documentation
-    url: https://docs.ionq.com/api-reference/v0.4/introduction
-  - type: Documentation
-    url: https://docs.ionq.com/guides/direct-api-submission
-  - type: JSONSchema
-    url: json-schema/ionq-job-schema.json
-  - type: JSONSchema
-    url: json-schema/ionq-backend-schema.json
-  - type: JSONSchema
-    url: json-schema/ionq-session-schema.json
-  - type: JSONLD
-    url: json-ld/ionq-context.jsonld
-- aid: ionq:ionq-usage-api
-  name: IonQ Usage API
-  description: The usage API from IonQ — 1 operation(s) for usage.
-  humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
-  baseURL: https://api.ionq.co/v0.4
-  tags:
-  - Usage
-  tags_raw:
-  - usage
-  properties:
-  - type: OpenAPI
-    url: openapi/ionq-usage-api-openapi.yml
-  - type: Documentation
-    url: https://docs.ionq.com/api-reference/v0.4/introduction
-  - type: Documentation
-    url: https://docs.ionq.com/guides/direct-api-submission
-  - type: JSONSchema
-    url: json-schema/ionq-job-schema.json
-  - type: JSONSchema
-    url: json-schema/ionq-backend-schema.json
-  - type: JSONSchema
-    url: json-schema/ionq-session-schema.json
-  - type: JSONLD
-    url: json-ld/ionq-context.jsonld
-- aid: ionq:ionq-whoami-api
-  name: IonQ Whoami API
-  description: The whoami API from IonQ — 1 operation(s) for whoami.
-  humanURL: https://docs.ionq.com/api-reference/v0.4/introduction
-  baseURL: https://api.ionq.co/v0.4
-  tags:
-  - Whoami
-  tags_raw:
-  - whoami
-  properties:
-  - type: OpenAPI
-    url: openapi/ionq-whoami-api-openapi.yml
+    url: openapi/ionq-calibrations-api-openapi.yml
   - type: Documentation
     url: https://docs.ionq.com/api-reference/v0.4/introduction
   - type: Documentation

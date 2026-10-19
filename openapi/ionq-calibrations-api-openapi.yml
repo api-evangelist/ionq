@@ -1,0 +1,352 @@
+openapi: 3.2.0
+info:
+  title: IonQ Cloud Platform Calibrations API
+  version: v0.2
+  description: '*Last updated: October 19, 2026*
+
+    # Introduction
+
+    Welcome to the IonQ platform! You can use our API and the `qcloud` command-line interface to submit and retrieve jobs on our quantum hardware as well as our high-performance simulator.
+
+
+    Our API uses the REST architectural style; this means we provide unsurprising, resource-oriented URLs and take advantage of built-in HTTP response codes, authentication, verbs, and other features.
+
+    We allow cross-site requests from any domain, and return JSON responses.
+
+
+    If you prefer to not think about HTTP, use our OpenAPI spec to generate bindings for your language of choice. Pre-generated bindings for Python and JavaScript are coming soon.
+
+
+    ## Non-breaking changes
+
+
+    * Histogram example expanded to include scientific notation for a JSON numeric value.
+
+
+    ## Migrating to v0.2
+
+
+    ### Breaking changes
+
+
+    * Calibrations endpoints has been deprecated in favor of Characterizations.
+
+
+    ### New features
+
+
+    * Ability to specifify target hardware generation on Job creation. e.g. `qpu.harmony` for targeting our 11-qubit system.
+
+    * Introduces Characterizations endpoints. Enables fetching current and historic characterizations for specific targets.
+
+    * Backends availability and other stats can now be fetched.
+
+
+    ## Migrating to v0.1
+
+
+    ### Breaking changes
+
+
+    Prerelease version `v0.1` has one major breaking change from `v0`:
+
+
+    * Canceling jobs is now done via a PUT. This allows us to more naturally support job deletion.
+
+
+    ### New features
+
+
+    * Completely deleting one or more jobs is now possible
+
+    * Multiple jobs may be canceled simultaneously
+
+    * A list of jobs may be fetched simultaneously
+
+
+    ## API status
+
+
+    API and quantum computer status is continuously reported at https://status.ionq.co/.
+
+    Please subscribe for automated updates when we perform maintenance or experience an outage.
+
+
+    In addition, you may use the status endpoint to check the current status of our API.
+
+
+    ## Authentication'
+  contact:
+    name: IonQ
+    email: support@ionq.co
+    url: https://ionq.com/
+  x-logo:
+    url: https://static.ionq.co/images/ionq-logo-dark.png
+    altText: IonQ Logo
+    href: '#'
+servers:
+- url: https://api.ionq.co/v0.2
+  description: Current Endpoint
+- url: https://api.ionq.co/v0.1
+basePath: /v0.2
+security:
+- API Key: []
+tags:
+- name: calibrations
+  x-displayName: Calibrations
+  description: 'A **calibration** is a snapshot of the IonQ platform''s performance at a moment in time.
+
+    While our computers are continuously calibrated moment to moment, we periodically take measurements of gate fidelities and other statistics.'
+paths:
+  /calibrations:
+    get:
+      deprecated: true
+      operationId: getCalibrations
+      summary: Get All Calibrations
+      description: 'This endpoint retrieves an array of all available calibrations, with pagination.
+
+        This endpoint has been deprecated and will be removed in future versions. Use Get All Backend Characterizations instead.'
+      tags:
+      - calibrations
+      parameters:
+      - name: start
+        in: query
+        description: Calibrations starting at this time (e.g., `start=1585713600000`)
+        schema:
+          type: integer
+      - name: end
+        in: query
+        description: Calibrations before this time (e.g., `end=1585713600000`)
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: How many objects to return.
+        schema:
+          type: integer
+          default: 10
+          minimum: 1
+          maximum: 10
+      responses:
+        '200':
+          description: Successfully retrieved calibrations.
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Response body from requesting calibration data.
+                required:
+                - calibrations
+                properties:
+                  calibrations:
+                    type: array
+                    description: A page of calibration measurements.
+                    items:
+                      type: object
+                      description: Quantum hardware calibration data.
+                      properties:
+                        id:
+                          type: string
+                          description: UUID of the calibration.
+                          format: uuid
+                        date:
+                          type: integer
+                          description: Time of the measurement, from Unix epoch in seconds.
+                        target:
+                          type: string
+                          description: The target calibrated hardware.
+                          enum:
+                          - ionq.qpu
+                        qubits:
+                          type: integer
+                          description: The number of qubits available.
+                          minimum: 0
+                        connectivity:
+                          type: array
+                          description: An array of valid, unordered tuples of possible qubits for executing two-qubit gates (e.g., `[[0, 1], [0, 2], [1, 2]]`)
+                          example:
+                          - - 0
+                            - 1
+                          - - 0
+                            - 2
+                          - '...'
+                          - - 10
+                            - 9
+                          items:
+                            type: array
+                            items:
+                              type: integer
+                        fidelity:
+                          type: object
+                          description: 'Fidelity for single-qubit (`1q`) and two-qubit (`2q`) gates, and State Preparation and Measurement (`spam`) operations.
+
+                            Currently provides only mean fidelity; additional statistical data will be added in the future.
+
+                            '
+                          required:
+                          - spam
+                          properties:
+                            spam:
+                              type: object
+                              description: SPAM error correction information.
+                              required:
+                              - mean
+                              properties:
+                                mean:
+                                  type: integer
+                                  description: Mean SPAM value.
+                                  minimum: 0
+                                stderr:
+                                  type: integer
+                                  description: SPAM error.
+                                  minimum: 0
+                        timing:
+                          type: object
+                          description: 'Time, in seconds, of various system properties: `t1` time, `t2` time, `1q` gate time, `2q` gate time, `readout` time, and qubit `reset` time.'
+                          required:
+                          - readout
+                          - reset
+                          properties:
+                            readout:
+                              type: integer
+                              description: Readout time.
+                            reset:
+                              type: integer
+                              description: qubit reset time.
+                  pages:
+                    type: integer
+                    description: The number of remaining pages of calibration measurements.
+      x-codeSamples:
+      - lang: curl
+        source: "curl \"https://api.ionq.co/v0.1/calibrations\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
+  /calibrations/current:
+    get:
+      deprecated: true
+      operationId: getCurrentCalibration
+      summary: Get the Most Recent Calibration
+      description: 'This endpoint retrieves the most recent calibration data available.
+
+        This endpoint has been deprecated and will be removed in future versions. Use Get the Most Recent Backend Characterization instead.'
+      tags:
+      - calibrations
+      responses:
+        '200':
+          description: Successfully retrieved current calibration
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Quantum hardware calibration data.
+                properties:
+                  id:
+                    type: string
+                    description: UUID of the calibration.
+                    format: uuid
+                  date:
+                    type: integer
+                    description: Time of the measurement, from Unix epoch in seconds.
+                  target:
+                    type: string
+                    description: The target calibrated hardware.
+                    enum:
+                    - ionq.qpu
+                  qubits:
+                    type: integer
+                    description: The number of qubits available.
+                    minimum: 0
+                  connectivity:
+                    type: array
+                    description: An array of valid, unordered tuples of possible qubits for executing two-qubit gates (e.g., `[[0, 1], [0, 2], [1, 2]]`)
+                    example:
+                    - - 0
+                      - 1
+                    - - 0
+                      - 2
+                    - '...'
+                    - - 10
+                      - 9
+                    items:
+                      type: array
+                      items:
+                        type: integer
+                  fidelity:
+                    type: object
+                    description: 'Fidelity for single-qubit (`1q`) and two-qubit (`2q`) gates, and State Preparation and Measurement (`spam`) operations.
+
+                      Currently provides only mean fidelity; additional statistical data will be added in the future.
+
+                      '
+                    required:
+                    - spam
+                    properties:
+                      spam:
+                        type: object
+                        description: SPAM error correction information.
+                        required:
+                        - mean
+                        properties:
+                          mean:
+                            type: integer
+                            description: Mean SPAM value.
+                            minimum: 0
+                          stderr:
+                            type: integer
+                            description: SPAM error.
+                            minimum: 0
+                  timing:
+                    type: object
+                    description: 'Time, in seconds, of various system properties: `t1` time, `t2` time, `1q` gate time, `2q` gate time, `readout` time, and qubit `reset` time.'
+                    required:
+                    - readout
+                    - reset
+                    properties:
+                      readout:
+                        type: integer
+                        description: Readout time.
+                      reset:
+                        type: integer
+                        description: qubit reset time.
+      x-codeSamples:
+      - lang: curl
+        source: "curl \"https://api.ionq.co/v0.1/calibrations/current\" \\\n  -H \"Authorization: apiKey your-api-key\"\n"
+components:
+  securitySchemes:
+    API_Key:
+      in: header
+      name: Authorization
+      type: apiKey
+      description: 'We provide API keys to govern access&mdash;we''ll provision your account with one key, and more can be provided upon request.
+
+
+        Every key is fully privileged within the system, and should be kept private.
+
+
+        To authenticate, prefix your API Key with `apiKey ` and place it in the `Authorization` request header.
+
+        For example: `Authorization: apiKey your-api-key`
+
+        '
+x-tagGroups:
+- name: Managing Jobs
+  tags:
+  - jobs
+- name: Building Circuits
+  tags:
+  - quantum_programs
+- name: Characterization Data
+  tags:
+  - calibrations
+  - characterizations
+- name: Backends
+  tags:
+  - backends
+- name: User Metadata
+  tags:
+  - metadata
+- name: API Features
+  tags:
+  - api-feature-pagination
+  - api-feature-response-status
+- name: Telemetry
+  tags:
+  - status

@@ -1,149 +1,194 @@
 openapi: 3.2.0
 info:
-  contact:
-    email: support@ionq.co
-    name: IonQ
-    url: https://ionq.com/
-  description: '*Last updated: May 15, 2026*
+  title: IonQ Cloud Platform Backends API
+  version: v0.2
+  description: '*Last updated: October 19, 2026*
 
-    IonQ''s API for accessing the IonQ Quantum Cloud platform
+    # Introduction
 
-
-    Please subscribe for automated updates when we perform maintenance or
-
-    experience an outage.
+    Welcome to the IonQ platform! You can use our API and the `qcloud` command-line interface to submit and retrieve jobs on our quantum hardware as well as our high-performance simulator.
 
 
-    In addition, you may use the status endpoint to check the
+    Our API uses the REST architectural style; this means we provide unsurprising, resource-oriented URLs and take advantage of built-in HTTP response codes, authentication, verbs, and other features.
 
-    current status of our API.
+    We allow cross-site requests from any domain, and return JSON responses.
+
+
+    If you prefer to not think about HTTP, use our OpenAPI spec to generate bindings for your language of choice. Pre-generated bindings for Python and JavaScript are coming soon.
+
+
+    ## Non-breaking changes
+
+
+    * Histogram example expanded to include scientific notation for a JSON numeric value.
+
+
+    ## Migrating to v0.2
+
+
+    ### Breaking changes
+
+
+    * Calibrations endpoints has been deprecated in favor of Characterizations.
+
+
+    ### New features
+
+
+    * Ability to specifify target hardware generation on Job creation. e.g. `qpu.harmony` for targeting our 11-qubit system.
+
+    * Introduces Characterizations endpoints. Enables fetching current and historic characterizations for specific targets.
+
+    * Backends availability and other stats can now be fetched.
+
+
+    ## Migrating to v0.1
+
+
+    ### Breaking changes
+
+
+    Prerelease version `v0.1` has one major breaking change from `v0`:
+
+
+    * Canceling jobs is now done via a PUT. This allows us to more naturally support job deletion.
+
+
+    ### New features
+
+
+    * Completely deleting one or more jobs is now possible
+
+    * Multiple jobs may be canceled simultaneously
+
+    * A list of jobs may be fetched simultaneously
+
+
+    ## API status
+
+
+    API and quantum computer status is continuously reported at https://status.ionq.co/.
+
+    Please subscribe for automated updates when we perform maintenance or experience an outage.
+
+
+    In addition, you may use the status endpoint to check the current status of our API.
 
 
     ## Authentication'
-  title: IonQ Cloud Platform Backends API
-  version: v0.4
+  contact:
+    name: IonQ
+    email: support@ionq.co
+    url: https://ionq.com/
+  x-logo:
+    url: https://static.ionq.co/images/ionq-logo-dark.png
+    altText: IonQ Logo
+    href: '#'
 servers:
-- url: https://api.ionq.co/v0.4
+- url: https://api.ionq.co/v0.2
+  description: Current Endpoint
+- url: https://api.ionq.co/v0.1
+basePath: /v0.2
+security:
+- API Key: []
 tags:
 - name: Backends
+  x-displayName: Backends
+  description: 'Jobs can be run on different target hardware, known as backends.
+
+    Backends can also define a generation from its its name, such as `qpu.harmony`. A generation comprises a different
+
+    set of capabilities that may better suit the requirements of your target program.'
 paths:
   /backends:
     get:
-      description: This endpoint retrieves all backends.
       operationId: getBackends
-      responses:
-        '200':
-          $ref: '#/components/responses/ListBackends'
-      security: []
       summary: Get Backends
+      description: This endpoint retrieves all backends.
+      security: []
       tags:
       - Backends
-      x-codeSamples:
-      - lang: curl
-        source: 'curl "https://api.ionq.co/v0.4/backends"
-
-          '
-  /backends/{backend}:
-    get:
-      description: This endpoint retrieves a backend.
-      operationId: getBackend
-      parameters:
-      - $ref: '#/components/parameters/backend'
       responses:
         '200':
-          $ref: '#/components/responses/GetBackend'
-      security: []
-      summary: Get a Backend
-      tags:
-      - Backends
+          description: Successfully retrieved backends.
+          content:
+            application/json:
+              schema:
+                type: object
+                description: A list of backends you can target your program to run on.
+                required:
+                - backend
+                - status
+                - qubits
+                - average_queue_time
+                - updated
+                properties:
+                  backend:
+                    type: string
+                    example: qpu.s11
+                    description: Specifies target hardware and generation where applies.
+                  status:
+                    type: string
+                    description: Current availability.
+                    enum:
+                    - available
+                    - unavailable
+                  average_queue_time:
+                    type: number
+                    format: unix-timestamp
+                    example: 1181215
+                    description: Current wait time on the queue for execution.
+                  last_updated:
+                    type: integer
+                    example: 1490932820
+                    description: Last time the backend status was updated.
+                  characterization_url:
+                    type: string
+                    example: /characterizations/617a1f8b-59d4-435d-aa33-695433d7155e
+                    description: Current characterization for this backend
       x-codeSamples:
       - lang: curl
-        source: 'curl "https://api.ionq.co/v0.4/backends/qpu.aria-1"
+        source: 'curl "https://api.ionq.co/v0.2/backends"
 
           '
 components:
-  parameters:
-    backend:
-      description: A backend where jobs can run on.
-      in: path
-      name: backend
-      required: true
-      schema:
-        enum:
-        - qpu.aria-1
-        - qpu.aria-2
-        - qpu.forte-1
-        - qpu.forte-enterprise-1
-        - qpu.forte-enterprise-2
-        - qpu.forte-enterprise-3
-        type: string
-  responses:
-    GetBackend:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Backend'
-      description: Successfully retrieved backend.
-    ListBackends:
-      content:
-        application/json:
-          schema:
-            description: The list of backends.
-            items:
-              $ref: '#/components/schemas/Backend'
-            type: array
-      description: Successfully retrieved backend.
-  schemas:
-    Backend:
-      description: A backend that you can target your program to run on.
-      properties:
-        average_queue_time:
-          description: Current wait time on the queue for execution.
-          example: 1181215
-          format: unix-timestamp
-          type: number
-        backend:
-          description: 'Specifies target hardware and generation where applies: `simulator`, `qpu.aria-1`, `qpu.aria-2`, `qpu.forte-1`, `qpu.forte-enterprise-1`, `qpu.forte-enterprise-2`, `qpu.forte-enterprise-3`'
-          example: qpu.aria-1
-          type: string
-        characterization_id:
-          description: Current characterization ID for this backend
-          example: 617a1f8b-59d4-435d-aa33-695433d7155e
-          type: string
-        degraded:
-          description: Flag to tell if the backend is degraded or not.
-          type: boolean
-        kw:
-          description: The amount of energy used by the backend in kilowatt-hours.
-          example: 4902.81
-          format: double
-          type: number
-        last_updated:
-          description: Last date time the backend status was updated.
-          example: '2025-06-16T00:00:00Z'
-          type: string
-        location:
-          description: The location of the backend.
-          example: College Park, MD, USA
-          type: string
-        qubits:
-          description: The number of qubits available.
-          example: 25
-          minimum: 0
-          type: integer
-        status:
-          description: 'Current status of the backend: `available`, `unavailable`, `retired`.'
-          type: string
-      required:
-      - backend
-      - status
-      - qubits
-      - average_queue_time
-      - last_updated
-      type: object
   securitySchemes:
-    apiKeyAuth:
-      description: 'API keys are associated with a user and can be created on the [IonQ Quantum Cloud](https://cloud.ionq.com) application. To authenticate, prefix your API Key with `apiKey ` and place it in the `Authorization` request header. Ex: `Authorization: apiKey your-api-key`'
+    API_Key:
       in: header
       name: Authorization
       type: apiKey
+      description: 'We provide API keys to govern access&mdash;we''ll provision your account with one key, and more can be provided upon request.
+
+
+        Every key is fully privileged within the system, and should be kept private.
+
+
+        To authenticate, prefix your API Key with `apiKey ` and place it in the `Authorization` request header.
+
+        For example: `Authorization: apiKey your-api-key`
+
+        '
+x-tagGroups:
+- name: Managing Jobs
+  tags:
+  - jobs
+- name: Building Circuits
+  tags:
+  - quantum_programs
+- name: Characterization Data
+  tags:
+  - calibrations
+  - characterizations
+- name: Backends
+  tags:
+  - backends
+- name: User Metadata
+  tags:
+  - metadata
+- name: API Features
+  tags:
+  - api-feature-pagination
+  - api-feature-response-status
+- name: Telemetry
+  tags:
+  - status
