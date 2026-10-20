@@ -15,3 +15,74 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
+- slug: ionq-amazon-braket-aws
+  label: Amazon Braket (AWS)
+  partner: amazon-braket
+  partner_name: Amazon Braket (AWS)
+  type: marketplace
+  marketplace: amazon-braket
+  channel: distribution
+  evidence: https://aws.amazon.com/braket/quantum-computers/ionq/
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Amazon Braket supported devices (docs.aws.amazon.com braket-devices + aws.amazon.com/braket/quantum-computers)
+    spec_file: null
+    role: quantum-cloud-distribution
+    registered_name: IonQ
+    matched_domain: ionq.com
+    matched_by: domain
+    domain_source: braket provider page own-site link
+    signal_note: selling QPU access through a quantum cloud is distribution, kept out of position shares
+    detected_by: sweep-quantum-computing.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: ionq-azure-quantum-microsoft
+  label: Azure Quantum (Microsoft)
+  partner: microsoft-quantum
+  partner_name: Azure Quantum (Microsoft)
+  type: marketplace
+  marketplace: microsoft-quantum
+  channel: distribution
+  evidence: https://learn.microsoft.com/en-us/azure/quantum/provider-ionq
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Azure Quantum providers (learn.microsoft.com azure/quantum qc-target-list + provider pages)
+    spec_file: null
+    role: quantum-cloud-distribution
+    registered_name: IonQ
+    matched_domain: ionq.com
+    matched_by: domain
+    domain_source: azure provider page own-site link
+    signal_note: selling QPU access through a quantum cloud is distribution, kept out of position shares
+    detected_by: sweep-quantum-computing.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: ionq-qed-c-quantum-economic-development-consortium
+  label: QED-C (Quantum Economic Development Consortium)
+  partner_name: QED-C (Quantum Economic Development Consortium)
+  category: quantum industry consortium
+  type: register
+  channel: standard-directory
+  evidence: https://quantumconsortium.org/members/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: QED-C members (quantumconsortium.org/members, Corporate)
+    standard: null
+    spec_file: null
+    role: qedc-member
+    registered_name: IonQ
+    register_id: https://quantumconsortium.org/members/
+    member_class: Corporate
+    founding_member: true
+    matched_domain: ionq.com
+    matched_by: domain
+    signal_note: 'participation only: consortium membership; founding status is context, never counted'
+    detected_by: sweep-quantum-computing.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
