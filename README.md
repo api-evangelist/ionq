@@ -1,4 +1,4 @@
-# IonQ (ionq)
+# IonQ
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,158 +66,180 @@
 
 IonQ (NYSE IONQ) is a College Park, Maryland-based public trapped-ion quantum computing company. IonQ designs, manufactures, and operates trapped-ion quantum computers (Aria, Forte, Forte Enterprise, Tempo, Harmony) and delivers them through the IonQ Quantum Cloud REST API, on-premises Forte Enterprise systems, and partner clouds (AWS Braket, Microsoft Azure Quantum, Google Cloud). The platform supports submission of QIS and native-gate circuits, multi-circuit and Quantum Function jobs, reserved Sessions, error mitigation, and organization-level usage and cost reporting. IonQ's quantum networking, security (QKD), sensing, and space-infrastructure businesses extend the trapped-ion core into a broader quantum systems portfolio.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/ionq/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/ionq/refs/heads/main/apis.yml)
+**Areas:** Quantum Computing · Trapped Ion · QPU · ARIA · Forte · Tempo · Quantum Cloud · Cloud · Hardware · Public Company
 
-## Scope
+## IonQ on APIs.io
 
-- **Position:** Provider
-- **Access:** 3rd-Party
+Everything profiled for IonQ is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ionq/](https://apis.io/providers/ionq/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (7)
 
-- Quantum Computing
-- Trapped Ion
-- QPU
-- Aria
-- Forte
-- Tempo
-- Quantum Cloud
-- Cloud
-- Hardware
-- Public Company
+- [IonQ Quantum Cloud API (v0.3 Legacy)](https://apis.io/apis/ionq/ionq-quantum-cloud-api-v0-3/) — The previous-generation IonQ Quantum Cloud REST API (v0.3) for submitting and managing jobs, characterizations, backends, and reports. Superseded by v0.4…
+- [IonQ Backends API](https://apis.io/apis/ionq/ionq-backends-api/) — The backends API from IonQ — 2 operation(s) for backends.
+- [IonQ Characterizations API](https://apis.io/apis/ionq/ionq-characterizations-api/) — The characterizations API from IonQ — 2 operation(s) for characterizations.
+- [IonQ Jobs API](https://apis.io/apis/ionq/ionq-jobs-api/) — The Jobs API from IonQ — 11 operation(s) for jobs.
+- [IonQ Sessions API](https://apis.io/apis/ionq/ionq-sessions-api/) — The Sessions API from IonQ — 4 operation(s) for sessions.
+- [IonQ Usage API](https://apis.io/apis/ionq/ionq-usage-api/) — The usage API from IonQ — 1 operation(s) for usage.
+- [IonQ Whoami API](https://apis.io/apis/ionq/ionq-whoami-api/) — The whoami API from IonQ — 1 operation(s) for whoami.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-24T00:00:00.000Z
-- **Modified:** 2026-05-24
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### IonQ Quantum Cloud API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-REST API for submitting quantum circuits, managing jobs and sessions, inspecting backends and characterizations, and tracking cost and usage on the IonQ Quantum Cloud. Backends include the qpu.aria-1, qpu.aria-2, qpu.forte-1, qpu.forte-enterprise-1 trapped-ion QPUs and the IonQ noisy/ideal simulator (up to 29 qubits). Supports single-circuit, multi-circuit, native-gate, QAOA, and Quantum Function jobs. Authentication via Authorization header `apiKey $IONQ_API_KEY`.
+- [Ionq Agentic Access](https://apis.io/agentic-access/ionq/ionq-agentic-access/)
 
-- **Human URL:** [https://docs.ionq.com/api-reference/v0.4/introduction](https://docs.ionq.com/api-reference/v0.4/introduction)
-- **Base URL:** `https://api.ionq.co/v0.4`
+#### JSON Schema (3)
 
-#### Tags
+The data models the API reads and writes.
 
-- Quantum Computing
-- Trapped Ion
-- QPU
-- Jobs
-- Sessions
-- Backends
-- Cloud
+- [IonQ Backend](https://apis.io/schemas/ionq/ionq-backend/)
+- [IonQ Job](https://apis.io/schemas/ionq/ionq-job/)
+- [IonQ Session](https://apis.io/schemas/ionq/ionq-session/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://docs.ionq.com/api-reference/v0.4/introduction)
-- [Documentation](https://docs.ionq.com/guides/direct-api-submission)
-- [OpenAPI](openapi/ionq-quantum-cloud-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/ionq-quantum-cloud.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ionq-quantum-cloud.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/ionq-job-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/ionq-backend-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/ionq-session-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/ionq-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+Data models expressed in JSON Structure.
 
-### IonQ Quantum Cloud API (v0.3 Legacy)
+- [Ionq Job Structure](https://apis.io/json-structure/ionq/ionq-job-structure/)
 
-The previous-generation IonQ Quantum Cloud REST API (v0.3) for submitting and managing jobs, characterizations, backends, and reports. Superseded by v0.4 which adds Sessions, separated cost/results endpoints, and restructured characterizations. v0.3 remains supported for existing integrations.
+#### JSON-LD (1)
 
-- **Human URL:** [https://docs.ionq.com/api-reference/v0.3/introduction](https://docs.ionq.com/api-reference/v0.3/introduction)
-- **Base URL:** `https://api.ionq.co/v0.3`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Ionq Context](https://apis.io/jsonld/ionq/ionq-context/)
 
-- Quantum Computing
-- Trapped Ion
-- QPU
-- Legacy
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://docs.ionq.com/api-reference/v0.3/introduction)
-- [Documentation](https://docs.ionq.com/api-reference/v0.3/migrating-from-old-versions)
-- [Documentation](https://docs.ionq.com/api-reference/v0.4/migration-from-v0.3)
-- [Postman Collection](collections/ionq-quantum-cloud.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ionq-quantum-cloud.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [IonQ Vocabulary](https://apis.io/vocabularies/ionq/ionq-vocabulary/)
 
-## Common Properties
+#### Examples (2)
 
-- [Portal](https://ionq.com)
+Example requests and responses.
+
+- [Ionq Create Job Example](https://apis.io/examples/ionq/ionq-create-job-example/)
+- [Ionq Create Session Example](https://apis.io/examples/ionq/ionq-create-session-example/)
+
+#### Collections (13)
+
+Postman and Open Collection request collections.
+
+- [IonQ Cloud Platform backends API](https://apis.io/collections/ionq/open-ionq-backends-api/)
+- [IonQ Cloud Platform backends characterizations API](https://apis.io/collections/ionq/open-ionq-characterizations-api/)
+- [IonQ Cloud Platform backends Jobs API](https://apis.io/collections/ionq/open-ionq-jobs-api/)
+- [IonQ Cloud Platform API](https://apis.io/collections/ionq/open-ionq-quantum-cloud/)
+- [IonQ Cloud Platform backends Sessions API](https://apis.io/collections/ionq/open-ionq-sessions-api/)
+- [IonQ Cloud Platform backends usage API](https://apis.io/collections/ionq/open-ionq-usage-api/)
+- [IonQ Cloud Platform backends whoami API](https://apis.io/collections/ionq/open-ionq-whoami-api/)
+- [IonQ Cloud Platform backends API](https://apis.io/collections/ionq/postman-ionq-backends-api/)
+- [IonQ Cloud Platform backends characterizations API](https://apis.io/collections/ionq/postman-ionq-characterizations-api/)
+- [IonQ Cloud Platform backends Jobs API](https://apis.io/collections/ionq/postman-ionq-jobs-api/)
+- [IonQ Cloud Platform backends Sessions API](https://apis.io/collections/ionq/postman-ionq-sessions-api/)
+- [IonQ Cloud Platform backends usage API](https://apis.io/collections/ionq/postman-ionq-usage-api/)
+- [IonQ Cloud Platform backends whoami API](https://apis.io/collections/ionq/postman-ionq-whoami-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [IonQ — jsonschema rules](https://apis.io/rules/ionq/ionq-jsonschema-spectral-rules/)
+- [IonQ API Rules](https://apis.io/rules/ionq/ionq-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Ionq Authentication](https://apis.io/security/ionq/ionq-authentication/)
+- [Ionq Domain Security](https://apis.io/security/ionq/ionq-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Ionq Plans Pricing](https://apis.io/plans/ionq/ionq-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Ionq Rate Limits](https://apis.io/rate-limits/ionq/ionq-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Ionq Finops](https://apis.io/finops/ionq/ionq-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.ionq.com/)
 - [Documentation](https://docs.ionq.com)
-- [Documentation](https://docs.ionq.com/api-reference/v0.4/introduction)
-- [Documentation](https://docs.ionq.com/api-reference/v0.3/introduction)
-- [Portal](https://cloud.ionq.com)
-- [Sign Up](https://cloud.ionq.com)
-- [Documentation](https://docs.ionq.com/user-manual/introduction)
-- [Glossary](https://docs.ionq.com/user-manual/glossary)
-- [Authentication](https://docs.ionq.com/guides/managing-api-keys)
-- [Authentication](https://docs.ionq.com/guides/connecting-saml-identity-providers)
-- [Authentication](https://docs.ionq.com/guides/dotenv-project-api-keys)
-- [Getting Started](https://docs.ionq.com/guides/direct-api-submission)
-- [Getting Started](https://docs.ionq.com/guides/getting-started-with-native-gates)
-- [Documentation](https://docs.ionq.com/guides/cloud-usage)
-- [Documentation](https://docs.ionq.com/guides/error-mitigation-debiasing)
-- [Documentation](https://docs.ionq.com/guides/qpu-submission-checklist)
-- [Documentation](https://docs.ionq.com/guides/hosted-hybrid-service)
-- [Documentation](https://docs.ionq.com/guides/simulation-with-noise-models)
-- [Documentation](https://docs.ionq.com/guides/qaoa-solve-with-fire-opal)
-- [Documentation](https://docs.ionq.com/user-manual/platform-systems)
-- [Documentation](https://docs.ionq.com/user-manual/backends)
-- [Documentation](https://docs.ionq.com/user-manual/jobs)
-- [Documentation](https://docs.ionq.com/user-manual/projects)
-- [Documentation](https://docs.ionq.com/user-manual/organizations)
-- [Documentation](https://docs.ionq.com/user-manual/accounts)
-- [Documentation](https://docs.ionq.com/partners/amazon-braket)
-- [Versioning](https://docs.ionq.com/api-reference/v0.4/migration-from-v0.3)
-- [Errors](https://docs.ionq.com/api-reference/v0.3/error-codes)
-- [Status Page](https://status.ionq.co)
+- [Getting started](https://docs.ionq.com/guides/direct-api-submission)
 - [Support](https://support.ionq.com)
-- [Support](mailto:support@ionq.com)
-- [Contact](https://ionq.com/contact)
 - [Blog](https://ionq.com/news)
-- [Blog](https://ionq.com/posts)
-- [Documentation](https://ionq.com/resources)
-- [Portal](https://ionq.com/quantum-cloud)
-- [Documentation](https://ionq.com/products)
-- [Documentation](https://ionq.com/company)
-- [Documentation](https://ionq.com/careers)
-- [Documentation](https://investors.ionq.com)
-- [Terms of Service](https://ionq.com/legal/terms-of-service)
-- [Privacy Policy](https://ionq.com/legal/privacy-policy)
-- [Documentation](https://ionq.com/legal)
-- [GitHub Organization](https://github.com/ionq)
-- [SDK](https://github.com/ionq/ionq-core-python)
-- [SDK](https://pypi.org/project/ionq-core/)
-- [SDK](https://github.com/ionq/blqs)
-- [Tool](https://github.com/ionq/pyGSTi)
-- [Tool](https://github.com/ionq/qrmi)
-- [Tool](https://github.com/ionq/torchquantum-dist)
-- [Tool](https://github.com/ionq/QC-App-Oriented-Benchmarks)
-- [Code Examples](https://github.com/ionq/forte_benchmarking)
-- [Code Examples](https://github.com/ionq/forte_aq29_data)
-- [SDK](https://docs.ionq.com/sdks/qiskit/index)
-- [SDK](https://docs.ionq.com/sdks/cirq/index)
-- [SDK](https://docs.ionq.com/sdks/pennylane/index)
-- [SDK](https://docs.ionq.com/sdks/qbraid/index)
-- [SDK](https://docs.ionq.com/sdks/cuda-q)
-- [SDK](https://docs.ionq.com/sdks/tensorflow)
-- [Integration](https://aws.amazon.com/braket/quantum-computers/ionq/)
-- [Integration](https://azure.microsoft.com/products/quantum/)
-- [Integration](https://cloud.google.com/blog/products/compute/ionq-quantum-computing-now-available-on-google-cloud)
-- [LinkedIn](https://www.linkedin.com/company/ionq)
-- [Twitter](https://x.com/ionq_inc)
-- [YouTube](https://www.youtube.com/@ionq_inc)
-- [Plans](plans/ionq-plans-pricing.yml)
-- [Rate Limits](rate-limits/ionq-rate-limits.yml)
-- [Fin Ops](finops/ionq-finops.yml)
-- [Features](undefined)
+- [Terms of service](https://ionq.com/legal/terms-of-service)
+- [Privacy policy](https://ionq.com/legal/privacy-policy)
+- [GitHub](https://github.com/ionq)
+- [Status](https://status.ionq.co)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 51.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 64.5 |
+| Contract governance | 13.6 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 67.9 |
+| Access clarity | 42.1 |
+
+**Agent readiness 29.1** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ionq/](https://apis.io/providers/ionq/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for IonQ: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ionq/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
